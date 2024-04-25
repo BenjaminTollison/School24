@@ -1,0 +1,13 @@
+LOAD modified_NACA0012.dat.dat
+modified_NACA0012.dat
+PANE
+OPER
+Visc 1000000
+PACC
+polar_file.txt
+
+ITER 200
+ASeq 0 10 0.25
+
+
+quit

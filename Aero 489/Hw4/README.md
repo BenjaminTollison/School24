@@ -1,0 +1,2 @@
+# Benjamin Tollison
+All the files in the zip folder/directory are required to run the optimization. To run the program select the 'airfoil-optimization.ipynb' notebook to run. It is using python 3.11.2 to run.
