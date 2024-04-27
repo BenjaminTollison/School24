@@ -1,5 +1,5 @@
-LOAD modified_NACA0012.dat.dat
-modified_NACA0012.dat
+LOAD modified_NACA0012.dat
+modified_NACA0012
 PANE
 OPER
 Visc 1000000
