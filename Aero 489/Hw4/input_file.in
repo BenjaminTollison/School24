@@ -2,7 +2,8 @@ LOAD modified_NACA0012.dat
 modified_NACA0012
 PANE
 OPER
-Visc 3000000.0
+Visc 27400000.0
+Type 1
 PACC
 polar_file.txt
 
