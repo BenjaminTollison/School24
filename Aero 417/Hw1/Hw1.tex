@@ -113,7 +113,7 @@
 \begin{questions}
 \begin{question}
 Create a graphic in a spreadsheet, showing the variaon of the normalized specific work
-vs pressure rao (r) for different t values (1, 2, 3, 4, and 5). Explain the behavior of the
+vs pressure ratio (r) for different t values (1, 2, 3, 4, and 5). Explain the behavior of the
 curves based on the technological level of metals. Use: \(\gamma\) = 1.4 (air).
 \[\frac{W_L}{c_p T_{t1}} = t \left[1-\frac{1}{r^{\frac{\gamma-1}{\gamma}}}\right] - \left[r^{\frac{\gamma-1}{\gamma}} -1\right]\]
 \end{question}
@@ -134,7 +134,38 @@ or false?
 \begin{equation}
   \frac{W_L}{c_p T_{t1}} = \frac{T_{t3}}{T_{t1}} \left[1-\frac{T_{t1}}{T_{t2}}\right] - \left[\frac{T_{t2}}{T_{t1}} -1\right]
 \end{equation}
-
+\begin{equation*}
+  \frac{\partial}{\partial T_{t2}} \left(\frac{W_L}{c_p T_{t1}}\right) =  0 |_{W_L = \text{max}}
+\end{equation*}
+\begin{equation*}
+  \frac{\partial}{\partial T_{t2}} \left(\frac{W_L}{c_p T_{t1}}\right) = \frac{T_{t3}}{T_{t1}} \frac{T_{t1}}{T^2_{t2}} - \frac{1}{T_{t1}}
+\end{equation*}
+\begin{equation*}
+  \frac{T_{t3}}{T_{t1}} \frac{T_{t1}}{T^2_{t2}} = \frac{1}{T_{t1}}
+\end{equation*}
+\begin{equation*}
+  T^2_{t2} = T_{t1}T_{t3}
+\end{equation*}
+\begin{equation}
+  T_{t2} = \sqrt{T_{t1}T_{t3}}
+\end{equation}
+\begin{equation*}
+  T_{t2} = \sqrt{T_{t1}T_{t3}}\left(\frac{\sqrt{T_{t1}T_{t3}}}{\sqrt{T_{t1}T_{t3}}}\right)
+\end{equation*}
+\begin{equation*}
+  T_{t2} = \frac{{T_{t1}T_{t3}}}{\sqrt{T_{t1}T_{t3}}}
+\end{equation*}
+\begin{equation*}
+  T_{t2} = \frac{{T_{t1}T_{t3}}}{T_{t2}}
+\end{equation*}
+Where \(\frac{T_{t1}}{T_{t2}} = \frac{T_{t3}}{T_{t4}}\) in an ideal Brayton cycle
+\begin{equation*}
+  T_{t2} = \frac{{T_{t4}}}{T_{t3}} T_{t3}
+\end{equation*}
+\begin{equation}
+  \therefore T_{t2} = T_{t4} = \sqrt{T_{t1}T_{t3}}
+\end{equation}
+Making it true that at max work \(T_{t2} = T_{t4}\)
 
 \end{questions}
 \end{document}
