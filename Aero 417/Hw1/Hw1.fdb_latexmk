@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1725476608 "/home/benjamintollison/the-hub/School24/Aero 417/Hw1/Hw1.tex" "Hw1.pdf" "Hw1" 1725476609
+["pdflatex"] 1725559058 "/home/benjamintollison/the-hub/School24/Aero 417/Hw1/Hw1.tex" "Hw1.pdf" "Hw1" 1725559059
   "/etc/texmf/web2c/texmf.cnf" 1725467444 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/benjamintollison/the-hub/School24/Aero 417/Hw1/Hw1.tex" 1725476608 5892 b2a35e1fa35c81344032b7dc2449a365 ""
+  "/home/benjamintollison/the-hub/School24/Aero 417/Hw1/Hw1.tex" 1725559058 6662 5ed8ee9905b21971e2f161998f49855c ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/euler/euex10.tfm" 1246382020 808 f0482638b09e07d31277eba36400f7dc ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/euler/euex7.tfm" 1246382020 808 ffd475d90f7bb606e739dfb01f8e0300 ""
@@ -102,9 +102,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1725468678 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1725468740 2799159 392e9016e4676e226fd835f3cd77b581 ""
-  "Hw1-1-graph.png" 1725470328 42590 be85140b160165662405089d8fd7445f ""
-  "Hw1.aux" 1725476609 591 2315522e2d0a84c99cdf053c432dbba2 "pdflatex"
-  "Hw1.tex" 1725476608 5892 b2a35e1fa35c81344032b7dc2449a365 ""
+  "Hw1-1-graph.png" 1725557959 33582 90a063edd1899387411464d4debcaf90 ""
+  "Hw1.aux" 1725559059 591 26c30be3478cba5fd5fd839347345c7c "pdflatex"
+  "Hw1.tex" 1725559058 6662 5ed8ee9905b21971e2f161998f49855c ""
   (generated)
   "Hw1.aux"
   "Hw1.log"
