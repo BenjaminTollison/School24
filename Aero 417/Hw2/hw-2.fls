@@ -473,17 +473,26 @@ INPUT ./brayton v real cycle.png
 INPUT brayton v real cycle.png
 INPUT ./brayton v real cycle.png
 INPUT ./brayton v real cycle.png
+INPUT ./t-s-graph.png
+INPUT ./t-s-graph.png
+INPUT t-s-graph.png
+INPUT ./t-s-graph.png
+INPUT ./t-s-graph.png
 INPUT hw-2.aux
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc
+INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/euex10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/euex8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eufm7.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eurm7.pfb
+INPUT /usr/share/texmf/fonts/type1/public/lm/lmex10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmr12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmss12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmss8.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb
+INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsya.pfb

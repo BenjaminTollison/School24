@@ -149,69 +149,31 @@ The process in the turbine is also not reversible.
 
 \newpage 
 \begin{question}
-Find all eigenvalues and eigenfunctions for the equation: 
-$\varphi'' + \lambda \varphi = 0$ with $\varphi(0) = 0$ and $\varphi'(\pi) = 0.$
+Draw the T-s diagram and determine the turbine shaft power, and the air-fuel ratio
 \end{question}
 \begin{solutionorbox}[\stretch{1}]
-\end{solutionorbox}
+With all the given infomation the only equations used to find the shaft power were:
+\[P_{02} = rP_{01}\]
+\[T_{02} = T_{01}\left[1 + \frac{1}{\eta_c}\left(r^\frac{\gamma-1}{\gamma} - 1\right)\right]\]
+\[W_* = \frac{1}{\eta_*}cp_*(T_i - T_j)\]
+\[\text{P} = \dot{m}_{gas}(W_T - W_C)\]
+\(\therefore \text{P}_{shaft} = 5740.3282\) [kW] 
 
+The entropy starting values were pulled from Dr.Cizmas' textbook from the 
+air tables for \(s_1\) and stoichiometric tables for \(s_3\). The following equation
+was used to find the other two values:
+\[s_i - s_j = cp_*\ln{\frac{T_i}{T_j}} - R\ln{\frac{P_i}{P_j}}\]
+which then produces the following T-s graph.
+\begin{center}
+\includegraphics[width=350pt]{t-s-graph.png}
+\end{center}
+The ideal fuel to air ratio was pulled from the 5th set of lecture slides:
+\[\Delta{t_c} = 588.4864 \rightarrow f \approx 0.014\]
+\[\therefore f^{-1} \approx 71.429\]
 
-\newpage 
-\begin{question}
-Solve 
-\begin{align*}
-\begin{cases}
-\ptt u = \pxx u\\ 
-u(0, t) = u(\pi, t) = 0\\ 
-u(x,0) = f(x), \pt u(x,0) = 0,
-\end{cases}
-\end{align*}
-where $f(x)$ is the ``hat function'': it's $0$ and $0$ and $\pi$ and $1$ and $\pi/2$ and 
-linear in between. 
-\end{question}
-\begin{solutionorbox}[\stretch{1}]
-\end{solutionorbox}
-
-
-\newpage 
-\begin{question}
-This is another perspective on the SOV method. Consider the problem 
-\begin{align*}
-\begin{cases}
-\pt u = \pxx u\\
-u(0,t) = u(\pi, t) = 0\\ 
-u(x,0) = g(x)
-\end{cases}.
-\end{align*}
-For each fixed $x$, assume that the solution can be written as $\sum_{k=1}^{\infty}B_k\sin(kx)$. 
-Note that the $B_k$ depend on $t$ so a better way to write it is $\sum_{k=1}^{\infty}
-B_k(t) \sin(kx)$. Starting from this point, find the SOV solution. 
-(Note: I had a typo that said $B_k(x)$ before; it should be 
-$B_k(t)$ SORRY!!)
-\end{question}
-\begin{solutionorbox}[\stretch{1}]
-Plugging the function into the PDE we get: 
-\begin{align*}
-\sum_{k=1}^{\infty}B_k'(t)\sin kx
-&= \sum_{k=1}^{\infty}B_k(t)\frac{d^2}{dx^2}\sin kx
-\\&= \sum_{k=1}^{\infty}B_k(t)(-k^2 \sin kx)
-\\&= -\sum_{k=1}^{\infty}B_k(t)k^2 \sin kx.
-\end{align*}
-Subtracting the left from the right: 
-\begin{align*}
-0 = \sum_{k=1}^{\infty}(B_k'(t) + k^2 B_k(t))\sin kx.
-\end{align*}
-Since the $\sin kx$ functions are linearly independent, this implies that
-for all $k$, $B_k'(t) =- k^2 B_k(t)$. So we get an ODE for $B_k$ and the 
-solution is $B_k (t) = B_k(0)e^{-k^2 t}$. To find the values of the 
-constants note that: 
-\begin{align*}
-g(x) 
-= u(x,0)
-= \sum_{k=1}^{\infty}B_k(0) \sin kx.
-\end{align*}
-That is, as before, $B_k(0) = \frac{2}{\pi}\int_{0}^{\pi}g(y)\sin ky dy$.
 \end{solutionorbox}
 
 \end{questions}
+
+
 \end{document}
