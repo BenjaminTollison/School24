@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.9.4)  21 SEP 2024 21:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.9.4)  21 SEP 2024 22:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -106,71 +106,137 @@ File: size12.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks21
 \inpenc@posthook=\toks22
+) (/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2022/01/29 v0.5u Insert pages of external PDF documents (AM)
+ (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count300
+\calc@Bcount=\count301
+\calc@Adimen=\dimen142
+\calc@Bdimen=\dimen143
+\calc@Askip=\skip74
+\calc@Bskip=\skip75
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count302
+\calc@Cskip=\skip76
+) (/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2020/10/14 v3.0a eso-pic (RN)
+\ESO@tempdima=\dimen144
+\ESO@tempdimb=\dimen145
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks23
+) (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 227.
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1352.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1356.
+Package xcolor Info: Model `RGB' extended on input line 1368.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1370.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1373.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1374.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
+)) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+)
+\Gin@req@height=\dimen146
+\Gin@req@width=\dimen147
+)
+\AM@pagewidth=\dimen148
+\AM@pageheight=\dimen149
+\AM@fboxrule=\dimen150
+ (/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
+File: pppdftex.def 2022/01/29 v0.5u Pdfpages driver for pdfTeX (AM)
+)
+\pdfpages@includegraphics@status=\count303
+\AM@pagebox=\box51
+\AM@global@opts=\toks24
+\AM@pagecnt=\count304
+\AM@toc@title=\toks25
+\c@AM@survey=\count305
+\AM@templatesizebox=\box52
 ) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2021/10/15 v2.17l AMS math features
-\@mathmargin=\skip74
+\@mathmargin=\skip77
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2021/08/26 v2.01 AMS text
  (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks23
-\ex@=\dimen142
+\@emptytoks=\toks26
+\ex@=\dimen151
 )) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen143
+\pmbraise@=\dimen152
 ) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2021/08/26 v2.02 operator names
 )
-\inf@bad=\count300
+\inf@bad=\count306
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count301
-\leftroot@=\count302
+\uproot@=\count307
+\leftroot@=\count308
 LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count303
-\DOTSCASE@=\count304
+\classnum@=\count309
+\DOTSCASE@=\count310
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box51
-\strutbox@=\box52
-\big@size=\dimen144
+\Mathstrutbox@=\box53
+\strutbox@=\box54
+\big@size=\dimen153
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count305
-\c@MaxMatrixCols=\count306
+\macc@depth=\count311
+\c@MaxMatrixCols=\count312
 \dotsspace@=\muskip16
-\c@parentequation=\count307
-\dspbrk@lvl=\count308
-\tag@help=\toks24
-\row@=\count309
-\column@=\count310
-\maxfields@=\count311
-\andhelp@=\toks25
-\eqnshift@=\dimen145
-\alignsep@=\dimen146
-\tagshift@=\dimen147
-\tagwidth@=\dimen148
-\totwidth@=\dimen149
-\lineht@=\dimen150
-\@envbody=\toks26
-\multlinegap=\skip75
-\multlinetaggap=\skip76
-\mathdisplay@stack=\toks27
+\c@parentequation=\count313
+\dspbrk@lvl=\count314
+\tag@help=\toks27
+\row@=\count315
+\column@=\count316
+\maxfields@=\count317
+\andhelp@=\toks28
+\eqnshift@=\dimen154
+\alignsep@=\dimen155
+\tagshift@=\dimen156
+\tagwidth@=\dimen157
+\totwidth@=\dimen158
+\lineht@=\dimen159
+\@envbody=\toks29
+\multlinegap=\skip78
+\multlinetaggap=\skip79
+\mathdisplay@stack=\toks30
 LaTeX Info: Redefining \[ on input line 2938.
 LaTeX Info: Redefining \] on input line 2939.
 ) (/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
-\thm@style=\toks28
-\thm@bodyfont=\toks29
-\thm@headfont=\toks30
-\thm@notefont=\toks31
-\thm@headpunct=\toks32
-\thm@preskip=\skip77
-\thm@postskip=\skip78
-\thm@headsep=\skip79
-\dth@everypar=\toks33
+\thm@style=\toks31
+\thm@bodyfont=\toks32
+\thm@headfont=\toks33
+\thm@notefont=\toks34
+\thm@headpunct=\toks35
+\thm@preskip=\skip80
+\thm@postskip=\skip81
+\thm@headsep=\skip82
+\dth@everypar=\toks36
 ) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
@@ -183,24 +249,6 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 )) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsxtra.sty
 Package: amsxtra 1999/11/15 v1.2c AMS extra commands
 LaTeX Info: Redefining \nobreakspace on input line 54.
-) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
- (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks34
-) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
- (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
-) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
-File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
-)
-Package graphics Info: Driver file: pdftex.def on input line 107.
- (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
-))
-\Gin@req@height=\dimen151
-\Gin@req@width=\dimen152
 ) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
@@ -208,18 +256,18 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
  (/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 ))
-\Gm@cnth=\count312
-\Gm@cntv=\count313
-\c@Gm@tempcnt=\count314
-\Gm@bindingoffset=\dimen153
-\Gm@wd@mp=\dimen154
-\Gm@odd@mp=\dimen155
-\Gm@even@mp=\dimen156
-\Gm@layoutwidth=\dimen157
-\Gm@layoutheight=\dimen158
-\Gm@layouthoffset=\dimen159
-\Gm@layoutvoffset=\dimen160
-\Gm@dimlist=\toks35
+\Gm@cnth=\count318
+\Gm@cntv=\count319
+\c@Gm@tempcnt=\count320
+\Gm@bindingoffset=\dimen160
+\Gm@wd@mp=\dimen161
+\Gm@odd@mp=\dimen162
+\Gm@even@mp=\dimen163
+\Gm@layoutwidth=\dimen164
+\Gm@layoutheight=\dimen165
+\Gm@layouthoffset=\dimen166
+\Gm@layoutvoffset=\dimen167
+\Gm@dimlist=\toks37
 ) (/usr/share/texlive/texmf-dist/tex/latex/txfonts/txfonts.sty
 Package: txfonts 2008/01/22 v3.2.1
 LaTeX Font Info:    Redeclaring symbol font `operators' on input line 21.
@@ -452,29 +500,27 @@ LaTeX Font Info:    Redeclaring math accent \hat on input line 254.
 Package: pdfsync 2008/01/26 v1.1
 ) (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
-\c@tracingmulticols=\count315
-\mult@box=\box53
-\multicol@leftmargin=\dimen161
-\c@unbalance=\count316
-\c@collectmore=\count317
-\doublecol@number=\count318
-\multicoltolerance=\count319
-\multicolpretolerance=\count320
-\full@width=\dimen162
-\page@free=\dimen163
-\premulticols=\dimen164
-\postmulticols=\dimen165
-\multicolsep=\skip80
-\multicolbaselineskip=\skip81
-\partial@page=\box54
-\last@line=\box55
-\maxbalancingoverflow=\dimen166
-\mult@rightbox=\box56
-\mult@grightbox=\box57
-\mult@firstbox=\box58
-\mult@gfirstbox=\box59
-\@tempa=\box60
-\@tempa=\box61
+\c@tracingmulticols=\count321
+\mult@box=\box55
+\multicol@leftmargin=\dimen168
+\c@unbalance=\count322
+\c@collectmore=\count323
+\doublecol@number=\count324
+\multicoltolerance=\count325
+\multicolpretolerance=\count326
+\full@width=\dimen169
+\page@free=\dimen170
+\premulticols=\dimen171
+\postmulticols=\dimen172
+\multicolsep=\skip83
+\multicolbaselineskip=\skip84
+\partial@page=\box56
+\last@line=\box57
+\maxbalancingoverflow=\dimen173
+\mult@rightbox=\box58
+\mult@grightbox=\box59
+\mult@firstbox=\box60
+\mult@gfirstbox=\box61
 \@tempa=\box62
 \@tempa=\box63
 \@tempa=\box64
@@ -509,75 +555,83 @@ Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
 \@tempa=\box93
 \@tempa=\box94
 \@tempa=\box95
-\c@minrows=\count321
-\c@columnbadness=\count322
-\c@finalcolumnbadness=\count323
-\last@try=\dimen167
-\multicolovershoot=\dimen168
-\multicolundershoot=\dimen169
-\mult@nat@firstbox=\box96
-\colbreak@box=\box97
-\mc@col@check@num=\count324
+\@tempa=\box96
+\@tempa=\box97
+\c@minrows=\count327
+\c@columnbadness=\count328
+\c@finalcolumnbadness=\count329
+\last@try=\dimen174
+\multicolovershoot=\dimen175
+\multicolundershoot=\dimen176
+\mult@nat@firstbox=\box98
+\colbreak@box=\box99
+\mc@col@check@num=\count330
 )
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 105.
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 106.
  (/usr/share/texmf/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count325
-\l__pdf_internal_box=\box98
+\l__color_backend_stack_int=\count331
+\l__pdf_internal_box=\box100
 ) (./hw-2.aux)
 \openout1 = `hw-2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 105.
-LaTeX Font Info:    Trying to load font information for OML+txmi on input line 105.
+LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 106.
+LaTeX Font Info:    Trying to load font information for OML+txmi on input line 106.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/omltxmi.fd
 File: omltxmi.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 105.
-LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 105.
-LaTeX Font Info:    Trying to load font information for OMS+txsy on input line 105.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 106.
+LaTeX Font Info:    Trying to load font information for OMS+txsy on input line 106.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/omstxsy.fd
 File: omstxsy.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 105.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 105.
-LaTeX Font Info:    ... okay on input line 105.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 105.
-LaTeX Font Info:    ... okay on input line 105.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 105.
-LaTeX Font Info:    ... okay on input line 105.
-LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 105.
-LaTeX Font Info:    Trying to load font information for OMX+txex on input line 105.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 106.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 106.
+LaTeX Font Info:    Trying to load font information for OMX+txex on input line 106.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/omxtxex.fd
 File: omxtxex.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 105.
-LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 105.
-LaTeX Font Info:    Trying to load font information for U+txexa on input line 105.
+LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 106.
+LaTeX Font Info:    Trying to load font information for U+txexa on input line 106.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/utxexa.fd
 File: utxexa.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 105.
+LaTeX Font Info:    ... okay on input line 106.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count326
-\scratchdimen=\dimen170
-\scratchbox=\box99
-\nofMPsegments=\count327
-\nofMParguments=\count328
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count329
-\MPscratchDim=\dimen171
-\MPnumerator=\count330
-\makeMPintoPDFobject=\count331
-\everyMPtoPDFconversion=\toks37
+\scratchcounter=\count332
+\scratchdimen=\dimen177
+\scratchbox=\box101
+\nofMPsegments=\count333
+\nofMParguments=\count334
+\everyMPshowfont=\toks38
+\MPscratchCnt=\count335
+\MPscratchDim=\dimen178
+\MPnumerator=\count336
+\makeMPintoPDFobject=\count337
+\everyMPtoPDFconversion=\toks39
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-))
+)) (/usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -612,111 +666,111 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 105.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 106.
 LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
-(Font)              `operators' in the math version `normal' on input line 105.
+(Font)              `operators' in the math version `normal' on input line 106.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/lmr/m/n --> T1/lmr/m/up on input line 105.
+(Font)                  OT1/lmr/m/n --> T1/lmr/m/up on input line 106.
 LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
-(Font)              `operators' in the math version `bold' on input line 105.
+(Font)              `operators' in the math version `bold' on input line 106.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/lmr/bx/n --> T1/lmr/m/up on input line 105.
+(Font)                  OT1/lmr/bx/n --> T1/lmr/m/up on input line 106.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  T1/lmr/m/up --> T1/lmr/b/up on input line 105.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 105.
+(Font)                  T1/lmr/m/up --> T1/lmr/b/up on input line 106.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 106.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> T1/lmr/b/up on input line 105.
+(Font)                  OT1/lmr/bx/n --> T1/lmr/b/up on input line 106.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/lmr/bx/n --> T1/lmr/b/up on input line 105.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 105.
+(Font)                  OT1/lmr/bx/n --> T1/lmr/b/up on input line 106.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 106.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> T1/lmss/m/up on input line 105.
+(Font)                  OT1/lmss/m/n --> T1/lmss/m/up on input line 106.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> T1/lmss/m/up on input line 105.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 105.
+(Font)                  OT1/lmss/bx/n --> T1/lmss/m/up on input line 106.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 106.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> T1/lmr/m/it on input line 105.
+(Font)                  OT1/lmr/m/it --> T1/lmr/m/it on input line 106.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/lmr/bx/it --> T1/lmr/m/it on input line 105.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 105.
+(Font)                  OT1/lmr/bx/it --> T1/lmr/m/it on input line 106.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 106.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> T1/lmtt/m/up on input line 105.
+(Font)                  OT1/lmtt/m/n --> T1/lmtt/m/up on input line 106.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> T1/lmtt/m/up on input line 105.
+(Font)                  OT1/lmtt/m/n --> T1/lmtt/m/up on input line 106.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  T1/lmss/m/up --> T1/lmss/b/up on input line 105.
+(Font)                  T1/lmss/m/up --> T1/lmss/b/up on input line 106.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/lmr/m/it --> T1/lmr/b/it on input line 105.
+(Font)                  T1/lmr/m/it --> T1/lmr/b/it on input line 106.
 Configuring pdfsync
 \PDFSYNC@ut=\write3
 \openout3 = `hw-2.pdfsync'.
 
-\PDFSYNCf@li@=\count332
-\PDFSYNC@rder=\count333
+\PDFSYNCf@li@=\count338
+\PDFSYNC@rder=\count339
 **** pdfsync.sty: Synchronizing at \everypar
-\PDFSYNCeveryp@r=\toks38
+\PDFSYNCeveryp@r=\toks40
 **** pdfsync.sty: Synchronizing at \everymath
-\PDFSYNCeverym@th=\toks39
+\PDFSYNCeverym@th=\toks41
 **** pdfsync.sty: Synchronizing at \everyhbox
-\PDFSYNCeveryhb@x=\toks40
+\PDFSYNCeveryhb@x=\toks42
 **** pdfsync.sty: Synchronizing at \everyvbox
-\PDFSYNCeveryvb@x=\toks41
+\PDFSYNCeveryvb@x=\toks43
 **** pdfsync.sty: started
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 108.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 109.
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 
 LaTeX Font Warning: Font shape `T1/lmr/m/up' undefined
-(Font)              using `T1/lmr/m/n' instead on input line 108.
+(Font)              using `T1/lmr/m/n' instead on input line 109.
 
-LaTeX Font Info:    Trying to load font information for U+eur on input line 108.
+LaTeX Font Info:    Trying to load font information for U+eur on input line 109.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueur.fd
 File: ueur.fd 2013/01/14 v3.01 Euler Roman
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 108.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 109.
  (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 108.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 109.
  (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 108.
+(Font)              <12> on input line 109.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 108.
+(Font)              <8> on input line 109.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 108.
-LaTeX Font Info:    Trying to load font information for U+txsya on input line 108.
+(Font)              <6> on input line 109.
+LaTeX Font Info:    Trying to load font information for U+txsya on input line 109.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/utxsya.fd
 File: utxsya.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsyb on input line 108.
+LaTeX Font Info:    Trying to load font information for U+txsyb on input line 109.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/utxsyb.fd
 File: utxsyb.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for OT1+txr on input line 108.
+LaTeX Font Info:    Trying to load font information for OT1+txr on input line 109.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/ot1txr.fd
 File: ot1txr.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txmia on input line 108.
+LaTeX Font Info:    Trying to load font information for U+txmia on input line 109.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/utxmia.fd
 File: utxmia.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsyc on input line 108.
+LaTeX Font Info:    Trying to load font information for U+txsyc on input line 109.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/utxsyc.fd
 File: utxsyc.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+euf on input line 108.
+LaTeX Font Info:    Trying to load font information for U+euf on input line 109.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
-LaTeX Font Info:    Trying to load font information for U+eus on input line 108.
+LaTeX Font Info:    Trying to load font information for U+eus on input line 109.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueus.fd
 File: ueus.fd 2013/01/14 v3.01 Euler Script
 )
-LaTeX Font Info:    Trying to load font information for U+euex on input line 108.
+LaTeX Font Info:    Trying to load font information for U+euex on input line 109.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuex.fd
 File: ueuex.fd 2013/01/14 v3.01 Euler extra symbols
 ) [1
@@ -725,34 +779,271 @@ File: ueuex.fd 2013/01/14 v3.01 Euler extra symbols
 <brayton v real cycle.png, id=15, 494.34688pt x 388.45125pt>
 File: brayton v real cycle.png Graphic file (type png)
 <use brayton v real cycle.png>
-Package pdftex.def Info: brayton v real cycle.png  used on input line 143.
+Package pdftex.def Info: brayton v real cycle.png  used on input line 144.
 (pdftex.def)             Requested size: 393.93112pt x 309.54631pt.
  [2 <./brayton v real cycle.png>]
 <t-s-graph.png, id=21, 419.166pt x 328.8285pt>
 File: t-s-graph.png Graphic file (type png)
 <use t-s-graph.png>
-Package pdftex.def Info: t-s-graph.png  used on input line 168.
+Package pdftex.def Info: t-s-graph.png  used on input line 169.
 (pdftex.def)             Requested size: 350.0pt x 274.57333pt.
- [3 <./t-s-graph.png>] [4]
-This exam contains 3 questions with 0 parts, 0 subparts, and 0 subsubparts.
-(./hw-2.aux)
+ [3 <./t-s-graph.png>]
 
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+Package pdfpages Warning: Option `page' is unknow to \includepdf.
+(pdfpages)                Did you mean `pages'? (Note the `s'!)
+(pdfpages)                OK, I'll proceed as if it were `pages'.
 
- ) 
-Here is how much of TeX's memory you used:
- 5834 strings out of 478287
- 84673 string characters out of 5849290
- 383444 words of memory out of 5000000
- 23916 multiletter control sequences out of 15000+600000
- 501366 words of font info for 74 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 55i,28n,62p,329b,513s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/euex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/euex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eufm7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eurm7.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss8.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsya.pfb>
-Output written on hw-2.pdf (4 pages, 180584 bytes).
-PDF statistics:
- 95 PDF objects out of 1000 (max. 8388607)
- 56 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+<hw2-calculations.pdf, id=30, 614.295pt x 794.97pt>
+File: hw2-calculations.pdf Graphic file (type pdf)
+<use hw2-calculations.pdf>
+Package pdftex.def Info: hw2-calculations.pdf  used on input line 179.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Package pdfpages Error: Cannot find file `:'.
+
+See the pdfpages package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+This error message was generated by an \errmessage
+command, so I can't give any explicit help.
+Pretend that you're Hercule Poirot: Examine all clues,
+and deduce the truth by order and method.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Missing number, treated as zero.
+<to be read again> 
+                   :
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Missing number, treated as zero.
+<to be read again> 
+                   :
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Missing endcsname inserted.
+<to be read again> 
+                   AM@currentdocname 
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Use of ??? doesn't match its definition.
+<argument> ???  
+                ! LaTeX3 Error: AM@currentdocname invalid in file name. Lost: .
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Missing endcsname inserted.
+<to be read again> 
+                   AM@currentdocname 
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Use of ??? doesn't match its definition.
+<argument> ???  
+                ! LaTeX3 Error: AM@currentdocname invalid in file name. Lost: .
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Missing endcsname inserted.
+<to be read again> 
+                   AM@currentdocname 
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Use of ??? doesn't match its definition.
+<argument> ???  
+                ! LaTeX3 Error: AM@currentdocname invalid in file name. Lost: .
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: LaTeX Error: File `\AM@currentdocname ' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Arithmetic overflow.
+<recently read> \calc@Acount 
+                             
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+I can't carry out that multiplication or division,
+since the result is out of range.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Arithmetic overflow.
+<recently read> \calc@Acount 
+                             
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+I can't carry out that multiplication or division,
+since the result is out of range.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Missing endcsname inserted.
+<to be read again> 
+                   AM@currentdocname 
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Use of ??? doesn't match its definition.
+<argument> ???  
+                ! LaTeX3 Error: AM@currentdocname invalid in file name. Lost: .
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Missing endcsname inserted.
+<to be read again> 
+                   AM@currentdocname 
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Use of ??? doesn't match its definition.
+<argument> ???  
+                ! LaTeX3 Error: AM@currentdocname invalid in file name. Lost: .
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Missing endcsname inserted.
+<to be read again> 
+                   AM@currentdocname 
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Use of ??? doesn't match its definition.
+<argument> ???  
+                ! LaTeX3 Error: AM@currentdocname invalid in file name. Lost: .
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: LaTeX Error: File `\AM@currentdocname ' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+I could not locate the file with any of these extensions:
+.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[4]
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Missing endcsname inserted.
+<to be read again> 
+                   AM@currentdocname 
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Use of ??? doesn't match its definition.
+<argument> ???  
+                ! LaTeX3 Error: AM@currentdocname invalid in file name. Lost: .
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Missing endcsname inserted.
+<to be read again> 
+                   AM@currentdocname 
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Use of ??? doesn't match its definition.
+<argument> ???  
+                ! LaTeX3 Error: AM@currentdocname invalid in file name. Lost: .
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Missing endcsname inserted.
+<to be read again> 
+                   AM@currentdocname 
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: Use of ??? doesn't match its definition.
+<argument> ???  
+                ! LaTeX3 Error: AM@currentdocname invalid in file name. Lost: .
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+
+/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex:179: LaTeX Error: File `\AM@currentdocname ' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.179 \includepdf[page={:}]{hw2-calculations.pdf}
+                                                 
+I could not locate the file with any of these exten
