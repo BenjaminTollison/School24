@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1726975190 "/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex" "hw-2.pdf" "hw-2" 1726975191
+["pdflatex"] 1726975687 "/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex" "hw-2.pdf" "hw-2" 1726975688
   "/etc/texmf/web2c/texmf.cnf" 1725467444 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex" 1726975157 6080 c343d6ced6a68ea468263fd2316ce59f ""
+  "/home/benjamintollison/the-hub/School24/Aero 417/Hw2/hw-2.tex" 1726975687 6089 63dd93ba65374ae6cbb2da5c7682eb59 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/euler/euex10.tfm" 1246382020 808 f0482638b09e07d31277eba36400f7dc ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/euler/euex7.tfm" 1246382020 808 ffd475d90f7bb606e739dfb01f8e0300 ""
@@ -114,8 +114,8 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1725468678 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1725468740 2799159 392e9016e4676e226fd835f3cd77b581 ""
   "brayton v real cycle.png" 1726975157 44269 de210b968351c0d05b35529ecd63601d ""
-  "hw-2.aux" 1726975191 725 b408703c67c48adfdb917c849787a610 "pdflatex"
-  "hw-2.tex" 1726975157 6080 c343d6ced6a68ea468263fd2316ce59f ""
+  "hw-2.aux" 1726975688 725 94c0fc10686d126a15decd0045c70bfe "pdflatex"
+  "hw-2.tex" 1726975687 6089 63dd93ba65374ae6cbb2da5c7682eb59 ""
   "hw2-calculations.pdf" 1726975157 113145 b56c9e8b468b2c4ca0833e5c30ab828b ""
   "t-s-graph.png" 1726975157 29635 ac1682d26b7cdf0f1d8bca5af60ff048 ""
   (generated)
