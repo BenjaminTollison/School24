@@ -1,0 +1,245 @@
+\documentclass[12pt]{exam}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amstext,amsthm,amssymb,amsxtra, graphicx}
+\usepackage[top=1.5in, bottom=1.5in, left=1.25in, right=1.25in]	{geometry}
+%\usepackage[normalem]{ulem}
+\usepackage{cancel}
+\usepackage{txfonts} % pxfonts txfonts 
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\renewcommand*\familydefault{\sfdefault}
+ \usepackage{euler}   % better than the option below
+\usepackage{pdfsync}
+\usepackage{multicol}
+\newcommand{\ci}[1]{_{ {}_{\scriptstyle #1}}}
+\graphicspath{ {images/} }
+
+
+\newcommand{\norm}[1]{\ensuremath{\left\|#1\right\|}}
+\newcommand{\abs}[1]{\ensuremath{\left\vert#1\right\vert}}
+\newcommand{\ip}[2]{\ensuremath{\left\langle#1,#2\right\rangle}}
+\newcommand{\p}{\ensuremath{\partial}}
+\newcommand{\pr}{\mathcal{P}}
+
+\newcommand{\pbar}{\ensuremath{\bar{\partial}}}
+\newcommand{\db}{\overline\partial}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\B}{\mathbb{B}}
+\newcommand{\Sp}{\mathbb{S}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\mQ}{\mathcal{Q}}
+\newcommand{\mS}{\mathcal{S}}
+\newcommand{\scrH}{\mathcal{H}}
+\newcommand{\scrL}{\mathcal{L}}
+\newcommand{\td}{\widetilde\Delta}
+\newcommand{\pw}{\text{PW}}
+\newcommand{\esup}{\text{ess.sup}}
+\newcommand{\Tn}{\mathcal{T}_n}
+\newcommand{\Bn}{\mathbb{B}_n}
+\newcommand{\rt}{\mathcal{O}}
+\newcommand{\avg}[1]{\langle #1 \rangle}
+\newcommand{\one}{\mathbbm{1}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\grad}{\nabla}
+
+\newcommand{\La}{\langle }
+\newcommand{\Ra}{\rangle }
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\card}{\operatorname{card}}
+\newcommand{\ran}{\operatorname{Ran}}
+\newcommand{\osc}{\operatorname{OSC}}
+\newcommand{\im}{\operatorname{Im}}
+\newcommand{\re}{\operatorname{Re}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\vf}{\varphi}
+\newcommand{\f}[2]{\ensuremath{\frac{#1}{#2}}}
+
+\newcommand{\kzp}{k_z^{(p,\alpha)}}
+\newcommand{\klp}{k_{\lambda_i}^{(p,\alpha)}}
+\newcommand{\TTp}{\mathcal{T}_p}
+\newcommand{\m}[1]{\mathcal{#1}}
+\newcommand{\md}{\mathcal{D}}
+\newcommand{\qan}{\abs{Q}^{\alpha/n}}
+\newcommand{\sbump}[2]{[[ #1,#2 ]]}
+\newcommand{\mbump}[2]{\lceil #1,#2 \rceil}
+\newcommand{\cbump}[2]{\lfloor #1,#2 \rfloor}
+
+\newcommand{\hn}{{1}}
+\newcommand{\dd}{{09-27}}
+\newcommand{\class}{Aero 455}
+\newcommand{\term}{Fall 2024}
+\newcommand{\examnum}{Homework \hn: Due \dd}
+\newcommand{\examdate}{}
+\newcommand{\timelimit}{75 Minutes}
+\newcommand{\vc}[3]{\langle #1,#2,#3\rangle}
+\newcommand*{\vv}[1]{\vec{\mkern0mu#1}}
+\newcommand{\bv}[1]{\boldsymbol{#1}}
+\newcommand{\hide}[1]{}
+\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}
+\newcommand{\vex}[1]{\boldsymbol{{\textbf{#1}}}}
+\newcommand{\px}{\frac{\partial}{\partial x}}
+\newcommand{\py}{\frac{\partial}{\partial y}}
+\newcommand{\pt}{\frac{\partial}{\partial t}}
+\newcommand{\pxx}{\frac{\partial^2}{\partial x^2}}
+\newcommand{\pyy}{\frac{\partial^2}{\partial y^2}}
+\newcommand{\ptt}{\frac{\partial^2}{\partial t^2}}
+
+
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{\class}{ Page \thepage\ of \numpages}{\examnum}
+\runningheadrule
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\printanswers
+\begin{document}
+
+\noindent
+\begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} r @{\extracolsep{6pt}} l}
+\textbf{\class} & \textbf{Name:} & \makebox[2in]{\bf{Benjamin Tollison}}\\
+\end{tabular*}\\
+\rule[2ex]{\textwidth}{2pt}
+%
+\begin{questions}
+\begin{question}
+Using Bernoulli’s equation instead of general energy equation, prove that the induced
+velocity in the fully contracted wake of a rotor climbing vertically is twice the induced
+velocity in the rotor plane. You could use the mass and momentum equations. 
+
+\end{question}
+\begin{solutionorbox}[\stretch{1}]
+\begin{align*}
+\begin{cases}
+P_0 + \frac{1}{2}\rho v_0^2 = P_1 + \frac{1}{2}\rho v_1^2 \\
+P_2 + \frac{1}{2}\rho v_2^2 = P_3 + \frac{1}{2}\rho v_3^2 \\ 
+v_0 = 0 \\
+v_1 = v_2 = v_i \\ 
+v_3 = w
+\end{cases}
+\end{align*}
+\begin{align*}
+\begin{cases}
+\rho v_i \sigma_i = \rho w \sigma_w \\
+T = \int_{\sigma_3}{\rho v_3 \left(v_3 \cdot n\right)}d\sigma_3 - \int_{\sigma_0}{\rho \cancelto{0}{v_0} \left(\cancelto{0}{v_0}\cdot n\right)}d\sigma_0
+\end{cases}
+\end{align*}
+Simplifying the thrust equation produces
+\begin{equation}
+T = \rho v_3^2 \sigma_3 = \dot{m}w = \rho w^2 \sigma_3
+\end{equation}
+Using the relation of \(P_0 = P_3\) and plugging back into Bernoulli’s produces
+
+\[P_0 + \cancelto{0}{\frac{1}{2}\rho v_0^2} = P_1 + \frac{1}{2}\rho v_i^2 \]
+\[P_0 = P_1 + \frac{1}{2}\rho v_i^2 \]
+\[P_2 + \cancel{\frac{1}{2}\rho v_i^2} = P_1 + \cancel{\frac{1}{2}\rho v_i^2} + \frac{1}{2}\rho w^2 \]
+\[P_2-P_0 = \frac{1}{2}\rho w^2\]
+and the difference of pressure can be defined as the thrust across the blade membrane
+\begin{equation}
+\frac{T}{\sigma_2} = \frac{1}{2}\rho w^2
+\end{equation}
+Plugging equation 1 into 2 gives
+\[\frac{\rho w^2 \sigma_3}{\sigma_2} = \frac{1}{2}\rho w^2\]
+\[\frac{\cancel{\rho w^2} \sigma_3}{\sigma_2} = \frac{1}{2}\cancel{\rho w^2}\]
+\begin{equation}
+\frac{\sigma_3}{\sigma_2} = \frac{1}{2}
+\end{equation}
+Plugging equation 3 into the conservation of mass
+\[\frac{\sigma_2}{\sigma_3} = \frac{w}{v_i}\]
+\[2 = \frac{w}{v_i}\]
+\[\therefore w = 2 v_i\]
+\end{solutionorbox}
+
+\newpage 
+\begin{question}
+Measurements have been made of rotor performance at a fixed rotor speed for a series of
+blade pitch angles. The values of \(C_T\) that were measured were 6.0000E-06, 0.0010490,
+0.0023760, 0.0040760 and 0.0055810, and the corresponding values of \(C_P\) were 0.000197,
+0.000226, 0.000282, 0.000405 and 0.000555, respectively. Plot this data in the form of a
+power polar (\(C_T\) vs. \(C_P\)). Explain (and show in a chart) how to extract induced power factor
+(\(\kappa\) and zero thrust power (profile power) for the rotor from these measured data. Then, to
+the experimental power polar chart add the analytical power polar curve predicted by
+modified momentum theory
+\end{question}
+\begin{solutionorbox}[\stretch{1}]
+\end{solutionorbox}
+
+
+\newpage 
+\begin{question}
+Find all eigenvalues and eigenfunctions for the equation: 
+$\varphi'' + \lambda \varphi = 0$ with $\varphi(0) = 0$ and $\varphi'(\pi) = 0.$
+\end{question}
+\begin{solutionorbox}[\stretch{1}]
+\end{solutionorbox}
+
+
+\newpage 
+\begin{question}
+Solve 
+\begin{align*}
+\begin{cases}
+\ptt u = \pxx u\\ 
+u(0, t) = u(\pi, t) = 0\\ 
+u(x,0) = f(x), \pt u(x,0) = 0,
+\end{cases}
+\end{align*}
+where $f(x)$ is the ``hat function'': it's $0$ and $0$ and $\pi$ and $1$ and $\pi/2$ and 
+linear in between. 
+\end{question}
+\begin{solutionorbox}[\stretch{1}]
+\end{solutionorbox}
+
+
+\newpage 
+\begin{question}
+This is another perspective on the SOV method. Consider the problem 
+\begin{align*}
+\begin{cases}
+\pt u = \pxx u\\
+u(0,t) = u(\pi, t) = 0\\ 
+u(x,0) = g(x)
+\end{cases}.
+\end{align*}
+For each fixed $x$, assume that the solution can be written as $\sum_{k=1}^{\infty}B_k\sin(kx)$. 
+Note that the $B_k$ depend on $t$ so a better way to write it is $\sum_{k=1}^{\infty}
+B_k(t) \sin(kx)$. Starting from this point, find the SOV solution. 
+(Note: I had a typo that said $B_k(x)$ before; it should be 
+$B_k(t)$ SORRY!!)
+\end{question}
+\begin{solutionorbox}[\stretch{1}]
+Plugging the function into the PDE we get: 
+\begin{align*}
+\sum_{k=1}^{\infty}B_k'(t)\sin kx
+&= \sum_{k=1}^{\infty}B_k(t)\frac{d^2}{dx^2}\sin kx
+\\&= \sum_{k=1}^{\infty}B_k(t)(-k^2 \sin kx)
+\\&= -\sum_{k=1}^{\infty}B_k(t)k^2 \sin kx.
+\end{align*}
+Subtracting the left from the right: 
+\begin{align*}
+0 = \sum_{k=1}^{\infty}(B_k'(t) + k^2 B_k(t))\sin kx.
+\end{align*}
+Since the $\sin kx$ functions are linearly independent, this implies that
+for all $k$, $B_k'(t) =- k^2 B_k(t)$. So we get an ODE for $B_k$ and the 
+solution is $B_k (t) = B_k(0)e^{-k^2 t}$. To find the values of the 
+constants note that: 
+\begin{align*}
+g(x) 
+= u(x,0)
+= \sum_{k=1}^{\infty}B_k(0) \sin kx.
+\end{align*}
+That is, as before, $B_k(0) = \frac{2}{\pi}\int_{0}^{\pi}g(y)\sin ky dy$.
+\end{solutionorbox}
+
+\end{questions}
+\end{document}
