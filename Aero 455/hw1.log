@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.9.4)  27 SEP 2024 16:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.9.4)  27 SEP 2024 16:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -520,60 +520,107 @@ Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
 \mult@nat@firstbox=\box96
 \colbreak@box=\box97
 \mc@col@check@num=\count324
+) (/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2022/01/29 v0.5u Insert pages of external PDF documents (AM)
+ (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count325
+\calc@Bcount=\count326
+\calc@Adimen=\dimen170
+\calc@Bdimen=\dimen171
+\calc@Askip=\skip82
+\calc@Bskip=\skip83
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count327
+\calc@Cskip=\skip84
+) (/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2020/10/14 v3.0a eso-pic (RN)
+\ESO@tempdima=\dimen172
+\ESO@tempdimb=\dimen173
+ (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 106.
+Package xcolor Info: Driver file: pdftex.def on input line 227.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1352.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1356.
+Package xcolor Info: Model `RGB' extended on input line 1368.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1370.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1373.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1374.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
+))
+\AM@pagewidth=\dimen174
+\AM@pageheight=\dimen175
+\AM@fboxrule=\dimen176
+ (/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
+File: pppdftex.def 2022/01/29 v0.5u Pdfpages driver for pdfTeX (AM)
+)
+\pdfpages@includegraphics@status=\count328
+\AM@pagebox=\box98
+\AM@global@opts=\toks36
+\AM@pagecnt=\count329
+\AM@toc@title=\toks37
+\c@AM@survey=\count330
+\AM@templatesizebox=\box99
+)
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 107.
  (/usr/share/texmf/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count325
-\l__pdf_internal_box=\box98
+\l__color_backend_stack_int=\count331
+\l__pdf_internal_box=\box100
 ) (./hw1.aux)
 \openout1 = `hw1.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 106.
-LaTeX Font Info:    Trying to load font information for OML+txmi on input line 106.
+LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 107.
+LaTeX Font Info:    Trying to load font information for OML+txmi on input line 107.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/omltxmi.fd
 File: omltxmi.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 106.
-LaTeX Font Info:    Trying to load font information for OMS+txsy on input line 106.
+LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for OMS/txsy/m/n on input line 107.
+LaTeX Font Info:    Trying to load font information for OMS+txsy on input line 107.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/omstxsy.fd
 File: omstxsy.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 106.
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 106.
-LaTeX Font Info:    Trying to load font information for OMX+txex on input line 106.
+LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 107.
+LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 107.
+LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 107.
+LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for OMX/txex/m/n on input line 107.
+LaTeX Font Info:    Trying to load font information for OMX+txex on input line 107.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/omxtxex.fd
 File: omxtxex.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 106.
-LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 106.
-LaTeX Font Info:    Trying to load font information for U+txexa on input line 106.
+LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for U/txexa/m/n on input line 107.
+LaTeX Font Info:    Trying to load font information for U+txexa on input line 107.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/utxexa.fd
 File: utxexa.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    ... okay on input line 106.
+LaTeX Font Info:    ... okay on input line 107.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count326
-\scratchdimen=\dimen170
-\scratchbox=\box99
-\nofMPsegments=\count327
-\nofMParguments=\count328
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count329
-\MPscratchDim=\dimen171
-\MPnumerator=\count330
-\makeMPintoPDFobject=\count331
-\everyMPtoPDFconversion=\toks37
+\scratchcounter=\count332
+\scratchdimen=\dimen177
+\scratchbox=\box101
+\nofMPsegments=\count333
+\nofMParguments=\count334
+\everyMPshowfont=\toks38
+\MPscratchCnt=\count335
+\MPscratchDim=\dimen178
+\MPnumerator=\count336
+\makeMPintoPDFobject=\count337
+\everyMPtoPDFconversion=\toks39
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -614,111 +661,118 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 106.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 107.
 LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
-(Font)              `operators' in the math version `normal' on input line 106.
+(Font)              `operators' in the math version `normal' on input line 107.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/lmr/m/n --> T1/lmr/m/up on input line 106.
+(Font)                  OT1/lmr/m/n --> T1/lmr/m/up on input line 107.
 LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
-(Font)              `operators' in the math version `bold' on input line 106.
+(Font)              `operators' in the math version `bold' on input line 107.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/lmr/bx/n --> T1/lmr/m/up on input line 106.
+(Font)                  OT1/lmr/bx/n --> T1/lmr/m/up on input line 107.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  T1/lmr/m/up --> T1/lmr/b/up on input line 106.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 106.
+(Font)                  T1/lmr/m/up --> T1/lmr/b/up on input line 107.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 107.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> T1/lmr/b/up on input line 106.
+(Font)                  OT1/lmr/bx/n --> T1/lmr/b/up on input line 107.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/lmr/bx/n --> T1/lmr/b/up on input line 106.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 106.
+(Font)                  OT1/lmr/bx/n --> T1/lmr/b/up on input line 107.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 107.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> T1/lmss/m/up on input line 106.
+(Font)                  OT1/lmss/m/n --> T1/lmss/m/up on input line 107.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> T1/lmss/m/up on input line 106.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 106.
+(Font)                  OT1/lmss/bx/n --> T1/lmss/m/up on input line 107.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 107.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> T1/lmr/m/it on input line 106.
+(Font)                  OT1/lmr/m/it --> T1/lmr/m/it on input line 107.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/lmr/bx/it --> T1/lmr/m/it on input line 106.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 106.
+(Font)                  OT1/lmr/bx/it --> T1/lmr/m/it on input line 107.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 107.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> T1/lmtt/m/up on input line 106.
+(Font)                  OT1/lmtt/m/n --> T1/lmtt/m/up on input line 107.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> T1/lmtt/m/up on input line 106.
+(Font)                  OT1/lmtt/m/n --> T1/lmtt/m/up on input line 107.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  T1/lmss/m/up --> T1/lmss/b/up on input line 106.
+(Font)                  T1/lmss/m/up --> T1/lmss/b/up on input line 107.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/lmr/m/it --> T1/lmr/b/it on input line 106.
+(Font)                  T1/lmr/m/it --> T1/lmr/b/it on input line 107.
 Configuring pdfsync
 \PDFSYNC@ut=\write3
 \openout3 = `hw1.pdfsync'.
 
-\PDFSYNCf@li@=\count332
-\PDFSYNC@rder=\count333
+\PDFSYNCf@li@=\count338
+\PDFSYNC@rder=\count339
 **** pdfsync.sty: Synchronizing at \everypar
-\PDFSYNCeveryp@r=\toks38
+\PDFSYNCeveryp@r=\toks40
 **** pdfsync.sty: Synchronizing at \everymath
-\PDFSYNCeverym@th=\toks39
+\PDFSYNCeverym@th=\toks41
 **** pdfsync.sty: Synchronizing at \everyhbox
-\PDFSYNCeveryhb@x=\toks40
+\PDFSYNCeveryhb@x=\toks42
 **** pdfsync.sty: Synchronizing at \everyvbox
-\PDFSYNCeveryvb@x=\toks41
+\PDFSYNCeveryvb@x=\toks43
 **** pdfsync.sty: started
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 109.
-(/usr/share/texmf/tex/latex/lm/t1lmr.fd
+(/usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+)
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 110.
+ (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 
 LaTeX Font Warning: Font shape `T1/lmr/m/up' undefined
-(Font)              using `T1/lmr/m/n' instead on input line 109.
+(Font)              using `T1/lmr/m/n' instead on input line 110.
 
-LaTeX Font Info:    Trying to load font information for U+eur on input line 109.
+LaTeX Font Info:    Trying to load font information for U+eur on input line 110.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueur.fd
 File: ueur.fd 2013/01/14 v3.01 Euler Roman
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 109.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 110.
  (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 109.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 110.
  (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 109.
+(Font)              <12> on input line 110.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 109.
+(Font)              <8> on input line 110.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 109.
-LaTeX Font Info:    Trying to load font information for U+txsya on input line 109.
+(Font)              <6> on input line 110.
+LaTeX Font Info:    Trying to load font information for U+txsya on input line 110.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/utxsya.fd
 File: utxsya.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsyb on input line 109.
+LaTeX Font Info:    Trying to load font information for U+txsyb on input line 110.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/utxsyb.fd
 File: utxsyb.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for OT1+txr on input line 109.
+LaTeX Font Info:    Trying to load font information for OT1+txr on input line 110.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/ot1txr.fd
 File: ot1txr.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txmia on input line 109.
+LaTeX Font Info:    Trying to load font information for U+txmia on input line 110.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/utxmia.fd
 File: utxmia.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+txsyc on input line 109.
+LaTeX Font Info:    Trying to load font information for U+txsyc on input line 110.
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/utxsyc.fd
 File: utxsyc.fd 2000/12/15 v3.1
 )
-LaTeX Font Info:    Trying to load font information for U+euf on input line 109.
+LaTeX Font Info:    Trying to load font information for U+euf on input line 110.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
-LaTeX Font Info:    Trying to load font information for U+eus on input line 109.
+LaTeX Font Info:    Trying to load font information for U+eus on input line 110.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueus.fd
 File: ueus.fd 2013/01/14 v3.01 Euler Script
 )
-LaTeX Font Info:    Trying to load font information for U+euex on input line 109.
+LaTeX Font Info:    Trying to load font information for U+euex on input line 110.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuex.fd
 File: ueuex.fd 2013/01/14 v3.01 Euler extra symbols
 ) [1
@@ -727,44 +781,132 @@ File: ueuex.fd 2013/01/14 v3.01 Euler extra symbols
 <cp v ct measured.png, id=20, 568.1225pt x 559.08875pt>
 File: cp v ct measured.png Graphic file (type png)
 <use cp v ct measured.png>
-Package pdftex.def Info: cp v ct measured.png  used on input line 177.
+Package pdftex.def Info: cp v ct measured.png  used on input line 178.
 (pdftex.def)             Requested size: 393.93112pt x 387.68259pt.
 <cp v ct mt.png, id=22, 525.46312pt x 558.58687pt>
 File: cp v ct mt.png Graphic file (type png)
 <use cp v ct mt.png>
-Package pdftex.def Info: cp v ct mt.png  used on input line 179.
+Package pdftex.def Info: cp v ct mt.png  used on input line 180.
 (pdftex.def)             Requested size: 393.93112pt x 418.77718pt.
 <linear fit of cp.png, id=23, 520.94624pt x 449.17813pt>
 File: linear fit of cp.png Graphic file (type png)
 <use linear fit of cp.png>
-Package pdftex.def Info: linear fit of cp.png  used on input line 185.
+Package pdftex.def Info: linear fit of cp.png  used on input line 186.
 (pdftex.def)             Requested size: 393.93112pt x 339.66545pt.
 <cp v ct mmt.png, id=24, 525.965pt x 554.57187pt>
 File: cp v ct mmt.png Graphic file (type png)
 <use cp v ct mmt.png>
-Package pdftex.def Info: cp v ct mmt.png  used on input line 191.
+Package pdftex.def Info: cp v ct mmt.png  used on input line 192.
 (pdftex.def)             Requested size: 393.93112pt x 415.36938pt.
 
-Underfull \vbox (badness 1152) detected at line 193
+Underfull \vbox (badness 1152) detected at line 194
  []
 
 [3 <./cp v ct measured.png>]
-Underfull \vbox (badness 10000) detected at line 193
+Underfull \vbox (badness 10000) detected at line 194
  []
 
 
-Underfull \vbox (badness 10000) detected at line 193
+Underfull \vbox (badness 10000) detected at line 194
  []
 
 [4 <./cp v ct mt.png>]
-Underfull \vbox (badness 10000) detected at line 193
+Underfull \vbox (badness 10000) detected at line 194
  []
 
 
-Underfull \vbox (badness 10000) detected at line 193
+Underfull \vbox (badness 10000) detected at line 194
  []
 
-[5 <./linear fit of cp.png>] [6 <./cp v ct mmt.png>] [7] [8]
+[5 <./linear fit of cp.png>] [6 <./cp v ct mmt.png>] [7]
+<455 hw-1 calculations.pdf, id=45, 614.295pt x 794.97pt>
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf>
+Package pdftex.def Info: 455 hw-1 calculations.pdf  used on input line 246.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf>
+Package pdftex.def Info: 455 hw-1 calculations.pdf  used on input line 246.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+<455 hw-1 calculations.pdf, id=48, page=1, 614.295pt x 794.97pt>
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 1>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page1 used on input line 246.
+(pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 1>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page1 used on input line 246.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [8]
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 1>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page1 used on input line 246.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 1>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page1 used on input line 246.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 1>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page1 used on input line 246.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [9 <./455 hw-1 calculations.pdf>]
+<455 hw-1 calculations.pdf, id=89, page=2, 614.295pt x 794.97pt>
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 2>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page2 used on input line 246.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 2>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page2 used on input line 246.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 2>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page2 used on input line 246.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [10 <./455 hw-1 calculations.pdf>]
+<455 hw-1 calculations.pdf, id=99, page=3, 614.295pt x 794.97pt>
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 3>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page3 used on input line 246.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 3>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page3 used on input line 246.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 3>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page3 used on input line 246.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [11 <./455 hw-1 calculations.pdf>]
+<455 hw-1 calculations.pdf, id=117, page=4, 614.295pt x 794.97pt>
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 4>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page4 used on input line 246.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 4>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page4 used on input line 246.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 4>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page4 used on input line 246.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [12 <./455 hw-1 calculations.pdf>]
+<455 hw-1 calculations.pdf, id=143, page=5, 614.295pt x 794.97pt>
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 5>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page5 used on input line 246.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 5>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page5 used on input line 246.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+File: 455 hw-1 calculations.pdf Graphic file (type pdf)
+<use 455 hw-1 calculations.pdf, page 5>
+Package pdftex.def Info: 455 hw-1 calculations.pdf , page5 used on input line 246.
+(pdftex.def)             Requested size: 614.58406pt x 795.3441pt.
+ [13 <./455 hw-1 calculations.pdf>]
 This exam contains 4 questions with 0 parts, 0 subparts, and 0 subsubparts.
 (./hw1.aux)
 
@@ -772,18 +914,18 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 5898 strings out of 478287
- 85892 string characters out of 5849290
- 394294 words of memory out of 5000000
- 23974 multiletter control sequences out of 15000+600000
+ 7211 strings out of 478287
+ 106723 string characters out of 5849290
+ 418438 words of memory out of 5000000
+ 25257 multiletter control sequences out of 15000+600000
  501366 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,45n,62p,324b,616s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 61i,51n,75p,324b,868s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/euex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eurm7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/line10.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsya.pfb>
-Output written on hw1.pdf (8 pages, 511483 bytes).
+Output written on hw1.pdf (13 pages, 714007 bytes).
 PDF statistics:
- 98 PDF objects out of 1000 (max. 8388607)
- 57 compressed objects within 1 object stream
+ 199 PDF objects out of 1000 (max. 8388607)
+ 107 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

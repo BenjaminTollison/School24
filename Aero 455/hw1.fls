@@ -330,6 +330,63 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
 INPUT /usr/share/texmf/tex/latex/lm/t1lmss.fd
 INPUT /usr/share/texmf/tex/latex/lm/t1lmss.fd
 INPUT /usr/share/texmf/tex/latex/lm/t1lmss.fd
@@ -386,6 +443,30 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 OUTPUT hw1.pdfsync
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 INPUT /usr/share/texmf/tex/latex/lm/t1lmr.fd
 INPUT /usr/share/texmf/tex/latex/lm/t1lmr.fd
 INPUT /usr/share/texmf/tex/latex/lm/t1lmr.fd
@@ -499,6 +580,92 @@ INPUT ./cp v ct mmt.png
 INPUT ./cp v ct mmt.png
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmss8.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmss8.tfm
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
+INPUT 455 hw-1 calculations.pdf
+INPUT ./455 hw-1 calculations.pdf
 INPUT hw1.aux
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc
