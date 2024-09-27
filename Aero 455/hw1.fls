@@ -3,8 +3,8 @@ INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/benjamintollison/the-hub/School24/Aero 455/hw-template.tex
-OUTPUT hw-template.log
+INPUT /home/benjamintollison/the-hub/School24/Aero 455/hw1.tex
+OUTPUT hw1.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/exam/exam.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/exam/exam.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/exam/exam.cls
@@ -346,10 +346,10 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-INPUT ./hw-template.aux
-INPUT hw-template.aux
-INPUT hw-template.aux
-OUTPUT hw-template.aux
+INPUT ./hw1.aux
+INPUT hw1.aux
+INPUT hw1.aux
+OUTPUT hw1.aux
 INPUT /usr/share/texlive/texmf-dist/tex/latex/txfonts/omltxmi.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/txfonts/omltxmi.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/txfonts/omltxmi.fd
@@ -385,7 +385,7 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-OUTPUT hw-template.pdfsync
+OUTPUT hw1.pdfsync
 INPUT /usr/share/texmf/tex/latex/lm/t1lmr.fd
 INPUT /usr/share/texmf/tex/latex/lm/t1lmr.fd
 INPUT /usr/share/texmf/tex/latex/lm/t1lmr.fd
@@ -475,7 +475,7 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmssbx10.tfm
-OUTPUT hw-template.pdf
+OUTPUT hw1.pdf
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT ./cp v ct measured.png
 INPUT ./cp v ct measured.png
@@ -499,12 +499,11 @@ INPUT ./cp v ct mmt.png
 INPUT ./cp v ct mmt.png
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmss8.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmss8.tfm
-INPUT hw-template.aux
-INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc
+INPUT hw1.aux
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc
+INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/euex10.pfb
-INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/euex8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eurm7.pfb
@@ -514,5 +513,4 @@ INPUT /usr/share/texmf/fonts/type1/public/lm/lmr12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmss12.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb
-INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsya.pfb

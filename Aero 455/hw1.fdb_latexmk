@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1727472251 "/home/benjamintollison/the-hub/School24/Aero 455/hw-template.tex" "hw-template.pdf" "hw-template" 1727472252
+["pdflatex"] 1727472343 "/home/benjamintollison/the-hub/School24/Aero 455/hw1.tex" "hw1.pdf" "hw1" 1727472344
   "/etc/texmf/web2c/texmf.cnf" 1725467444 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/benjamintollison/the-hub/School24/Aero 455/hw-template.tex" 1727472251 9961 f3b854d2ec07b663bae738e8ace5e816 ""
+  "/home/benjamintollison/the-hub/School24/Aero 455/hw1.tex" 1727472342 8591 9dc0c338210ddd63d0d87214054748ef ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/euler/euex10.tfm" 1246382020 808 f0482638b09e07d31277eba36400f7dc ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/euler/euex7.tfm" 1246382020 808 ffd475d90f7bb606e739dfb01f8e0300 ""
@@ -24,7 +24,6 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/txsyb.tfm" 1136768653 988 098ca7e8cc5647b9ac21b82dbdce1f01 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/txfonts/txsyc.tfm" 1136768653 1084 75e807e9e71f7a312e4e1187dce5e93b ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/euex10.pfb" 1336858727 12536 a46bc0672764104789d46e9c8de8f188 ""
-  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/euex8.pfb" 1336858727 12054 cf7c23e1c75a2792c1e807b491a4228f ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb" 1336858727 21098 d4aee7c0aac232caac5688b586b9363c ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb" 1336858727 22644 de44b1031364c5f57164f2249f1302c5 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eurm7.pfb" 1336858727 22927 31e776418d6f3753a749eafbf9a8a2bf ""
@@ -96,7 +95,6 @@
   "/usr/share/texmf/fonts/type1/public/lm/lmss12.pfb" 1254938640 96107 daf52840b555e3b38f9679b629b5e2df ""
   "/usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb" 1254938640 119663 e82fa1a58f98ccd89bdbd77311ac9cf1 ""
   "/usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb" 1254938640 27863 09ce3735688ffde955e72da27c95b61a ""
-  "/usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb" 1254938640 27802 5c876bb2c4040caaf035d60bd74a86bd ""
   "/usr/share/texmf/tex/latex/lm/lmodern.sty" 1256929440 1606 c17281c7cff2bbd7ff0173e1433487ec ""
   "/usr/share/texmf/tex/latex/lm/omslmsy.fd" 1256929440 805 af340a8260c447aa315cfc740ff0152f ""
   "/usr/share/texmf/tex/latex/lm/omxlmex.fd" 1256929440 566 a94661f7b66063f191960bb7935b6ba2 ""
@@ -108,11 +106,11 @@
   "cp v ct measured.png" 1727469494 92018 385a4b709b97da2cabdc822d64367cc8 ""
   "cp v ct mmt.png" 1727470330 152638 70603ade7dd2c3cf4fbec098366aed99 ""
   "cp v ct mt.png" 1727469818 124404 33930af2e5985eab31be4e6985e32d81 ""
-  "hw-template.aux" 1727472252 987 18f20d1e03c3f7cc3f3156d21018f496 "pdflatex"
-  "hw-template.tex" 1727472251 9961 f3b854d2ec07b663bae738e8ace5e816 ""
+  "hw1.aux" 1727472344 857 f0bbbd9f940287935e9c52a8906e2f5e "pdflatex"
+  "hw1.tex" 1727472342 8591 9dc0c338210ddd63d0d87214054748ef ""
   "linear fit of cp.png" 1727470102 120508 2f1873f24489d4601ca6aaec8acdc83d ""
   (generated)
-  "hw-template.aux"
-  "hw-template.log"
-  "hw-template.pdf"
-  "hw-template.pdfsync"
+  "hw1.aux"
+  "hw1.log"
+  "hw1.pdf"
+  "hw1.pdfsync"

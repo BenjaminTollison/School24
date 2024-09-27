@@ -167,79 +167,81 @@ blade pitch angles. The values of \(C_T\) that were measured were 6.0000E-06, 0.
 0.0023760, 0.0040760 and 0.0055810, and the corresponding values of \(C_P\) were 0.000197,
 0.000226, 0.000282, 0.000405 and 0.000555, respectively. Plot this data in the form of a
 power polar (\(C_T\) vs. \(C_P\)). Explain (and show in a chart) how to extract induced power factor
-(\(\kappa\) and zero thrust power (profile power) for the rotor from these measured data. Then, to
+(\(\kappa\)) and zero thrust power (profile power) for the rotor from these measured data. Then, to
 the experimental power polar chart add the analytical power polar curve predicted by
 modified momentum theory
 \end{question}
 \begin{solutionorbox}[\stretch{1}]
+
+
+\includegraphics[width = \linewidth]{cp v ct measured.png}
+Graphing momentum theory of \[C_P = \frac{C_T^{\frac{3}{2}}}{\sqrt{2}}\]
+\includegraphics[width=\linewidth]{cp v ct mt.png}
+
+\pagebreak
+Normalizing the \(C_{P,ideal}\) with the measured values produces the following
+graph and then finding the linear fit produces the following.
+
+\includegraphics[width=\linewidth]{linear fit of cp.png}
+
+\pagebreak
+Creating the following modified momentum theory of 
+\[C_P = \kappa\frac{C_T^{\frac{3}{2}}}{\sqrt{2}} + C_{P0}\]
+
+\includegraphics[width=\linewidth]{cp v ct mmt.png}
+
 \end{solutionorbox}
 
 
 \newpage 
 \begin{question}
-Find all eigenvalues and eigenfunctions for the equation: 
-$\varphi'' + \lambda \varphi = 0$ with $\varphi(0) = 0$ and $\varphi'(\pi) = 0.$
+A helicopter with a gross weight of 3,000 lb (1,360.5 kg), a main rotor radius of 13.2 ft
+(4.0 m), a rotor tip speed of 680 ft/s (207.3 m/s), and has 275 hp (205 kW) delivered to the
+main rotor shaft. For hovering at sea level conditions, compute: (a) the rotor disk loading,
+(b) the ideal power loading, (c) the thrust and torque coefficients, (d) the figure of merit
+and actual power loading.
 \end{question}
 \begin{solutionorbox}[\stretch{1}]
+a)
+\[ T = mg \]
+\[ \sigma = \pi R^2 \]
+\[ \text{DL} = \frac{T}{\sigma} \]
+\[\text{DL} = 265.520\]
+b)
+\[PL_{ideal} = \frac{T}{Tv_i} = \frac{1}{v_i} = \sqrt{\frac{2\rho}{DL}}\]
+\[PL_{ideal} = 0.096058\]
+c)
+\[ C_T = \frac{T}{\rho\sigma(\Omega R)^2} \]
+\[ C_{P,ideal} = \frac{P_h}{\rho\sigma(\Omega R)^3},C_{P,measured} = \frac{P}{\rho\sigma(\Omega R)^3} \]
+\[C_Q = C_P\]
+\[C_T = 0.0050439\]
+\[C_{P,ideal} = 0.0002533\]
+\[C_{P,actual} = 0.0003737\]
+d)
+\[ FM = \frac{P_h}{P_{actual}} = \frac{C_{P,ideal}}{C_{P,measured}} \]
+\[ PL_{actual} = \frac{PL_{ideal}}{FM} \]
+\[FM = 0.67777\]
+\[PL_{actual} = 0.141727\]
 \end{solutionorbox}
 
 
 \newpage 
 \begin{question}
-Solve 
-\begin{align*}
-\begin{cases}
-\ptt u = \pxx u\\ 
-u(0, t) = u(\pi, t) = 0\\ 
-u(x,0) = f(x), \pt u(x,0) = 0,
-\end{cases}
-\end{align*}
-where $f(x)$ is the ``hat function'': it's $0$ and $0$ and $\pi$ and $1$ and $\pi/2$ and 
-linear in between. 
+For the helicopter described in the previous question, the tail rotor radius is 2.3 ft (0.701
+m) and the tail rotor is located 15.3 ft (4.66 m) from the main rotor shaft. Calculate the
+thrust and power required by the tail rotor when helicopter is hovering at sea level. Assume
+that the figure of merit of the tail rotor is 0.7.
 \end{question}
 \begin{solutionorbox}[\stretch{1}]
+\[ \tau = F \times r \]
+\[ Q = T_{tail} \times r \]
+\[ Q = C_{P,actual} \rho \sigma \left(\Omega R\right)^2 R \]
+\[ \therefore T_{tail} = \frac{Q}{r} \]
+\[ P = \frac{T_{tail}^\frac{3}{2}}{\sqrt{2\rho\sigma}} \]
+\[T_{tail} = 848.8455 \text{[N]}\]
+\[P_{tail} = 12716.4812 \text{[W]}\]
 \end{solutionorbox}
 
-
-\newpage 
-\begin{question}
-This is another perspective on the SOV method. Consider the problem 
-\begin{align*}
-\begin{cases}
-\pt u = \pxx u\\
-u(0,t) = u(\pi, t) = 0\\ 
-u(x,0) = g(x)
-\end{cases}.
-\end{align*}
-For each fixed $x$, assume that the solution can be written as $\sum_{k=1}^{\infty}B_k\sin(kx)$. 
-Note that the $B_k$ depend on $t$ so a better way to write it is $\sum_{k=1}^{\infty}
-B_k(t) \sin(kx)$. Starting from this point, find the SOV solution. 
-(Note: I had a typo that said $B_k(x)$ before; it should be 
-$B_k(t)$ SORRY!!)
-\end{question}
-\begin{solutionorbox}[\stretch{1}]
-Plugging the function into the PDE we get: 
-\begin{align*}
-\sum_{k=1}^{\infty}B_k'(t)\sin kx
-&= \sum_{k=1}^{\infty}B_k(t)\frac{d^2}{dx^2}\sin kx
-\\&= \sum_{k=1}^{\infty}B_k(t)(-k^2 \sin kx)
-\\&= -\sum_{k=1}^{\infty}B_k(t)k^2 \sin kx.
-\end{align*}
-Subtracting the left from the right: 
-\begin{align*}
-0 = \sum_{k=1}^{\infty}(B_k'(t) + k^2 B_k(t))\sin kx.
-\end{align*}
-Since the $\sin kx$ functions are linearly independent, this implies that
-for all $k$, $B_k'(t) =- k^2 B_k(t)$. So we get an ODE for $B_k$ and the 
-solution is $B_k (t) = B_k(0)e^{-k^2 t}$. To find the values of the 
-constants note that: 
-\begin{align*}
-g(x) 
-= u(x,0)
-= \sum_{k=1}^{\infty}B_k(0) \sin kx.
-\end{align*}
-That is, as before, $B_k(0) = \frac{2}{\pi}\int_{0}^{\pi}g(y)\sin ky dy$.
-\end{solutionorbox}
 
 \end{questions}
 \end{document}
