@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1728266542 "/home/benjamintollison/the-hub/School24/Aero 417/Hw3/hw-3.tex" "hw-3.pdf" "hw-3" 1728266543
+["pdflatex"] 1728266595 "/home/benjamintollison/the-hub/School24/Aero 417/Hw3/hw-3.tex" "hw-3.pdf" "hw-3" 1728266596
   "/etc/texmf/web2c/texmf.cnf" 1725467444 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/benjamintollison/the-hub/School24/Aero 417/Hw3/hw-3.tex" 1728266542 8079 5d0864f3d87430b7a285e26335bca8da ""
+  "/home/benjamintollison/the-hub/School24/Aero 417/Hw3/hw-3.tex" 1728266595 8079 30d9d229c5fa15a7bdc12d642587d8c0 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/euler/euex10.tfm" 1246382020 808 f0482638b09e07d31277eba36400f7dc ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/euler/euex7.tfm" 1246382020 808 ffd475d90f7bb606e739dfb01f8e0300 ""
@@ -118,8 +118,8 @@
   "Axial-vs-Centrifugal-Compressor-Comparison.jpg" 1728061189 50864 01471f5ce55eb2405089e6864eebcd02 ""
   "Compressor control volume.png" 1728066584 29152 0e1ef00870f6f9d40bedd4cd33c3ad37 ""
   "hw-3-code.pdf" 1728266169 66611 3bfd01c8976292bc13ae14e2d1469e4c ""
-  "hw-3.aux" 1728266543 725 de2fd95f2722a8d4300bda252bd1063d "pdflatex"
-  "hw-3.tex" 1728266542 8079 5d0864f3d87430b7a285e26335bca8da ""
+  "hw-3.aux" 1728266596 725 de2fd95f2722a8d4300bda252bd1063d "pdflatex"
+  "hw-3.tex" 1728266595 8079 30d9d229c5fa15a7bdc12d642587d8c0 ""
   (generated)
   "hw-3.aux"
   "hw-3.log"
