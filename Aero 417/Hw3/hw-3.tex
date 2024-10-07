@@ -1,5 +1,6 @@
 \documentclass[12pt]{exam}
 \usepackage[utf8]{inputenc}
+\usepackage{cancel}
 \usepackage{amsmath,amstext,amsthm,amssymb,amsxtra, graphicx}
 \usepackage[top=1.5in, bottom=1.5in, left=1.25in, right=1.25in]	{geometry}
 %\usepackage[normalem]{ulem}
@@ -101,7 +102,7 @@
   \array{#1}}
 \makeatother
 
-%\printanswers
+\printanswers
 \begin{document}
 
 \noindent
@@ -118,91 +119,90 @@ engines?
 \begin{solutionorbox}[\stretch{1}]
 Starting with the breguet's range equation:
 \[S = \frac{L}{D} \eta_0 \frac{\text{LHV}}{g} \ln \left(\frac{m_0}{m_f}\right)\]
-we will assume that the aircraft will have the same take-off weight and same dry weight and the 
+We will assume that the aircraft will have the same take-off weight and same dry weight and the 
 only thing that we are changing is going to be the compressor geometry. Therefore the compressor
-will only effect the overall efficency \(\eta_0\)
+will only effect the overall efficency \(\eta_0\), and \(\eta_0 \propto \eta_c\).
+\[\rightarrow S \propto \eta_c\]
+\includegraphics[width=\linewidth]{Axial-vs-Centrifugal-Compressor-Comparison.jpg}
+because every little bit of efficency matters over the lifetime of the engine flight time
+to save millons on fuel. That it makes sense that modern commerical jet would prefer for 
+an axial compressor over a centrifugal one.
 \end{solutionorbox}
 
 \newpage 
 \begin{question}
-Solve 
+Explain, using mathematical expressions the source of pressure increases in a centrifugal
+compressor and make a reflection and describe what is the source/term that indicates the
+pressure increase in high performance centrifugal compressors
+\end{question}
+\begin{solutionorbox}[\stretch{1}]
+Assume: adiabatic, incompressible, quasi-1D flow, steady state
+
+\begin{center}
+\includegraphics[width=200pt]{Compressor control volume.png}
+\end{center}
+Starting with the conservation of mass:
+\[\int_{\tau} \partial_t \rho \, d\tau + \int_{\sigma} \rho (\vec{v} \cdot \vec{n}) \, d\sigma = 0\]
+\[-\rho_1 v_1 \sigma_1 + \rho_2 v_2 \sigma_2 = 0\]
+\[\therefore \dot{m_1} = \dot{m_2} \quad \text{or} \quad v_1 \sigma_1 = v_2 \sigma_2\]
+After getting that relation we can use the momentum equation to produce the following
+\[\int_{\tau} \partial_t (\rho \vec{v}) \, d\tau + \int_{\sigma} \rho \vec{v} (\vec{v} \cdot \vec{n}) \, d\sigma = \vec{F}_\nu + \vec{F}_s\]
+\[
+\begin{cases}
+  \vec{F}_v = 0, \text{ neglected} \\
+  \vec{F}_s = - \oint_{\sigma} P \cdot \vec{n} \, d\sigma = \Delta P \sigma
+\end{cases}
+\]
+\[\Delta{P} = \frac{\dot{m}}{\sigma}\left(v_2-v_1\right)\]
+The changes in pressure are going to be related based off of the difference in velocity
+of the outlet versus the inlet with the current assumptions that I made.
+\end{solutionorbox}
+
+
+\newpage 
+\begin{question}
+Air enters the inducer blades of a centrifugal compressor at p01 = 1.02 bar, T01 = 335 K. The
+hub and tip diameters of the impeller eye are 10 and 25 cm respectively. If the compressor
+runs at 7200 rpm and delivers 5.0 kg/s of air, determine the air angle at the inducer blade
+entry and the relative Mach number. 
+\end{question}
+\begin{solutionorbox}[\stretch{1}]
+Starting by finding the annulus area
+
+\[\frac{d}{dr} \left( \pi r^2 \right) = 2 \pi r\]
+\[\sigma_1 = 2 \pi \int_{0.1}^{0.25} r \, dr \quad \left[ m^2 \right]\]
+\[u_1 = 7200 \, \text{[rpm]} \left( \frac{2 \pi \, \text{[rads]}}{60 \, \text{[sec]}} \right)\]
+Then solving the continuity equation
+\[\cancelto{0}{\int_{\tau} \partial_t \rho \, d\tau} + \oint_{\sigma} \rho (\vec{v} \cdot \vec{n}) \, d\sigma = 0
+\quad \text{(steady state)}\]
+\[-\rho_1 v_1 \sigma_1 + \rho_2 v_2 \sigma_2 = 0 \quad \Bigg| \, v_1 = w_1, \quad \sigma_1 = \sigma_2\]
+\[\dot{m}_1 = \dot{m}_2\]
+Using the dimensionaless mass flow rate equation to find the mach number via Newton Raphson.
+My numerical scheme is the following
+\[\zeta = -\frac{\dot{m}\sqrt{R T_0}}{P_0 \sigma} + \sqrt{\gamma} M \left( 1 + \frac{\gamma-1}{2} M^2 \right)^{-\frac{(\delta+1)}{2(\delta-1)}} = 0
+\]
+\[
+\frac{d\zeta}{dM} = - \sqrt{\gamma} \left( 1 + \frac{\gamma-1}{2} M^2 \right)^{-\frac{(\gamma+1)}{2(\gamma-1)}} \frac{(\gamma+1)}{2(\gamma-1)} M
+\]\[ +\sqrt{\gamma} \mathcal{M} \left( \frac{(\gamma+1)}{2(\gamma-1)} \right) \left( 1 + \frac{\gamma-1}{2} M^2 \right)^{-\frac{(\gamma+1)}{2(\gamma-1)} - 1} 
+\left( [\gamma - 1] M \right)
+\]
+\[M_{i+1} = M_i - \frac{\zeta}{\frac{d\zeta}{dM}}
+\]
+\[e_r = \left| \zeta(M_{i+1}) \right| > 1e-8
+\]
+Which produces a \(M = 3.5971\), and using \(w_1 = M\sqrt{\gamma R T_0}\) we can get the relative velocity of \(w_1 = 1319.7128 \left[\frac{m}{s}\right]\). Using trig we can find that 
+\[\beta = \cos^-1\left(\frac{u_1}{w_1}\right)\]
+therefore the final answers are the following
 \begin{align*}
 \begin{cases}
-\pt u = \pxx u\\ 
-u(0, t) = u(\pi, t) = 0\\ 
-u(x,0) = 2\sin 3x
+  M = 3.5971\\
+  \beta_1 = 0.9627 \left[rads\right]\\
+  \beta_1 = 55.15747^\circ
 \end{cases}
 \end{align*}
-\end{question}
-\begin{solutionorbox}[\stretch{1}]
-\end{solutionorbox}
 
-
-\newpage 
-\begin{question}
-Find all eigenvalues and eigenfunctions for the equation: 
-$\varphi'' + \lambda \varphi = 0$ with $\varphi(0) = 0$ and $\varphi'(\pi) = 0.$
-\end{question}
-\begin{solutionorbox}[\stretch{1}]
-\end{solutionorbox}
-
-
-\newpage 
-\begin{question}
-Solve 
-\begin{align*}
-\begin{cases}
-\ptt u = \pxx u\\ 
-u(0, t) = u(\pi, t) = 0\\ 
-u(x,0) = f(x), \pt u(x,0) = 0,
-\end{cases}
-\end{align*}
-where $f(x)$ is the ``hat function'': it's $0$ and $0$ and $\pi$ and $1$ and $\pi/2$ and 
-linear in between. 
-\end{question}
-\begin{solutionorbox}[\stretch{1}]
-\end{solutionorbox}
-
-
-\newpage 
-\begin{question}
-This is another perspective on the SOV method. Consider the problem 
-\begin{align*}
-\begin{cases}
-\pt u = \pxx u\\
-u(0,t) = u(\pi, t) = 0\\ 
-u(x,0) = g(x)
-\end{cases}.
-\end{align*}
-For each fixed $x$, assume that the solution can be written as $\sum_{k=1}^{\infty}B_k\sin(kx)$. 
-Note that the $B_k$ depend on $t$ so a better way to write it is $\sum_{k=1}^{\infty}
-B_k(t) \sin(kx)$. Starting from this point, find the SOV solution. 
-(Note: I had a typo that said $B_k(x)$ before; it should be 
-$B_k(t)$ SORRY!!)
-\end{question}
-\begin{solutionorbox}[\stretch{1}]
-Plugging the function into the PDE we get: 
-\begin{align*}
-\sum_{k=1}^{\infty}B_k'(t)\sin kx
-&= \sum_{k=1}^{\infty}B_k(t)\frac{d^2}{dx^2}\sin kx
-\\&= \sum_{k=1}^{\infty}B_k(t)(-k^2 \sin kx)
-\\&= -\sum_{k=1}^{\infty}B_k(t)k^2 \sin kx.
-\end{align*}
-Subtracting the left from the right: 
-\begin{align*}
-0 = \sum_{k=1}^{\infty}(B_k'(t) + k^2 B_k(t))\sin kx.
-\end{align*}
-Since the $\sin kx$ functions are linearly independent, this implies that
-for all $k$, $B_k'(t) =- k^2 B_k(t)$. So we get an ODE for $B_k$ and the 
-solution is $B_k (t) = B_k(0)e^{-k^2 t}$. To find the values of the 
-constants note that: 
-\begin{align*}
-g(x) 
-= u(x,0)
-= \sum_{k=1}^{\infty}B_k(0) \sin kx.
-\end{align*}
-That is, as before, $B_k(0) = \frac{2}{\pi}\int_{0}^{\pi}g(y)\sin ky dy$.
 \end{solutionorbox}
 
 \end{questions}
+
 \end{document}
