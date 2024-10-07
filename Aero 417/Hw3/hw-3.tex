@@ -4,6 +4,7 @@
 \usepackage{amsmath,amstext,amsthm,amssymb,amsxtra, graphicx}
 \usepackage[top=1.5in, bottom=1.5in, left=1.25in, right=1.25in]	{geometry}
 %\usepackage[normalem]{ulem}
+\usepackage{pdfpages}
 \usepackage{txfonts} % pxfonts txfonts 
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -177,13 +178,13 @@ Then solving the continuity equation
 \quad \text{(steady state)}\]
 \[-\rho_1 v_1 \sigma_1 + \rho_2 v_2 \sigma_2 = 0 \quad \Bigg| \, v_1 = w_1, \quad \sigma_1 = \sigma_2\]
 \[\dot{m}_1 = \dot{m}_2\]
-Using the dimensionaless mass flow rate equation to find the mach number via Newton Raphson.
+Using the dimensionaless mass flow rate equation [Cizmas equation 3.39] to find the mach number via Newton Raphson.
 My numerical scheme is the following
 \[\zeta = -\frac{\dot{m}\sqrt{R T_0}}{P_0 \sigma} + \sqrt{\gamma} M \left( 1 + \frac{\gamma-1}{2} M^2 \right)^{-\frac{(\delta+1)}{2(\delta-1)}} = 0
 \]
 \[
-\frac{d\zeta}{dM} = - \sqrt{\gamma} \left( 1 + \frac{\gamma-1}{2} M^2 \right)^{-\frac{(\gamma+1)}{2(\gamma-1)}} \frac{(\gamma+1)}{2(\gamma-1)} M
-\]\[ +\sqrt{\gamma} \mathcal{M} \left( \frac{(\gamma+1)}{2(\gamma-1)} \right) \left( 1 + \frac{\gamma-1}{2} M^2 \right)^{-\frac{(\gamma+1)}{2(\gamma-1)} - 1} 
+\frac{d\zeta}{dM} = \sqrt{\gamma} \left( 1 + \frac{\gamma-1}{2} M^2 \right)^{-\frac{(\gamma+1)}{2(\gamma-1)}} 
+\]\[ -\sqrt{\gamma} \mathcal{M} \left( \frac{(\gamma+1)}{2(\gamma-1)} \right) \left( 1 + \frac{\gamma-1}{2} M^2 \right)^{-\frac{(\gamma+1)}{2(\gamma-1)} - 1} 
 \left( [\gamma - 1] M \right)
 \]
 \[M_{i+1} = M_i - \frac{\zeta}{\frac{d\zeta}{dM}}
@@ -204,5 +205,5 @@ therefore the final answers are the following
 \end{solutionorbox}
 
 \end{questions}
-
+\includepdf[pages=-]{hw-3-code.pdf}
 \end{document}
