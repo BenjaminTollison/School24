@@ -101,7 +101,7 @@ def ObjectiveFunction(input_vector):
     alpha_step = 0.25
     # Re = 2.74e7
     Type = int(1)
-    n_iter = 100
+    n_iter = 500
 
     new_coords = GenerateAirfoil(base_airfoil_file, thickness, camber)
     # PrintAirfoil(new_coords)
@@ -113,6 +113,8 @@ def ObjectiveFunction(input_vector):
     input_file.write(airfoil_name + "\n")
     input_file.write("PANE\n")
     input_file.write("OPER\n")
+    # input_file.write("PLOP\n")
+    # input_file.write("G F\n")
     input_file.write("Visc {0}\n".format(Re))
     input_file.write("Mach {0}\n".format(Mach))
     input_file.write("Type {0}\n".format(Type))
@@ -128,9 +130,12 @@ def ObjectiveFunction(input_vector):
             "xfoil.exe < input_file.in",
             shell=input_file,
             stderr=subprocess.STDOUT,
+            # timeout=30,
             creationflags=subprocess.CREATE_NO_WINDOW,
         )
         # print("XFOIL output:", output)
+    except subprocess.TimeoutExpired:
+        print("Subprocess timed out!")
     except subprocess.CalledProcessError as e:
         print("Error executing XFOIL command:", e.output)
 
@@ -179,14 +184,16 @@ def FindOptAirfoil(Re: float, Mach: float):
             optimizer.x_opt[0], optimizer.x_opt[1], optimizer.x_opt[2]
         )
     )
-    # PrintAirfoil(GenerateAirfoil("NACA0012", optimizer.x_opt[0], optimizer.x_opt[1]))
-    # optimizer.plot_convergence()
     print(optimizer.Y_best[-1])
-    if optimizer.Y_best[-1] >= 50:
+    if abs(optimizer.Y_best[-1]) >= 10:
         print("Scheme didn't fully converge")
         return FindOptAirfoil(Re, Mach)
     else:
+        PrintAirfoil(
+            GenerateAirfoil("NACA0012", optimizer.x_opt[0], optimizer.x_opt[1])
+        )
+        optimizer.plot_convergence()
         return GenerateAirfoil("NACA0012", optimizer.x_opt[0], optimizer.x_opt[1])
 
 
-# FindOptAirfoil(int(2.74e7), 0.1)
+FindOptAirfoil(int(2.74e6), 0.6)
