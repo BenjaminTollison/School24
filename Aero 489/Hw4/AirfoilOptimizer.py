@@ -196,4 +196,5 @@ def FindOptAirfoil(Re: float, Mach: float):
         return GenerateAirfoil("NACA0012", optimizer.x_opt[0], optimizer.x_opt[1])
 
 
-FindOptAirfoil(int(2.74e6), 0.6)
+if __name__ == "__main__":
+    FindOptAirfoil(int(2.74e6), 0.6)
