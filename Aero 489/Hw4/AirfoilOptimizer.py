@@ -2,6 +2,7 @@ import os
 import subprocess
 import matplotlib.pyplot as plt
 import numpy as np
+import threading
 from GPyOpt.methods import BayesianOptimization
 
 current_dir = os.getcwd()
@@ -88,26 +89,27 @@ def LiftDragRatio(polar_input_dict):
 
 
 def ObjectiveFunction(input_vector):
+    # thread_num = int(input_vector[0, 5])
     thickness, camber = input_vector[0, 0], input_vector[0, 1]
     design_angle_of_attack = input_vector[0, 2]  # degrees
     Re = input_vector[0, 3]
     Mach = input_vector[0, 4]
     # params for XFOIL
-    base_airfoil_file = "NACA0012"
+    base_airfoil_file = f"NACA0012"
     airfoil_name = "modified_NACA0012"
     # airfoil_name = 'NACA0012'
-    alpha_i = 0
-    alpha_f = 10
+    alpha_i = 0.0
+    alpha_f = 8.0
     alpha_step = 0.25
     # Re = 2.74e7
     Type = int(1)
-    n_iter = 500
+    n_iter = 200
 
     new_coords = GenerateAirfoil(base_airfoil_file, thickness, camber)
     # PrintAirfoil(new_coords)
 
-    if os.path.exists("polar_file.txt"):
-        os.remove("polar_file.txt")
+    if os.path.exists(f"polar_file.txt"):
+        os.remove(f"polar_file.txt")
     input_file = open("input_file.in", "w")
     input_file.write("LOAD {0}.dat\n".format(airfoil_name))
     input_file.write(airfoil_name + "\n")
@@ -119,7 +121,7 @@ def ObjectiveFunction(input_vector):
     input_file.write("Mach {0}\n".format(Mach))
     input_file.write("Type {0}\n".format(Type))
     input_file.write("PACC\n")
-    input_file.write("polar_file.txt\n\n")
+    input_file.write(f"polar_file.txt\n\n")
     input_file.write("ITER {0}\n".format(n_iter))
     input_file.write("ASeq {0} {1} {2}\n".format(alpha_i, alpha_f, alpha_step))
     input_file.write("\n\n")
@@ -139,7 +141,7 @@ def ObjectiveFunction(input_vector):
     except subprocess.CalledProcessError as e:
         print("Error executing XFOIL command:", e.output)
 
-    polar_data = np.loadtxt("polar_file.txt", skiprows=12)
+    polar_data = np.loadtxt(f"polar_file.txt", skiprows=12)
     data = {}
     data["alpha"] = polar_data[:, 0]
     data["CL"] = polar_data[:, 1]
@@ -154,17 +156,17 @@ def ObjectiveFunction(input_vector):
     return lift_over_drag
 
 
-def FindOptAirfoil(Re: float, Mach: float):
+def FindOptAirfoil(Re, Mach):
     ### Reset modified Naca files
     try:
         GenerateAirfoil("NACA0012", 0.12, 0).T
-        print("Successfully Reset Modified NACA0012.dat")
+        print(f"Successfully Reset Modified NACA0012.dat")
     except:
         print("Failed to reset Modified NACA0012.dat")
     bounds = [
         {"name": "thickness", "type": "continuous", "domain": (0.1, 0.2)},
         {"name": "camber", "type": "continuous", "domain": (0.02, 0.06)},
-        {"name": "aoa", "type": "continuous", "domain": (0.0, 10.0)},
+        {"name": "aoa", "type": "continuous", "domain": (0.0, 8.0)},
         {"name": "Re", "type": "discrete", "domain": [int(Re)]},
         {"name": "Mach", "type": "discrete", "domain": [float(Mach)]},
     ]
@@ -175,6 +177,7 @@ def FindOptAirfoil(Re: float, Mach: float):
         acquisition_type="EI",
         exact_feval=True,
         maximize=False,
+        # num_cores=4,
     )
     intial_number_data = 0
     max_iterations = 20
@@ -184,8 +187,8 @@ def FindOptAirfoil(Re: float, Mach: float):
             optimizer.x_opt[0], optimizer.x_opt[1], optimizer.x_opt[2]
         )
     )
-    print(optimizer.Y_best[-1])
-    if abs(optimizer.Y_best[-1]) >= 10:
+    if abs(optimizer.Y_best[-1]) >= 20:
+        print(optimizer.Y_best[-1])
         print("Scheme didn't fully converge")
         return FindOptAirfoil(Re, Mach)
     else:
@@ -197,4 +200,13 @@ def FindOptAirfoil(Re: float, Mach: float):
 
 
 if __name__ == "__main__":
-    FindOptAirfoil(int(2.74e6), 0.6)
+    Re_test = int(2.74e7)
+    M_test = 0.6
+    FindOptAirfoil(Re_test, M_test)
+    # thread1 = threading.Thread(target=FindOptAirfoil, args=(Re_test, M_test))
+    # thread2 = threading.Thread(target=FindOptAirfoil, args=(Re_test, M_test, 2))
+    # thread1.start()
+    # thread2.start()
+    # thread1.join()
+    # thread2.join()
+    # FindOptAirfoil(int(2.74e6), 0.6)
