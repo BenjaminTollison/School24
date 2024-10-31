@@ -99,17 +99,19 @@ def ObjectiveFunction(input_vector):
     airfoil_name = "modified_NACA0012"
     # airfoil_name = 'NACA0012'
     alpha_i = 0.0
-    alpha_f = 8.0
-    alpha_step = 0.25
+    alpha_f = 9.0
+    alpha_step = 0.125
     # Re = 2.74e7
     Type = int(1)
-    n_iter = 200
+    n_iter = 300
 
     new_coords = GenerateAirfoil(base_airfoil_file, thickness, camber)
     # PrintAirfoil(new_coords)
 
     if os.path.exists(f"polar_file.txt"):
         os.remove(f"polar_file.txt")
+    else:
+        None
     input_file = open("input_file.in", "w")
     input_file.write("LOAD {0}.dat\n".format(airfoil_name))
     input_file.write(airfoil_name + "\n")
@@ -153,6 +155,8 @@ def ObjectiveFunction(input_vector):
 
     lift_over_drag_function = LiftDragRatio(data)
     lift_over_drag = lift_over_drag_function(design_angle_of_attack)
+    # plt.plot(data["alpha"], lift_over_drag_function(data["alpha"]))
+    # plt.show()
     return lift_over_drag
 
 
@@ -165,7 +169,7 @@ def FindOptAirfoil(Re, Mach):
         print("Failed to reset Modified NACA0012.dat")
     bounds = [
         {"name": "thickness", "type": "continuous", "domain": (0.1, 0.2)},
-        {"name": "camber", "type": "continuous", "domain": (0.02, 0.06)},
+        {"name": "camber", "type": "continuous", "domain": (0.00, 0.06)},
         {"name": "aoa", "type": "continuous", "domain": (0.0, 8.0)},
         {"name": "Re", "type": "discrete", "domain": [int(Re)]},
         {"name": "Mach", "type": "discrete", "domain": [float(Mach)]},
@@ -174,24 +178,28 @@ def FindOptAirfoil(Re, Mach):
         f=ObjectiveFunction,
         domain=bounds,
         model_type="GP",
-        acquisition_type="EI",
+        acquisition_type="MPI",
         exact_feval=True,
-        maximize=False,
+        maximize=True,
         # num_cores=4,
     )
     intial_number_data = 0
-    max_iterations = 20
+    max_iterations = 30
     optimizer.run_optimization(max_iter=max_iterations, verbosity=True)
     print(
         "Optimal Design: \n Thickness={0} \n Camber={1}\n AoA={2} [deg]".format(
             optimizer.x_opt[0], optimizer.x_opt[1], optimizer.x_opt[2]
         )
     )
-    if abs(optimizer.Y_best[-1]) >= 20:
+    if (
+        abs(optimizer.Y_best[-1] - optimizer.Y_best[-4]) >= 1e-4
+        or optimizer.Y_best[-1] >= 50
+    ):
         print(optimizer.Y_best[-1])
         print("Scheme didn't fully converge")
         return FindOptAirfoil(Re, Mach)
     else:
+        print(optimizer.Y_best[-1])
         PrintAirfoil(
             GenerateAirfoil("NACA0012", optimizer.x_opt[0], optimizer.x_opt[1])
         )
@@ -200,8 +208,8 @@ def FindOptAirfoil(Re, Mach):
 
 
 if __name__ == "__main__":
-    Re_test = int(2.74e7)
-    M_test = 0.6
+    Re_test = 6.0 * 10**6
+    M_test = 0.2
     FindOptAirfoil(Re_test, M_test)
     # thread1 = threading.Thread(target=FindOptAirfoil, args=(Re_test, M_test))
     # thread2 = threading.Thread(target=FindOptAirfoil, args=(Re_test, M_test, 2))
