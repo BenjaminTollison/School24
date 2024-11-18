@@ -38,3 +38,4 @@ if __name__ == "__main__":
     plt.xlabel(r"$ r = \frac{y}{R}$")
     plt.ylabel(r"$\lambda$")
     plt.show()
+### I hate this, its going to have to be re-written.
