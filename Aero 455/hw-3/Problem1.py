@@ -1,104 +1,281 @@
+import matplotlib.pyplot as plt
 import numpy as np
 
 
-def InflowRatio(normalized_radius, inflow_i, C_T_i, C_T_req, step_size):
-    solidity = 0.1
-    coefficient_lift_alpha = 2 * np.pi
-    first_term = solidity * coefficient_lift_alpha / 16
-    second_term = (
-        np.sqrt(
-            1
-            + (32 / (solidity * coefficient_lift_alpha))
-            * Twist(normalized_radius, inflow_i, C_T_req)
-            * normalized_radius
-        )
-        - 1
-    )
-    return first_term * second_term
-
-
-def Twist(normalized_radius, inflow_i, C_T_req):
-    solidity = 0.1
-    coefficient_lift_alpha = 2 * np.pi
-    tip_twist = 4 * C_T_req / (solidity * coefficient_lift_alpha) + inflow_i
+def Twist(normalized_radius: float, tip_twist: float) -> float:
     return tip_twist / normalized_radius
 
 
-def DeltaCoefficientThrust(normalized_radius, inflow_i, C_T_i, C_T_req, step_size):
+def ObjectiveFunction(inflow: float, twist: float, normalized_radius: float) -> float:
     solidity = 0.1
     coefficient_lift_alpha = 2 * np.pi
-    inflow_ratio = InflowRatio(normalized_radius, inflow_i, C_T_i, C_T_req, step_size)
-    twist = Twist(normalized_radius, inflow_i, C_T_req)
     return (
+        inflow**2
+        + (solidity * coefficient_lift_alpha / 8) * inflow
+        - (solidity * coefficient_lift_alpha / 8) * twist * normalized_radius
+    )
+
+
+def FindInflowAndTipTwist(normalized_radius: float) -> list:
+    """
+    This function finds the inflow ratio and the tip twist at a specific radius with BEMT
+
+    Returns:
+    list: [inflow_i,tip_twist_i]
+    """
+    solidity = 0.1
+    coefficient_lift_alpha = 2 * np.pi
+    coefficient_thrust_given = 0.008
+    inflow_i = np.sqrt(coefficient_thrust_given / 2)
+    tip_twist_i = 4 * coefficient_thrust_given / (solidity * coefficient_lift_alpha)
+    twist_i = Twist(normalized_radius, tip_twist_i)
+    objfunc_i = ObjectiveFunction(inflow_i, twist_i, normalized_radius)
+    iteration_count = 0
+    max_iteration = 30
+    tolerance = 1e-7
+    while abs(objfunc_i) >= tolerance:
+        iteration_count += 1
+        tip_twist_i = (
+            4 * coefficient_thrust_given / (solidity * coefficient_lift_alpha)
+            + inflow_i
+        )
+        twist_i = Twist(normalized_radius, tip_twist_i)
+        inflow_i = (solidity * coefficient_lift_alpha / 16) * (
+            np.sqrt(
+                1
+                + (32 / (solidity * coefficient_lift_alpha))
+                * twist_i
+                * normalized_radius
+            )
+            - 1
+        )
+        objfunc_i = ObjectiveFunction(inflow_i, twist_i, normalized_radius)
+        if iteration_count == max_iteration:
+            print("Scheme failed to converge")
+            return [inflow_i, tip_twist_i]
+    return [inflow_i, tip_twist_i]
+
+
+def ExactInflow(normalized_radius: float) -> float:
+    coefficient_thrust_given = 0.008
+    return np.sqrt(coefficient_thrust_given / 2)
+
+
+def DeltaCoefficientThrust(normalized_radius: float, step_size) -> float:
+    """
+    Using BEMT we find the discrete value for the inflow and twist at that
+    radius value
+
+    Note: we are using Ideal Twist
+
+    Returns:
+    discrete value
+    """
+    solidity = 0.1
+    coefficient_lift_alpha = 2 * np.pi
+    inflow, tip_twist = FindInflowAndTipTwist(normalized_radius)
+    delta_CT = (
         (solidity * coefficient_lift_alpha / 2)
-        * (twist * normalized_radius**2 - inflow_ratio * normalized_radius)
+        * (tip_twist - inflow)
+        * normalized_radius
         * step_size
     )
+    return delta_CT
 
 
-def CoefficientThrustBEMT(C_T_req, inflow_i, C_T_i, step_size):
-    radius_values = np.arange(start=0.1, stop=1.0 + step_size, step=step_size)
-    total_thrust = np.sum(
-        [
-            DeltaCoefficientThrust(r, inflow_i, C_T_i, C_T_req, step_size)
-            for r in radius_values
-        ]
+def DeltaCoefficientThrustExact(normalized_radius):
+    coefficient_thrust_given = 0.008
+    return 2 * coefficient_thrust_given * normalized_radius
+
+
+def CoefficientThrustBEMT(normalized_radius: float, step_size: float) -> float:
+    r"""
+    Finds the discrete sum up to the r value
+
+    Returns:
+    $\sum{\Delta{C_T}(r)}$
+    """
+
+    delta_CT_list = [
+        DeltaCoefficientThrust(normalized_radius, step_size)
+        for r in np.arange(0.1, normalized_radius, step_size)
+    ]
+    return np.sum(delta_CT_list)
+
+
+def CoefficientThrust_scuffed(final_C_T: float, normalized_radius: float) -> float:
+    return (final_C_T / np.exp(1)) * np.exp(normalized_radius**2)
+
+
+def CoefficientPowerExact(normalized_radius: float) -> float:
+    inflow_ratio = ExactInflow(normalized_radius)
+    coefficient_drag_0 = 0.008
+    solidity = 0.1
+    return (
+        2 * inflow_ratio**3 * normalized_radius**2
+        + (1 / 8) * solidity * coefficient_drag_0 * normalized_radius**4
     )
-    return total_thrust
 
 
-C_T_req = 0.008
-
-
-def BEMT(C_T_reqired):
-    input = {
-        "normalized_radius": 0.5,
-        "inflow_i": np.sqrt(0.001 / 2),
-        "C_T_i": C_T_reqired + 0.001,
-        "C_T_req": C_T_reqired,
-        "step_size": 1 / 100,
-    }
-    C_T_numerical = CoefficientThrustBEMT(
-        C_T_req=input["C_T_req"],
-        inflow_i=input["inflow_i"],
-        C_T_i=input["C_T_i"],
-        step_size=input["step_size"],
+def DeltaCoefficientPowerBEMT(normalized_radius: float, step_size: float) -> float:
+    inflow = FindInflowAndTipTwist(normalized_radius)[0]
+    delta_CT = DeltaCoefficientThrust(normalized_radius, step_size)
+    coefficient_drag_0 = 0.008
+    solidity = 0.1
+    return (
+        inflow * delta_CT
+        + 0.5 * solidity * coefficient_drag_0 * normalized_radius**3 * step_size
     )
-    tolerance = 1e-9
-    iteration_max = 100
-    iteration_count = 0
-    radius_values = np.arange(
-        start=0.1, stop=1.0 + input["step_size"], step=input["step_size"]
+
+
+def CoefficientPowerBEMT(normalized_radius: float, step_size: float) -> float:
+    """
+    Finds the Coefficient of Power at a given radius
+
+    Returns:
+    C_P
+    """
+    delta_CT = [
+        DeltaCoefficientPowerBEMT(r, step_size)
+        for r in np.arange(0.1, normalized_radius, step_size)
+    ]
+    return np.sum(delta_CT)
+
+
+def DeltaCoefficientPowerDeltaRadiusExact(normalized_radius: float) -> float:
+    """
+    Finds the Exact derivative Coefficient of Power at a given radius
+
+    Returns:
+    dC_P/dr
+    """
+    coefficient_thrust_given = 0.008
+    inflow = np.sqrt(coefficient_thrust_given / 2)
+    dCTdr = DeltaCoefficientThrustExact(normalized_radius)
+    coefficient_drag_0 = 0.008
+    solidity = 0.1
+    return inflow * dCTdr + 0.5 * solidity * coefficient_drag_0 * normalized_radius**3
+
+
+def CoefficientLiftExact(normalized_radius: float) -> float:
+    coefficient_thrust_given = 0.008
+    solidity = 0.1
+    return (4 * coefficient_thrust_given) / (solidity * normalized_radius)
+
+
+def CoefficientLiftBEMT(normalized_radius: float) -> float:
+    coefficient_lift_alpha = 2 * np.pi
+    inflow, tip_twist = FindInflowAndTipTwist(normalized_radius)
+    return (coefficient_lift_alpha / normalized_radius) * (tip_twist - inflow)
+
+
+def CoefficientPowerInducedExact(given_coefficient_thrust: float) -> float:
+    return given_coefficient_thrust**1.5 / 2**0.5
+
+
+def CoefficientPowerInducedBEMT(
+    normalized_radius: float, given_coefficient_thrust: float
+) -> float:
+    inflow_tip = FindInflowAndTipTwist(1)[0]
+    n = 0
+    inflow = inflow_tip * normalized_radius**n
+    kappa = (2 * (n + 1) ** 0.5) / (3 * n + 2)
+    return kappa * given_coefficient_thrust**1.5 / 2**0.5
+
+
+if __name__ == "__main__":
+    step_size = 1 / 100
+    radius_values = np.arange(0.1, 1, step_size)
+    inflow_values_bemt = [FindInflowAndTipTwist(radius)[0] for radius in radius_values]
+    inflow_values_exact = [ExactInflow(r) for r in radius_values]
+
+    plt.plot(radius_values, inflow_values_exact, label="Exact")
+    plt.plot(radius_values, inflow_values_bemt, label="BEMT", linestyle=":")
+    plt.title("Inflow Ratio")
+    plt.legend()
+    plt.xlabel(r"$r = \frac{y}{R}$")
+    plt.ylabel(r"$\lambda$")
+    plt.show()
+
+    delta_CT_delta_radius_bemt = [
+        DeltaCoefficientThrust(r, step_size) / step_size for r in radius_values
+    ]
+    delta_CT_delta_radius_exact = [
+        DeltaCoefficientThrustExact(r) for r in radius_values
+    ]
+    plt.plot(radius_values, delta_CT_delta_radius_exact, label="Exact")
+    plt.plot(radius_values, delta_CT_delta_radius_bemt, label="BEMT", linestyle=":")
+    plt.title(r"$C_T^'$")
+    plt.legend()
+    plt.xlabel("r")
+    plt.ylabel(r"$\frac{dC_T}{dx}$")
+    plt.show()
+
+    CT_bemt = [CoefficientThrustBEMT(r, step_size) for r in radius_values]
+    print()
+    # plt.plot(
+    # radius_values,
+    # CoefficientThrust_scuffed(CT_bemt[-1], radius_values),
+    # label="Exact",
+    # )
+    plt.plot(radius_values, CT_bemt, label="BEMT", linestyle=":")
+    plt.title("Coefficient of Thrust")
+    plt.legend()
+    plt.xlabel("r")
+    plt.ylabel(r"$C_T$")
+    plt.show()
+
+    CP_bemt = [CoefficientPowerBEMT(r, step_size) for r in radius_values]
+    plt.plot(radius_values, CoefficientPowerExact(radius_values), label="Exact")
+    plt.plot(radius_values, CP_bemt, label="BEMT", linestyle=":")
+    plt.title("Coefficient of Torque")
+    plt.legend()
+    plt.xlabel("r")
+    plt.ylabel(r"$C_Q$")
+    plt.show()
+
+    delta_CP_delta_r = [
+        DeltaCoefficientPowerBEMT(r, step_size) / step_size for r in radius_values
+    ]
+    plt.plot(
+        radius_values,
+        DeltaCoefficientPowerDeltaRadiusExact(radius_values),
+        label="Exact",
     )
-    for r in radius_values:
-        while (
-            abs(C_T_req - C_T_numerical) >= tolerance
-            or iteration_count <= iteration_max
-        ):
-            input = {
-                "normalized_radius": r,
-                "inflow_i": input["inflow_i"],
-                "C_T_i": input["C_T_i"],
-                "C_T_req": input["C_T_req"],
-                "step_size": 1 / 100,
-            }
-            # twist_i = Twist(r, input['inflow_i'], input['C_T_req']) + (3/2)*input['inflow_i']
-            input["inflow_i"] = InflowRatio(
-                r,
-                input["inflow_i"],
-                input["C_T_i"],
-                input["C_T_req"],
-                input["step_size"],
-            )
+    plt.plot(radius_values, delta_CP_delta_r, label="BEMT", linestyle=":")
+    plt.title(r"$\frac{dC_q}{dr}$")
+    plt.legend()
+    plt.xlabel("r")
+    plt.ylabel(r"$\frac{dC_q}{dr}$")
+    plt.show()
 
-            C_T_numerical = CoefficientThrustBEMT(
-                C_T_req=input["C_T_req"],
-                inflow_i=input["inflow_i"],
-                C_T_i=input["C_T_i"],
-                step_size=input["step_size"],
-            )
-            input["C_T_i"] = C_T_numerical
-        print(input["inflow_i"])
+    plt.plot(radius_values, CoefficientLiftExact(radius_values), label="Exact")
+    plt.plot(
+        radius_values,
+        [CoefficientLiftBEMT(r) for r in radius_values],
+        label="BEMT",
+        linestyle=":",
+    )
+    plt.title("Coefficient of Lift")
+    plt.legend()
+    plt.xlabel("r")
+    plt.ylabel(r"$C_l$")
+    plt.show()
 
-
-BEMT(C_T_req)
+    coefficient_thrust_values = np.linspace(0, 0.1, len(radius_values))
+    plt.plot(
+        coefficient_thrust_values,
+        CoefficientPowerInducedExact(coefficient_thrust_values),
+        label="Exact",
+    )
+    plt.plot(
+        coefficient_thrust_values,
+        CoefficientPowerInducedBEMT(radius_values[-1], coefficient_thrust_values),
+        label="BEMT",
+        linestyle=":",
+    )
+    plt.title("Coefficient of Power Induced")
+    plt.legend()
+    plt.xlabel(r"$C_T$")
+    plt.ylabel(r"$C_{P,i}$")
+    plt.show()
