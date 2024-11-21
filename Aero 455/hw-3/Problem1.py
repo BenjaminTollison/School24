@@ -32,7 +32,7 @@ def FindInflowAndTipTwist(normalized_radius: float) -> list:
     objfunc_i = ObjectiveFunction(inflow_i, twist_i, normalized_radius)
     iteration_count = 0
     max_iteration = 30
-    tolerance = 1e-7
+    tolerance = 1e-6
     while abs(objfunc_i) >= tolerance:
         iteration_count += 1
         tip_twist_i = (
@@ -97,7 +97,7 @@ def CoefficientThrustBEMT(normalized_radius: float, step_size: float) -> float:
     """
 
     delta_CT_list = [
-        DeltaCoefficientThrust(normalized_radius, step_size)
+        DeltaCoefficientThrust(r, step_size)
         for r in np.arange(0.1, normalized_radius, step_size)
     ]
     return np.sum(delta_CT_list)
@@ -173,14 +173,18 @@ def CoefficientPowerInducedExact(given_coefficient_thrust: float) -> float:
     return given_coefficient_thrust**1.5 / 2**0.5
 
 
-def CoefficientPowerInducedBEMT(
-    normalized_radius: float, given_coefficient_thrust: float
-) -> float:
+def CoefficientPowerInducedBEMT(normalized_radius: float, step_size: float) -> float:
     inflow_tip = FindInflowAndTipTwist(1)[0]
     n = 0
     inflow = inflow_tip * normalized_radius**n
     kappa = (2 * (n + 1) ** 0.5) / (3 * n + 2)
-    return kappa * given_coefficient_thrust**1.5 / 2**0.5
+    delta_CP_i = [
+        FindInflowAndTipTwist(r)[0] * DeltaCoefficientThrust(r, step_size)
+        for r in np.arange(0.1, normalized_radius, step_size)
+    ]
+    # delta_CP_i = [4*FindInflowAndTipTwist(r)[0]**3 * r * step_size for r in np.arange(0.1,normalized_radius,step_size)]
+    # return kappa * given_coefficient_thrust**1.5 / 2**0.5
+    return np.sum(delta_CP_i)
 
 
 if __name__ == "__main__":
@@ -205,14 +209,13 @@ if __name__ == "__main__":
     ]
     plt.plot(radius_values, delta_CT_delta_radius_exact, label="Exact")
     plt.plot(radius_values, delta_CT_delta_radius_bemt, label="BEMT", linestyle=":")
-    plt.title(r"$C_T^'$")
+    plt.title(r"$\frac{dC_T}{dx}$")
     plt.legend()
     plt.xlabel("r")
     plt.ylabel(r"$\frac{dC_T}{dx}$")
     plt.show()
 
     CT_bemt = [CoefficientThrustBEMT(r, step_size) for r in radius_values]
-    print()
     # plt.plot(
     # radius_values,
     # CoefficientThrust_scuffed(CT_bemt[-1], radius_values),
@@ -262,7 +265,7 @@ if __name__ == "__main__":
     plt.ylabel(r"$C_l$")
     plt.show()
 
-    coefficient_thrust_values = np.linspace(0, 0.1, len(radius_values))
+    coefficient_thrust_values = np.linspace(0, CT_bemt[-1], len(radius_values))
     plt.plot(
         coefficient_thrust_values,
         CoefficientPowerInducedExact(coefficient_thrust_values),
@@ -270,7 +273,7 @@ if __name__ == "__main__":
     )
     plt.plot(
         coefficient_thrust_values,
-        CoefficientPowerInducedBEMT(radius_values[-1], coefficient_thrust_values),
+        [CoefficientPowerInducedBEMT(r, step_size) for r in radius_values],
         label="BEMT",
         linestyle=":",
     )
@@ -278,4 +281,5 @@ if __name__ == "__main__":
     plt.legend()
     plt.xlabel(r"$C_T$")
     plt.ylabel(r"$C_{P,i}$")
+    # plt.ylim(-0.0,0.001)
     plt.show()
