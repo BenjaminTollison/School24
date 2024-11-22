@@ -64,7 +64,8 @@ def NumbericalBEMT(
         )
         if iteration_count == iteration_max:
             print("Scheme didn't converge")
-            return [inflow_i, tip_function_i, tip_factor_i, abs(objfunc_i)]
+            print([inflow_i, tip_function_i, tip_factor_i, abs(objfunc_i)])
+            return inflow_i
 
     return inflow_i
 
@@ -106,7 +107,7 @@ def CoefficientLiftBEMT(
     return coefficient_lift_alpha * (twist - inflow / normalized_radius)
 
 
-def PlotProblem2():
+def PlotProblem3():
     fig, axis = plt.subplots(ncols=2, nrows=3, figsize=(12, 17))
 
     radius_values = np.arange(starting_radius, 1, delta_radius)
@@ -178,4 +179,4 @@ def PlotProblem2():
 
 
 if __name__ == "__main__":
-    PlotProblem2()
+    PlotProblem3()
