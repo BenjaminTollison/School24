@@ -1,3 +1,4 @@
 airfoilopt/
 .venv/
 heli-env/
+__pycache__/

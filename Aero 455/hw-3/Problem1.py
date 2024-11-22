@@ -187,7 +187,7 @@ def CoefficientPowerInducedBEMT(normalized_radius: float, step_size: float) -> f
     return np.sum(delta_CP_i)
 
 
-if __name__ == "__main__":
+def PlotProblem1():
     step_size = 1 / 100
     radius_values = np.arange(0.1, 1, step_size)
     inflow_values_bemt = [FindInflowAndTipTwist(radius)[0] for radius in radius_values]
@@ -283,3 +283,115 @@ if __name__ == "__main__":
     plt.ylabel(r"$C_{P,i}$")
     # plt.ylim(-0.0,0.001)
     plt.show()
+    return None
+
+
+def SubPlotProblem1():
+    step_size = 1 / 100
+    radius_values = np.arange(0.1, 1, step_size)
+    inflow_values_bemt = [FindInflowAndTipTwist(radius)[0] for radius in radius_values]
+    inflow_values_exact = [ExactInflow(r) for r in radius_values]
+
+    delta_CT_delta_radius_bemt = [
+        DeltaCoefficientThrust(r, step_size) / step_size for r in radius_values
+    ]
+    delta_CT_delta_radius_exact = [
+        DeltaCoefficientThrustExact(r) for r in radius_values
+    ]
+
+    CT_bemt = [CoefficientThrustBEMT(r, step_size) for r in radius_values]
+    CP_bemt = [CoefficientPowerBEMT(r, step_size) for r in radius_values]
+
+    delta_CP_delta_r = [
+        DeltaCoefficientPowerBEMT(r, step_size) / step_size for r in radius_values
+    ]
+    coefficient_thrust_values = np.linspace(0, CT_bemt[-1], len(radius_values))
+
+    # Create a figure with multiple subplots
+    fig, axes = plt.subplots(nrows=4, ncols=2, figsize=(10, 14), sharey=False)
+
+    # Plot the first subplot for inflow ratio
+    axes[0, 0].plot(radius_values, inflow_values_exact, label="Exact")
+    axes[0, 0].plot(radius_values, inflow_values_bemt, label="BEMT", linestyle=":")
+    axes[0, 0].set_title(r"$\lambda$")
+    axes[0, 0].legend()
+    axes[0, 0].set_xlabel(r"$r = \frac{y}{R}$")
+    axes[0, 0].set_ylabel("Inflow Ratio")
+
+    # Plot the second subplot for dC_T/dx
+    axes[1, 0].plot(radius_values, delta_CT_delta_radius_exact, label="Exact")
+    axes[1, 0].plot(
+        radius_values, delta_CT_delta_radius_bemt, label="BEMT", linestyle=":"
+    )
+    axes[1, 0].set_title(r"$\frac{dC_T}{dx}$")
+    axes[1, 0].legend()
+    axes[1, 0].set_xlabel("r")
+
+    # Plot the third subplot for C_T
+    axes[2, 0].plot(radius_values, CT_bemt, label="BEMT", linestyle=":")
+    axes[2, 0].set_title("Coefficient of Thrust")
+    axes[2, 0].legend()
+    axes[2, 0].set_xlabel("r")
+
+    # Plot the fourth subplot for C_Q
+    axes[3, 0].plot(radius_values, CoefficientPowerExact(radius_values), label="Exact")
+    axes[3, 0].plot(radius_values, CP_bemt, label="BEMT", linestyle=":")
+    axes[3, 0].set_title("Coefficient of Torque")
+    axes[3, 0].legend()
+    axes[3, 0].set_xlabel("r")
+
+    # Plot the fifth subplot for dC_q/dr
+    axes[2, 1].plot(
+        radius_values,
+        DeltaCoefficientPowerDeltaRadiusExact(radius_values),
+        label="Exact",
+    )
+    axes[2, 1].plot(radius_values, delta_CP_delta_r, label="BEMT", linestyle=":")
+    axes[2, 1].set_title(r"$\frac{dC_q}{dr}$")
+    axes[2, 1].legend()
+    axes[2, 1].set_xlabel("r")
+
+    # Plot the sixth subplot for C_l
+    axes[0, 1].plot(
+        radius_values,
+        CoefficientLiftExact(radius_values),
+        label="Exact",
+    )
+    axes[0, 1].plot(
+        radius_values,
+        [CoefficientLiftBEMT(r) for r in radius_values],
+        label="BEMT",
+        linestyle=":",
+    )
+    axes[0, 1].set_title("Coefficient of Lift")
+    axes[0, 1].legend()
+    axes[0, 1].set_xlabel("r")
+
+    # Plot the seventh subplot for C_P,i
+    axes[1, 1].plot(
+        coefficient_thrust_values,
+        CoefficientPowerInducedExact(coefficient_thrust_values),
+        label="Exact",
+    )
+    axes[1, 1].plot(
+        coefficient_thrust_values,
+        [CoefficientPowerInducedBEMT(r, step_size) for r in radius_values],
+        label="BEMT",
+        linestyle=":",
+    )
+    axes[1, 1].set_title("Coefficient of Power Induced")
+    axes[1, 1].legend()
+    axes[1, 1].set_xlabel(r"$C_T$")
+    axes[1, 1].set_ylabel(r"$C_{P,i}$")
+
+    # Adjust layout to prevent overlap between subplots
+    plt.tight_layout()
+
+    # Show the figure
+    plt.show()
+
+    return None
+
+
+if __name__ == "__main__":
+    SubPlotProblem1()
