@@ -44,7 +44,7 @@ def NumbericalBEMT(
     ## Finds the inflow at given span of the blade as a function of the radius, number of blades, and linear twist
 
     Returns:
-    Inflow Ratio
+    Inflow Ratio, F(inflow)
     """
     twist_i = LinearTwist(normalized_radius, linear_twist_rate_rads)
     inflow_i = InflowWithTipLoss(normalized_radius, 1, twist_i)
@@ -54,7 +54,7 @@ def NumbericalBEMT(
     iteration_max = 30
     tolerance = 1e-6
     objfunc_i = ObjectiveFunction(normalized_radius, inflow_i, tip_function_i, twist_i)
-    while abs(objfunc_i) >= tolerance:
+    while np.any(abs(objfunc_i) >= tolerance):
         iteration_count += 1
         inflow_i = InflowWithTipLoss(normalized_radius, tip_function_i, twist_i)
         tip_factor_i = TipLossFactor(normalized_radius, number_of_blades, inflow_i)
@@ -67,25 +67,24 @@ def NumbericalBEMT(
             print([inflow_i, tip_function_i, tip_factor_i, abs(objfunc_i)])
             return inflow_i
 
-    return inflow_i
+    return inflow_i, tip_function_i
 
 
 def DeltaCoefficientThrustBEMT(
     normalized_radius: float, number_of_blades: int, linear_twist_rate_rads: float
 ) -> float:
-    solidity = 0.1
-    coefficient_lift_alpha = 2 * np.pi
-    twist = LinearTwist(normalized_radius, linear_twist_rate_rads)
-    inflow = NumbericalBEMT(normalized_radius, number_of_blades, twist)
-    return (solidity * coefficient_lift_alpha / 2) * (
-        twist * normalized_radius**2 - inflow * normalized_radius
+    inflow, F = NumbericalBEMT(
+        normalized_radius, number_of_blades, linear_twist_rate_rads
     )
+    return 4 * F * inflow**2 * normalized_radius * delta_radius
 
 
 def DeltaCoefficientPowerInducedBEMT(
     normalized_radius: float, number_of_blades: int, linear_twist_rate_rads: float
 ) -> float:
-    inflow = NumbericalBEMT(normalized_radius, number_of_blades, linear_twist_rate_rads)
+    inflow = NumbericalBEMT(
+        normalized_radius, number_of_blades, linear_twist_rate_rads
+    )[0]
     delta_CT = DeltaCoefficientThrustBEMT(
         normalized_radius, number_of_blades, linear_twist_rate_rads
     )
@@ -103,7 +102,9 @@ def CoefficientLiftBEMT(
 ) -> float:
     coefficient_lift_alpha = 2 * np.pi
     twist = LinearTwist(normalized_radius, linear_twist_rate_rads)
-    inflow = NumbericalBEMT(normalized_radius, number_of_blades, linear_twist_rate_rads)
+    inflow = NumbericalBEMT(
+        normalized_radius, number_of_blades, linear_twist_rate_rads
+    )[0]
     return coefficient_lift_alpha * (twist - inflow / normalized_radius)
 
 
@@ -117,7 +118,7 @@ def PlotProblem3():
     for theta_tw in linear_twist_rate_values:
         axis[0, 0].plot(
             radius_values,
-            [NumbericalBEMT(r, 4, theta_tw) for r in radius_values],
+            [NumbericalBEMT(r, 4, theta_tw)[0] for r in radius_values],
             label=r"$\theta_{tw} = $" + f"{round(np.degrees(theta_tw),0)}",
             linestyle="-",
         )

@@ -4,6 +4,7 @@ from Problem2 import (
     TipLossFactor,
     TipLossFunction,
 )
+from Problem4 import CoefficientDrag
 
 number_of_mistakes_i_am_willing_to_get_that_grade_otherwise_i_will_q_drop_off_of_rudder_tower_jk_this_project_is_actually_kinda_fun_after_you_consume_enough_caffiene = (
     103
@@ -12,9 +13,7 @@ delta_radius = (
     1
     / number_of_mistakes_i_am_willing_to_get_that_grade_otherwise_i_will_q_drop_off_of_rudder_tower_jk_this_project_is_actually_kinda_fun_after_you_consume_enough_caffiene
 )
-starting_radius = 0.2
-coefficient_lift_alpha = 2 * np.pi
-coefficient_thrust_required = 0.008
+starting_radius = 0.1
 
 
 def Solidity(normalized_radius: float, number_of_blades: int, taper: float) -> float:
@@ -119,7 +118,7 @@ def InflowBEMT(
     objfunc_i = ObjectiveInflowFunction(
         normalized_radius, inflow_i, tip_function_i, twist_i, number_of_blades, taper
     )
-    while abs(objfunc_i) >= tolerance:
+    while np.all(abs(objfunc_i) >= tolerance):
         iteration_count += 1
         inflow_i = InflowWithTipLoss(
             normalized_radius, number_of_blades, tip_function_i, twist_i, taper
@@ -139,39 +138,181 @@ def InflowBEMT(
             print([inflow_i, tip_function_i, tip_factor_i, abs(objfunc_i)])
             return inflow_i
 
-    return inflow_i
+    return inflow_i, tip_function_i
+
+
+def DeltaCoefficientThrust(
+    normalized_radius: float,
+    twist: float,
+    number_of_blades: int,
+    taper: float,
+) -> float:
+    twist = LinearTwist(normalized_radius, twist, number_of_blades, taper)
+    inflow, F = InflowBEMT(normalized_radius, twist, number_of_blades, taper)
+    return 4 * F * inflow**2 * normalized_radius * delta_radius
+
+
+def DeltaCoefficientPowerInduced(
+    normalized_radius: float,
+    twist: float,
+    number_of_blades: int,
+    taper: float,
+) -> float:
+    twist = LinearTwist(normalized_radius, twist, number_of_blades, taper)
+    inflow = InflowBEMT(normalized_radius, twist, number_of_blades, taper)[0]
+    delta_CT = DeltaCoefficientThrust(
+        normalized_radius,
+        twist,
+        number_of_blades,
+        taper,
+    )
+    return inflow * delta_CT
+
+
+def CoefficientLift(
+    normalized_radius: float,
+    twist: float,
+    number_of_blades: int,
+    taper: float,
+) -> float:
+    coefficient_lift_alpha = 2 * np.pi
+    twist = LinearTwist(normalized_radius, twist, number_of_blades, taper)
+    inflow, F = InflowBEMT(normalized_radius, twist, number_of_blades, taper)
+    solidity = Solidity(normalized_radius, number_of_blades, taper)
+    return (8 / (solidity * normalized_radius)) * F * inflow
+
+
+def CoefficientPowerInduced(
+    normalized_radius: float,
+    twist: float,
+    number_of_blades: int,
+    taper: float,
+) -> float:
+    delta_CP_list = [
+        DeltaCoefficientPowerInduced(r, twist, number_of_blades, taper)
+        for r in np.arange(starting_radius, normalized_radius, delta_radius)
+    ]
+    return np.sum(delta_CP_list)
+
+
+def CoefficientThrust(
+    normalized_radius: float,
+    twist: float,
+    number_of_blades: int,
+    taper: float,
+) -> float:
+    delta_CT_list = [
+        DeltaCoefficientThrust(r, twist, number_of_blades, taper)
+        for r in np.arange(starting_radius, normalized_radius, delta_radius)
+    ]
+    return np.sum(delta_CT_list)
+
+
+def CoefficientPowerIdeal(
+    normalized_radius: float,
+    twist: float,
+    number_of_blades: int,
+    taper: float,
+) -> float:
+    return (
+        CoefficientThrust(normalized_radius, twist, number_of_blades, taper) ** 1.5
+        / 2**0.5
+    )
+
+
+def CoefficientPower(
+    normalized_radius: float,
+    twist: float,
+    number_of_blades: int,
+    taper: float,
+) -> float:
+    delta_CP_list = [
+        InflowBEMT(r, twist, number_of_blades, taper)[0]
+        * DeltaCoefficientThrust(r, twist, number_of_blades, taper)
+        + 0.5
+        * Solidity(r, number_of_blades, taper)
+        * CoefficientDrag(r, number_of_blades, twist)
+        * r**3
+        for r in np.arange(starting_radius, normalized_radius, delta_radius)
+    ]
+    return np.sum(delta_CP_list) * delta_radius
+
+
+def FigureOfMerit(
+    normalized_radius: float,
+    twist: float,
+    number_of_blades: int,
+    taper: float,
+) -> float:
+    CP_ideal = CoefficientPowerIdeal(normalized_radius, twist, number_of_blades, taper)
+    CP = CoefficientPower(normalized_radius, twist, number_of_blades, taper)
+    return CP_ideal / CP
 
 
 def PlotProblem5():
-    fig, axis = plt.subplots(ncols=1, nrows=1, figsize=(10, 12))
+    fig, axis = plt.subplots(ncols=2, nrows=2, figsize=(8, 10))
 
     radius_values = np.arange(starting_radius, 1, delta_radius)
-    fixed_twist = np.deg2rad(-15)
+    fixed_twist_rate = np.deg2rad(-15)
     taper_ratio_values = [1, 2, 3]
     # Plot the first subplot
     for taper_ratio in taper_ratio_values:
-        axis.plot(
+        axis[0, 0].plot(
             radius_values,
-            [InflowBEMT(r, fixed_twist, 2, taper_ratio) for r in radius_values],
+            [InflowBEMT(r, fixed_twist_rate, 2, taper_ratio)[0] for r in radius_values],
+            label=r"$\pi_{taper} = $" + f"{round(taper_ratio,0)}",
+            linestyle="-",
+        )
+        axis[0, 1].plot(
+            radius_values,
+            [
+                DeltaCoefficientThrust(r, fixed_twist_rate, 2, taper_ratio)
+                / delta_radius
+                for r in radius_values
+            ],
+            label=r"$\pi_{taper} = $" + f"{round(taper_ratio,0)}",
+            linestyle="-",
+        )
+        axis[1, 0].plot(
+            radius_values,
+            [
+                DeltaCoefficientPowerInduced(r, fixed_twist_rate, 2, taper_ratio)
+                / delta_radius
+                for r in radius_values
+            ],
+            label=r"$\pi_{taper} = $" + f"{round(taper_ratio,0)}",
+            linestyle="-",
+        )
+        axis[1, 1].plot(
+            radius_values,
+            [
+                CoefficientLift(r, fixed_twist_rate, 2, taper_ratio)
+                for r in radius_values
+            ],
             label=r"$\pi_{taper} = $" + f"{round(taper_ratio,0)}",
             linestyle="-",
         )
 
     # First plot formatting
-    axis.set_title("Inflow Ratio")
-    axis.legend()
-    axis.set_xlabel(r"$\lambda$")
-    axis.set_ylabel(r"$r = \frac{y}{R}$")
-    # # Second plot formatting
-    # axis[0, 1].set_title("Power Factor")
-    # axis[0, 1].legend()
-    # axis[0, 1].set_xlabel(r"$C_T$")
-    # axis[0, 1].set_ylabel(r"$\kappa$")
-    # # Third plot formatting
-    # axis[1, 0].set_title("Figure of Merit")
-    # axis[1, 0].legend()
-    # axis[1, 0].set_xlabel(r"$C_T$")
-    # axis[1, 0].set_ylabel(r"$FM$")
+    axis[0, 0].set_title("Inflow Ratio")
+    axis[0, 0].legend()
+    axis[0, 0].set_xlabel(r"$r = \frac{y}{R}$")
+    axis[0, 0].set_ylabel(r"$\lambda$")
+    # Second plot formatting
+    axis[0, 1].set_title("Change in Coefficient in Thrust")
+    axis[0, 1].legend()
+    axis[0, 1].set_xlabel(r"$r$")
+    axis[0, 1].set_ylabel(r"$\frac{dC_T}{dr}$")
+    # Third plot formatting
+    axis[1, 0].set_title("Change in Coefficient of Induced Power")
+    axis[1, 0].legend()
+    axis[1, 0].set_xlabel(r"$r$")
+    axis[1, 0].set_ylabel(r"$\frac{dC_{Pi}}{dr}$")
+    # Fourth plot formatting
+    axis[1, 1].set_title("Change in Coefficient of Lift")
+    axis[1, 1].legend()
+    axis[1, 1].set_xlabel(r"$r$")
+    axis[1, 1].set_ylabel(r"$C_l$")
 
     # Adjust layout to prevent overlap between subplots
     plt.tight_layout()
@@ -182,32 +323,36 @@ def PlotProblem5():
     return None
 
 
-def Example3DPlot():
-    # Generate some random data for x, y coordinates
-    x = np.random.rand(100)
-    y = np.random.rand(100)
+def FigureOfMerit3DPlot():
+    twist_rate = np.deg2rad(np.linspace(-20, 20, 100))
+    taper = np.linspace(1, 6, 100)
 
     # Generate some random z values
-    z = np.sin(x) + 2 * np.cos(y)
+    X, Y = np.meshgrid(twist_rate, taper)
+    Z = np.zeros_like(X)  # Ensure Z has the same shape as X and Y
+    for i in range(X.shape[0]):
+        for j in range(X.shape[1]):
+            Z[i, j] = FigureOfMerit(1, X[i, j], 2, Y[i, j])
 
     # Create a figure and an axis for the 3D plot
     fig = plt.figure()
     ax = fig.add_subplot(111, projection="3d")
 
     # Plot the data as a scatter plot
-    scat = ax.scatter(x, y, z, c=z, cmap="viridis", marker="o")
+    # scat = ax.scatter(x, y, z, c=z, cmap="viridis", marker="o")
+    surf = ax.plot_surface(np.degrees(X), Y, Z, cmap="viridis")
 
     # Set labels for the axes
-    ax.set_xlabel("X")
-    ax.set_ylabel("Y")
-    ax.set_zlabel("Z")
+    ax.set_xlabel("Twist Rate")
+    ax.set_ylabel("Taper")
+    ax.set_zlabel("FM")
 
     # Rotate the plot to see a specific plane
     # For example, rotate around the x-axis by 30 degrees and around the z-axis by 45 degrees
     ax.view_init(elev=30, azim=45)
 
     # Add a color bar to show the mapping of colors to values
-    fig.colorbar(scat, shrink=0.5)
+    fig.colorbar(surf, shrink=0.5)
 
     # Display the plot
     plt.show()
@@ -215,3 +360,4 @@ def Example3DPlot():
 
 if __name__ == "__main__":
     PlotProblem5()
+    FigureOfMerit3DPlot()

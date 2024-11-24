@@ -19,7 +19,9 @@ def CoefficientDrag(
     normalized_radius: float, number_of_blades: float, linear_twist_rate_rads: float
 ) -> float:
     twist = LinearTwist(normalized_radius, linear_twist_rate_rads)
-    inflow = NumbericalBEMT(normalized_radius, number_of_blades, linear_twist_rate_rads)
+    inflow = NumbericalBEMT(
+        normalized_radius, number_of_blades, linear_twist_rate_rads
+    )[0]
     alpha = twist - inflow / normalized_radius
     return 0.011 - 0.025 * alpha + 0.65 * alpha**2
 
@@ -35,7 +37,9 @@ def DeltaCoefficientPowerHover(
         1
         / number_of_mistakes_i_am_willing_to_get_that_grade_otherwise_i_will_q_drop_off_of_rudder_tower
     )
-    inflow = NumbericalBEMT(normalized_radius, number_of_blades, linear_twist_rate_rads)
+    inflow = NumbericalBEMT(
+        normalized_radius, number_of_blades, linear_twist_rate_rads
+    )[0]
     delta_CT = DeltaCoefficientThrustBEMT(
         normalized_radius, number_of_blades, linear_twist_rate_rads
     )
@@ -70,14 +74,14 @@ def CoefficientPowerHover(
 def DeltaCoefficientPowerInduced(
     normalized_radius: float, number_of_blades: float, linear_twist_rate_rads: float
 ) -> float:
-    inflow = NumbericalBEMT(normalized_radius, number_of_blades, linear_twist_rate_rads)
-    delta_CT = (
-        DeltaCoefficientThrustBEMT(
-            normalized_radius, number_of_blades, linear_twist_rate_rads
-        )
-        * delta_radius
+    inflow = NumbericalBEMT(
+        normalized_radius, number_of_blades, linear_twist_rate_rads
+    )[0]
+    delta_CT = DeltaCoefficientThrustBEMT(
+        normalized_radius, number_of_blades, linear_twist_rate_rads
     )
-    return inflow * delta_CT
+
+    return inflow * delta_CT * delta_radius
 
 
 def CoefficientPowerInduced(
@@ -109,13 +113,13 @@ def PowerFactor(
     )
     Ct = CoefficientThrust(normalized_radius, number_of_blades, linear_twist_rate_rads)
     try:
-        power_factor = Cp_i / (Ct**1.5 / 2**0.5)
-        if power_factor >= 3:
+        power_factor = (Cp_i * 2**0.5) / (Ct**1.5)
+        if power_factor >= 30:
             return np.nan
-        else:
-            return power_factor
     except RuntimeWarning:
         return np.nan
+
+    return power_factor
 
 
 def FigureOfMerit(
