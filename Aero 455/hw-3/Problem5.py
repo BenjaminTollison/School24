@@ -198,15 +198,23 @@ def CoefficientPowerInduced(
 
 def CoefficientThrust(
     normalized_radius: float,
-    twist: float,
+    twist,
     number_of_blades: int,
-    taper: float,
+    taper,
+    xp=np,
 ) -> float:
-    delta_CT_list = [
-        DeltaCoefficientThrust(r, twist, number_of_blades, taper)
-        for r in np.arange(starting_radius, normalized_radius, delta_radius)
-    ]
-    return np.sum(delta_CT_list)
+    twist = xp.asarray(twist)
+
+    # Expand dimensions if twist is scalar
+    if twist.ndim == 0:  # Scalar
+        twist = twist[None]  # Convert to 1D array
+    elif twist.ndim == 1:  # 1D array
+        twist = xp.broadcast_to(twist, (r.size, twist.size))
+    r = xp.linspace(starting_radius, normalized_radius, twist.shape[0])
+    if r.ndim == 1:  # Expand radii to match meshgrid dimensions if needed
+        r = xp.broadcast_to(r[:, None], (r.size, twist[0].size))
+    delta_CT_list = DeltaCoefficientThrust(r, twist, number_of_blades, taper)
+    return xp.sum(delta_CT_list)
 
 
 def CoefficientPowerIdeal(
@@ -214,20 +222,33 @@ def CoefficientPowerIdeal(
     twist: float,
     number_of_blades: int,
     taper: float,
+    xp=np,
 ) -> float:
     return (
-        CoefficientThrust(normalized_radius, twist, number_of_blades, taper) ** 1.5
+        CoefficientThrust(normalized_radius, twist, number_of_blades, taper, xp) ** 1.5
         / 2**0.5
     )
 
 
 def CoefficientPower(
     normalized_radius: float,
-    twist: float,
+    twist,
     number_of_blades: int,
-    taper: float,
+    taper,
+    xp=np,
 ) -> float:
-    delta_CP_list = [
+    # Ensure twist is an array
+    twist = xp.asarray(twist)
+
+    # Expand dimensions if twist is scalar
+    if twist.ndim == 0:  # Scalar
+        twist = twist[None]  # Convert to 1D array
+    elif twist.ndim == 1:  # 1D array
+        twist = xp.broadcast_to(twist, (r.size, twist.size))
+    r = xp.linspace(starting_radius, normalized_radius, twist.shape[0])
+    if r.ndim == 1:  # Expand radii to match meshgrid dimensions if needed
+        r = xp.broadcast_to(r[:, None], (r.size, twist[0].size))
+    delta_CP_list = (
         InflowBEMT(r, twist, number_of_blades, taper)[0]
         * DeltaCoefficientThrust(r, twist, number_of_blades, taper)
         + 0.5
@@ -235,20 +256,24 @@ def CoefficientPower(
         * CoefficientDrag(r, number_of_blades, twist)
         * r**3
         * delta_radius
-        for r in np.arange(starting_radius, normalized_radius, delta_radius)
-    ]
-    return np.sum(delta_CP_list)
+    )
+    return xp.sum(delta_CP_list)
 
 
 def FigureOfMerit(
     normalized_radius: float,
-    twist: float,
+    twist,
     number_of_blades: int,
-    taper: float,
+    taper,
+    xp=np,
 ) -> float:
-    CP_ideal = CoefficientPowerIdeal(normalized_radius, twist, number_of_blades, taper)
-    CP = CoefficientPower(normalized_radius, twist, number_of_blades, taper)
-    return CP_ideal / CP
+    CP_ideal = CoefficientPowerIdeal(
+        normalized_radius, twist, number_of_blades, taper, xp
+    )
+    CP = CoefficientPower(normalized_radius, twist, number_of_blades, taper, xp)
+    # print("Type of CP_ideal:", type(CP_ideal))
+    # print("Type of CP:", type(CP))
+    return xp.divide(CP_ideal, CP)  # Use xp-compatible divide
 
 
 def PlotProblem5():
@@ -326,17 +351,60 @@ def PlotProblem5():
 
 
 def FigureOfMerit3DPlot():
-    twist_rate = np.deg2rad(np.linspace(-15, 15, 100))
-    taper = np.linspace(1, 6, 100)
+    try:
+        import cupy as cp
 
-    X, Y = np.meshgrid(twist_rate, taper)
-    with tqdm(total=X.shape[0] * X.shape[1], desc="Computing FM values") as pbar:
-        Z = np.zeros_like(X)  # Ensure Z has the same shape as X and Y
-        for i in range(X.shape[0]):
-            for j in range(X.shape[1]):
-                Z[i, j] = FigureOfMerit(1, X[i, j], 2, Y[i, j])
-                pbar.update(1)
+        print(cp.__version__)
+        print(cp.cuda.runtime.getDeviceCount())  # Should print 1 or more
+        print(cp.cuda.Device(0).mem_info)  # Memory info for the first GPU
 
+        twist_rate = cp.deg2rad(cp.linspace(-15, 15, 100))
+        taper = cp.linspace(1, 6, 100)
+
+        print("CuPy detected. Running on GPU...")
+
+        # Compute the meshgrid on the GPU
+        X, Y = cp.meshgrid(twist_rate, taper)
+        cp.cuda.Stream.null.synchronize()  # Wait for GPU operations to complete
+        # print("X shape:", X.shape)
+        # print("X dtype:", X.dtype)
+        # print("X size (bytes):", X.nbytes)
+
+        # Compute Z values (parallelized on GPU)
+        # Z = FigureOfMerit(1,X,2,Y)
+        try:
+            Z = FigureOfMerit(1, X, 2, Y, xp=cp)
+        except Exception as e:
+            print("Error in FigureOfMerit:", e)
+            Z = cp.zeros_like(X)
+            for i in range(X.shape[0]):
+                for j in range(X.shape[1]):
+                    Z[i, j] = FigureOfMerit(1, X[i, j], 2, Y[i, j], xp=cp)
+
+        cp.cuda.Stream.null.synchronize()  # Wait for GPU operations to complete
+        # Convert results back to NumPy for plotting
+        X = X.get()
+        Y = Y.get()
+        Z = Z.get()
+        print("Z shape:", Z.shape)
+        print("Z dtype:", Z.dtype)
+        print("Z size (bytes):", Z.nbytes)
+
+        # Z = Z.reshape(X.shape)
+
+    except (ModuleNotFoundError, RuntimeError, OSError, Exception) as e:
+        print(f"Error occurred with CuPy: {e}. Falling back to NumPy...")
+        # Add fallback logic with NumPy here
+        twist_rate = np.deg2rad(np.linspace(-15, 15, 100))
+        taper = np.linspace(1, 6, 100)
+
+        X, Y = np.meshgrid(twist_rate, taper)
+        with tqdm(total=X.shape[0] * X.shape[1], desc="Computing FM values") as pbar:
+            Z = np.zeros_like(X)  # Ensure Z has the same shape as X and Y
+            for i in range(X.shape[0]):
+                for j in range(X.shape[1]):
+                    Z[i, j] = FigureOfMerit(1, X[i, j], 2, Y[i, j])
+                    pbar.update(1)
     # Create a figure and an axis for the 3D plot
     fig = plt.figure()
     ax = fig.add_subplot(111, projection="3d")
