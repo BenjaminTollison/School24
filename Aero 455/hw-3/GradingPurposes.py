@@ -43,9 +43,62 @@ def CreateVenv(venv_dir="heli_env"):
     print(f"    {activation_command}\n")
     # Prompt the user to confirm activation
     print(
-        "After activating the virtual environment, rerun this script with the '--proceed' option to proceed."
+        "After activating the virtual environment, rerun this script with the '--gpu-optimization' option to proceed OR '--proceed' to continue on CPU"
     )
     sys.exit(0)  # Exit after providing instructions
+
+
+def InstallCuPy():
+    # Step 3: Prompt the user to check CUDA version
+    print("\nBefore continuing, let's check your CUDA version.")
+    print("Choose a method to check your CUDA version:")
+    print("1. Use 'nvcc --version' (requires CUDA toolkit to be installed).")
+    print("2. Use 'nvidia-smi' (requires NVIDIA driver to be installed).")
+    choice = input("Enter 1 or 2: ").strip()
+
+    if choice == "1":
+        # Method 1: Use `nvcc`
+        try:
+            result = subprocess.check_output(
+                ["nvcc", "--version"], stderr=subprocess.STDOUT
+            )
+            print("\nCUDA version (Method 1):")
+            print(result.decode())
+            method = "pip install cupy-cuda11x (e.g., `cuda11.5`)"
+        except FileNotFoundError:
+            print(
+                "Error: `nvcc` command not found. Make sure the CUDA toolkit is installed."
+            )
+            choice = input("Enter 2: ").strip()
+        except subprocess.CalledProcessError as e:
+            print(f"Error while checking CUDA version using `nvcc`: {e}")
+            choice = input("Enter 2: ").strip()
+    elif choice == "2":
+        # Method 2: Use `nvidia-smi`
+        try:
+            result = subprocess.check_output(["nvidia-smi"], stderr=subprocess.STDOUT)
+            print("\nCUDA version (Method 2):")
+            print(result.decode())
+            method = "pip install cupy-cuda11x (e.g., `cuda11.5`)"
+        except FileNotFoundError:
+            print(
+                "Error: `nvidia-smi` command not found. Make sure the NVIDIA driver is installed."
+            )
+        except subprocess.CalledProcessError as e:
+            print(f"Error while checking CUDA version using `nvidia-smi`: {e}")
+    else:
+        print(
+            "Invalid choice. Please rerun the script from the beginning and enter 1 or 2."
+        )
+        sys.exit(1)
+
+    print(
+        "to install run ",
+        method,
+        "rerun this script with the '--proceed' option to proceed.",
+    )
+    # Exit after providing instructions and checking CUDA version
+    sys.exit(0)
 
 
 def InstallRequiredPackages():
@@ -117,6 +170,11 @@ def main():
         help="Create the virtual environment and exit.",
     )
     parser.add_argument(
+        "--gpu-optimization",
+        action="store_true",
+        help="Adds gpu optimization with CuPy.",
+    )
+    parser.add_argument(
         "--proceed",
         action="store_true",
         help="Continue with package installation and other tasks.",
@@ -125,13 +183,15 @@ def main():
 
     if args.create_venv:
         CreateVenv()  # Create the virtual environment and exit
+    elif args.gpu_optimization:
+        InstallCuPy()  # Install Cupy to faster speeds
     elif args.proceed:
         InstallRequiredPackages()  # Install required packages
         GenerateAllPlots()  # Generate plots
         DeleteTempVenv()  # Delete the virtual environment
     else:
         print(
-            "Usage: python GradingPurposes.py --create-venv OR python GradingPurposes.py --proceed"
+            "Usage: python GradingPurposes.py --create-venv OR python GradingPurposes.py --proceed OR python GradingPurposes.py --gpu-optimization"
         )
         sys.exit(1)
 

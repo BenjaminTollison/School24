@@ -98,11 +98,11 @@ def LinearTwist(
 
 
 def InflowBEMT(
-    normalized_radius: float,
-    twist: float,
+    normalized_radius,
+    twist,
     number_of_blades: int,
-    taper: float,
-) -> float:
+    taper,
+):
     """
     ## Finds the inflow at given span of the blade as a function of the radius, number of blades, linear twist, and taper
 
@@ -325,9 +325,51 @@ def PlotProblem5():
     return None
 
 
+def FigureOfMeritVectorized(
+    radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp=np
+):
+    return NotImplementedError
+
+
 def FigureOfMerit3DPlot():
-    twist_rate = np.deg2rad(np.linspace(-15, 15, 100))
-    taper = np.linspace(1, 6, 100)
+    try:
+        import cupy as cp
+
+        gpu_mesh_size = 100
+        gpu_delta_radius = 1 / gpu_mesh_size
+        twist_rate = cp.deg2rad(cp.linspace(-15, 15, gpu_mesh_size))
+        taper = cp.linspace(1, 6, gpu_mesh_size)
+        print("CuPy detected. Running on GPU...")
+        # Compute the meshgrid on the GPU
+        X, Y = cp.meshgrid(twist_rate, taper)
+        # Compute Z values (parallelized on GPU)
+        r_vector = cp.linspace(starting_radius, 1, gpu_mesh_size)
+        print(r_vector.shape)
+        print(X.shape, Y.shape)
+        Z = FigureOfMeritVectorized(r_vector, X, 2, Y, xp=cp)
+        print(Z.shape)
+        cp.cuda.Stream.null.synchronize()  # Wait for GPU operations to complete
+        # Convert results back to NumPy for plotting
+        X = X.get()
+        Y = Y.get()
+        Z = Z.get()
+        print("Z shape:", Z.shape)
+        print("Z dtype:", Z.dtype)
+        print("Z size (bytes):", Z.nbytes)
+
+        # Z = Z.reshape(X.shape)
+
+    except (
+        ModuleNotFoundError,
+        RuntimeError,
+        OSError,
+        Exception,
+        NotImplementedError,
+    ) as e:
+        print(f"Error occurred with CuPy: {e}. Falling back to NumPy...")
+        # Add fallback logic with NumPy here
+        twist_rate = np.deg2rad(np.linspace(-15, 15, 100))
+        taper = np.linspace(1, 6, 100)
 
     X, Y = np.meshgrid(twist_rate, taper)
     with tqdm(total=X.shape[0] * X.shape[1], desc="Computing FM values") as pbar:
