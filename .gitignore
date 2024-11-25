@@ -1,4 +1,7 @@
 airfoilopt/
 .venv/
 heli-env/
+heli_env/
 __pycache__/
+"Aero 455/hw-3/__pycache__/"
+"Aero 455/hw-3/heli_env/"

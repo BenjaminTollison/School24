@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from tqdm import tqdm
 from Problem2 import (
     TipLossFactor,
     TipLossFunction,
@@ -179,7 +180,7 @@ def CoefficientLift(
     twist = LinearTwist(normalized_radius, twist, number_of_blades, taper)
     inflow, F = InflowBEMT(normalized_radius, twist, number_of_blades, taper)
     solidity = Solidity(normalized_radius, number_of_blades, taper)
-    return (8 / (solidity * normalized_radius)) * F * inflow
+    return (8 / (solidity * normalized_radius)) * F * inflow**2
 
 
 def CoefficientPowerInduced(
@@ -233,9 +234,10 @@ def CoefficientPower(
         * Solidity(r, number_of_blades, taper)
         * CoefficientDrag(r, number_of_blades, twist)
         * r**3
+        * delta_radius
         for r in np.arange(starting_radius, normalized_radius, delta_radius)
     ]
-    return np.sum(delta_CP_list) * delta_radius
+    return np.sum(delta_CP_list)
 
 
 def FigureOfMerit(
@@ -324,22 +326,22 @@ def PlotProblem5():
 
 
 def FigureOfMerit3DPlot():
-    twist_rate = np.deg2rad(np.linspace(-20, 20, 100))
+    twist_rate = np.deg2rad(np.linspace(-15, 15, 100))
     taper = np.linspace(1, 6, 100)
 
-    # Generate some random z values
     X, Y = np.meshgrid(twist_rate, taper)
-    Z = np.zeros_like(X)  # Ensure Z has the same shape as X and Y
-    for i in range(X.shape[0]):
-        for j in range(X.shape[1]):
-            Z[i, j] = FigureOfMerit(1, X[i, j], 2, Y[i, j])
+    with tqdm(total=X.shape[0] * X.shape[1], desc="Computing FM values") as pbar:
+        Z = np.zeros_like(X)  # Ensure Z has the same shape as X and Y
+        for i in range(X.shape[0]):
+            for j in range(X.shape[1]):
+                Z[i, j] = FigureOfMerit(1, X[i, j], 2, Y[i, j])
+                pbar.update(1)
 
     # Create a figure and an axis for the 3D plot
     fig = plt.figure()
     ax = fig.add_subplot(111, projection="3d")
 
     # Plot the data as a scatter plot
-    # scat = ax.scatter(x, y, z, c=z, cmap="viridis", marker="o")
     surf = ax.plot_surface(np.degrees(X), Y, Z, cmap="viridis")
 
     # Set labels for the axes
@@ -349,7 +351,7 @@ def FigureOfMerit3DPlot():
 
     # Rotate the plot to see a specific plane
     # For example, rotate around the x-axis by 30 degrees and around the z-axis by 45 degrees
-    ax.view_init(elev=30, azim=45)
+    ax.view_init(elev=20, azim=-130)
 
     # Add a color bar to show the mapping of colors to values
     fig.colorbar(surf, shrink=0.5)
