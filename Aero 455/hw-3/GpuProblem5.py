@@ -209,9 +209,9 @@ def CoefficientThrustVectorized(
 def CoefficientPowerIdealVectorized(
     radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp=np
 ):
-    return (
+    return xp.linalg.norm(
         CoefficientThrustVectorized(
-            radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
+            radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp, 2
         )
         ** 1.5
         / 2**0.5
