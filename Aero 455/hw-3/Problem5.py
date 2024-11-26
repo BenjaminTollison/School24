@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from time import time
 from tqdm import tqdm
 from Problem2 import (
     TipLossFactor,
@@ -7,6 +8,19 @@ from Problem2 import (
 )
 from Problem4 import CoefficientDrag
 
+try:
+    import cupy as cp
+
+    GPU_FREEDOM = True
+except:
+    GPU_FREEDOM = False
+if GPU_FREEDOM:
+    from GpuProblem5 import (
+        PlotGpuResults,
+        RunGPUFunctions,
+        TroubleShootingPlots,
+        CoefficientThrustVectorized,
+    )
 number_of_mistakes_i_am_willing_to_get_that_grade_otherwise_i_will_q_drop_off_of_rudder_tower_jk_this_project_is_actually_kinda_fun_after_you_consume_enough_caffiene = (
     103
 )
@@ -98,11 +112,11 @@ def LinearTwist(
 
 
 def InflowBEMT(
-    normalized_radius: float,
-    twist: float,
+    normalized_radius,
+    twist,
     number_of_blades: int,
-    taper: float,
-) -> float:
+    taper,
+):
     """
     ## Finds the inflow at given span of the blade as a function of the radius, number of blades, linear twist, and taper
 
@@ -228,6 +242,7 @@ def CoefficientPowerIdeal(
         CoefficientThrust(normalized_radius, twist, number_of_blades, taper, xp) ** 1.5
         / 2**0.5
     )
+    # return 0.008**1.5 / 2**0.5
 
 
 def CoefficientPower(
@@ -349,62 +364,39 @@ def PlotProblem5():
 
     return None
 
+def RunCpuFunctions(cpu_mesh_size=100):
+    twist_rate = np.deg2rad(np.linspace(-15, 15, cpu_mesh_size))
+    taper = np.linspace(1, 6, cpu_mesh_size)
 
-def FigureOfMerit3DPlot():
-    try:
-        import cupy as cp
+    X, Y = np.meshgrid(twist_rate, taper)
+    with tqdm(total=X.shape[0] * X.shape[1], desc="Computing FM values") as pbar:
+        Z = np.zeros_like(X)  # Ensure Z has the same shape as X and Y
+        for i in range(X.shape[0]):
+            for j in range(X.shape[1]):
+                Z[i, j] = FigureOfMerit(1, X[i, j], 2, Y[i, j])
+                pbar.update(1)
+    return X, Y, Z
 
-        print(cp.__version__)
-        print(cp.cuda.runtime.getDeviceCount())  # Should print 1 or more
-        print(cp.cuda.Device(0).mem_info)  # Memory info for the first GPU
 
-        twist_rate = cp.deg2rad(cp.linspace(-15, 15, 100))
-        taper = cp.linspace(1, 6, 100)
+def CompareRuntimes(mesh_size=100):
+    cpu_start = time()
+    RunCpuFunctions(mesh_size)
+    cpu_runtime = time() - cpu_start
+    gpu_start = time()
+    RunGPUFunctions(mesh_size)
+    gpu_runtime = time() - gpu_start
+    print(f"For a mesh size of {mesh_size}")
+    print(f"The CPU had a runtime of {cpu_runtime:.6} seconds")
+    print(f"The GPU had a runtime of {gpu_runtime:.6} seconds")
+    print("===========================================================")
+    print(
+        f"|           The GPU runs {cpu_runtime/gpu_runtime:.8} times faster           |"
+    )
+    print("===========================================================")
 
-        print("CuPy detected. Running on GPU...")
 
-        # Compute the meshgrid on the GPU
-        X, Y = cp.meshgrid(twist_rate, taper)
-        cp.cuda.Stream.null.synchronize()  # Wait for GPU operations to complete
-        # print("X shape:", X.shape)
-        # print("X dtype:", X.dtype)
-        # print("X size (bytes):", X.nbytes)
-
-        # Compute Z values (parallelized on GPU)
-        # Z = FigureOfMerit(1,X,2,Y)
-        try:
-            Z = FigureOfMerit(1, X, 2, Y, xp=cp)
-        except Exception as e:
-            print("Error in FigureOfMerit:", e)
-            Z = cp.zeros_like(X)
-            for i in range(X.shape[0]):
-                for j in range(X.shape[1]):
-                    Z[i, j] = FigureOfMerit(1, X[i, j], 2, Y[i, j], xp=cp)
-
-        cp.cuda.Stream.null.synchronize()  # Wait for GPU operations to complete
-        # Convert results back to NumPy for plotting
-        X = X.get()
-        Y = Y.get()
-        Z = Z.get()
-        print("Z shape:", Z.shape)
-        print("Z dtype:", Z.dtype)
-        print("Z size (bytes):", Z.nbytes)
-
-        # Z = Z.reshape(X.shape)
-
-    except (ModuleNotFoundError, RuntimeError, OSError, Exception) as e:
-        print(f"Error occurred with CuPy: {e}. Falling back to NumPy...")
-        # Add fallback logic with NumPy here
-        twist_rate = np.deg2rad(np.linspace(-15, 15, 100))
-        taper = np.linspace(1, 6, 100)
-
-        X, Y = np.meshgrid(twist_rate, taper)
-        with tqdm(total=X.shape[0] * X.shape[1], desc="Computing FM values") as pbar:
-            Z = np.zeros_like(X)  # Ensure Z has the same shape as X and Y
-            for i in range(X.shape[0]):
-                for j in range(X.shape[1]):
-                    Z[i, j] = FigureOfMerit(1, X[i, j], 2, Y[i, j])
-                    pbar.update(1)
+def CPUFigureOfMerit3D():
+    X, Y, Z = RunCpuFunctions()
     # Create a figure and an axis for the 3D plot
     fig = plt.figure()
     ax = fig.add_subplot(111, projection="3d")
@@ -426,6 +418,28 @@ def FigureOfMerit3DPlot():
 
     # Display the plot
     plt.show()
+
+
+def FigureOfMerit3DPlot():
+    try:
+
+        PlotGpuResults(5000, CoefficientThrustVectorized)
+        # TroubleShootingPlots()
+
+        mesh_sizes_to_compare = [10, 25, 50, 100]
+        print("Comparing the computation time of each method")
+        for mesh in mesh_sizes_to_compare:
+            CompareRuntimes(mesh)
+    except (
+        ModuleNotFoundError,
+        RuntimeError,
+        OSError,
+        Exception,
+        NotImplementedError,
+    ) as e:
+        print(f"Error occurred with CuPy: {e}. Falling back to NumPy...")
+        # Add fallback logic with NumPy here
+        CPUFigureOfMerit3D()
 
 
 if __name__ == "__main__":
