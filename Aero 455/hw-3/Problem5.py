@@ -212,15 +212,23 @@ def CoefficientPowerInduced(
 
 def CoefficientThrust(
     normalized_radius: float,
-    twist: float,
+    twist,
     number_of_blades: int,
-    taper: float,
+    taper,
+    xp=np,
 ) -> float:
-    delta_CT_list = [
-        DeltaCoefficientThrust(r, twist, number_of_blades, taper)
-        for r in np.arange(starting_radius, normalized_radius, delta_radius)
-    ]
-    return np.sum(delta_CT_list)
+    twist = xp.asarray(twist)
+
+    # Expand dimensions if twist is scalar
+    if twist.ndim == 0:  # Scalar
+        twist = twist[None]  # Convert to 1D array
+    elif twist.ndim == 1:  # 1D array
+        twist = xp.broadcast_to(twist, (r.size, twist.size))
+    r = xp.linspace(starting_radius, normalized_radius, twist.shape[0])
+    if r.ndim == 1:  # Expand radii to match meshgrid dimensions if needed
+        r = xp.broadcast_to(r[:, None], (r.size, twist[0].size))
+    delta_CT_list = DeltaCoefficientThrust(r, twist, number_of_blades, taper)
+    return xp.sum(delta_CT_list)
 
 
 def CoefficientPowerIdeal(
@@ -228,9 +236,10 @@ def CoefficientPowerIdeal(
     twist: float,
     number_of_blades: int,
     taper: float,
+    xp=np,
 ) -> float:
     return (
-        CoefficientThrust(normalized_radius, twist, number_of_blades, taper) ** 1.5
+        CoefficientThrust(normalized_radius, twist, number_of_blades, taper, xp) ** 1.5
         / 2**0.5
     )
     # return 0.008**1.5 / 2**0.5
@@ -238,11 +247,23 @@ def CoefficientPowerIdeal(
 
 def CoefficientPower(
     normalized_radius: float,
-    twist: float,
+    twist,
     number_of_blades: int,
-    taper: float,
+    taper,
+    xp=np,
 ) -> float:
-    delta_CP_list = [
+    # Ensure twist is an array
+    twist = xp.asarray(twist)
+
+    # Expand dimensions if twist is scalar
+    if twist.ndim == 0:  # Scalar
+        twist = twist[None]  # Convert to 1D array
+    elif twist.ndim == 1:  # 1D array
+        twist = xp.broadcast_to(twist, (r.size, twist.size))
+    r = xp.linspace(starting_radius, normalized_radius, twist.shape[0])
+    if r.ndim == 1:  # Expand radii to match meshgrid dimensions if needed
+        r = xp.broadcast_to(r[:, None], (r.size, twist[0].size))
+    delta_CP_list = (
         InflowBEMT(r, twist, number_of_blades, taper)[0]
         * DeltaCoefficientThrust(r, twist, number_of_blades, taper)
         + 0.5
@@ -250,20 +271,24 @@ def CoefficientPower(
         * CoefficientDrag(r, number_of_blades, twist)
         * r**3
         * delta_radius
-        for r in np.arange(starting_radius, normalized_radius, delta_radius)
-    ]
-    return np.sum(delta_CP_list)
+    )
+    return xp.sum(delta_CP_list)
 
 
 def FigureOfMerit(
     normalized_radius: float,
-    twist: float,
+    twist,
     number_of_blades: int,
-    taper: float,
+    taper,
+    xp=np,
 ) -> float:
-    CP_ideal = CoefficientPowerIdeal(normalized_radius, twist, number_of_blades, taper)
-    CP = CoefficientPower(normalized_radius, twist, number_of_blades, taper)
-    return CP_ideal / CP
+    CP_ideal = CoefficientPowerIdeal(
+        normalized_radius, twist, number_of_blades, taper, xp
+    )
+    CP = CoefficientPower(normalized_radius, twist, number_of_blades, taper, xp)
+    # print("Type of CP_ideal:", type(CP_ideal))
+    # print("Type of CP:", type(CP))
+    return xp.divide(CP_ideal, CP)  # Use xp-compatible divide
 
 
 def PlotProblem5():
@@ -339,7 +364,6 @@ def PlotProblem5():
 
     return None
 
-
 def RunCpuFunctions(cpu_mesh_size=100):
     twist_rate = np.deg2rad(np.linspace(-15, 15, cpu_mesh_size))
     taper = np.linspace(1, 6, cpu_mesh_size)
@@ -373,7 +397,6 @@ def CompareRuntimes(mesh_size=100):
 
 def CPUFigureOfMerit3D():
     X, Y, Z = RunCpuFunctions()
-
     # Create a figure and an axis for the 3D plot
     fig = plt.figure()
     ax = fig.add_subplot(111, projection="3d")
