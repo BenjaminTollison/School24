@@ -1,11 +1,13 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from time import time
 from tqdm import tqdm
 from Problem2 import (
     TipLossFactor,
     TipLossFunction,
 )
 from Problem4 import CoefficientDrag
+from GpuProblem5 import PlotGpuResults, RunGPUFunctions, TroubleShootingPlots
 
 number_of_mistakes_i_am_willing_to_get_that_grade_otherwise_i_will_q_drop_off_of_rudder_tower_jk_this_project_is_actually_kinda_fun_after_you_consume_enough_caffiene = (
     103
@@ -219,6 +221,7 @@ def CoefficientPowerIdeal(
         CoefficientThrust(normalized_radius, twist, number_of_blades, taper) ** 1.5
         / 2**0.5
     )
+    # return 0.008**1.5 / 2**0.5
 
 
 def CoefficientPower(
@@ -325,40 +328,47 @@ def PlotProblem5():
     return None
 
 
-def FigureOfMeritVectorized(
-    radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp=np
-):
-    return NotImplementedError
+def RunCpuFunctions(cpu_mesh_size=100):
+    twist_rate = np.deg2rad(np.linspace(-15, 15, cpu_mesh_size))
+    taper = np.linspace(1, 6, cpu_mesh_size)
+
+    X, Y = np.meshgrid(twist_rate, taper)
+    with tqdm(total=X.shape[0] * X.shape[1], desc="Computing FM values") as pbar:
+        Z = np.zeros_like(X)  # Ensure Z has the same shape as X and Y
+        for i in range(X.shape[0]):
+            for j in range(X.shape[1]):
+                Z[i, j] = FigureOfMerit(1, X[i, j], 2, Y[i, j])
+                pbar.update(1)
+    return Z
+
+
+def CompareRuntimes(mesh_size=100):
+    cpu_start = time()
+    RunCpuFunctions(mesh_size)
+    cpu_runtime = time() - cpu_start
+    gpu_start = time()
+    RunGPUFunctions(mesh_size)
+    gpu_runtime = time() - gpu_start
+    print(f"For a mesh size of {mesh_size}")
+    print(f"The CPU had a runtime of {cpu_runtime:.6} seconds")
+    print(f"The GPU had a runtime of {gpu_runtime:.6} seconds")
+    print("===========================================================")
+    print(
+        f"|           The GPU runs {cpu_runtime/gpu_runtime:.8} times faster           |"
+    )
+    print("===========================================================")
 
 
 def FigureOfMerit3DPlot():
     try:
-        import cupy as cp
 
-        gpu_mesh_size = 100
-        gpu_delta_radius = 1 / gpu_mesh_size
-        twist_rate = cp.deg2rad(cp.linspace(-15, 15, gpu_mesh_size))
-        taper = cp.linspace(1, 6, gpu_mesh_size)
-        print("CuPy detected. Running on GPU...")
-        # Compute the meshgrid on the GPU
-        X, Y = cp.meshgrid(twist_rate, taper)
-        # Compute Z values (parallelized on GPU)
-        r_vector = cp.linspace(starting_radius, 1, gpu_mesh_size)
-        print(r_vector.shape)
-        print(X.shape, Y.shape)
-        Z = FigureOfMeritVectorized(r_vector, X, 2, Y, xp=cp)
-        print(Z.shape)
-        cp.cuda.Stream.null.synchronize()  # Wait for GPU operations to complete
-        # Convert results back to NumPy for plotting
-        X = X.get()
-        Y = Y.get()
-        Z = Z.get()
-        print("Z shape:", Z.shape)
-        print("Z dtype:", Z.dtype)
-        print("Z size (bytes):", Z.nbytes)
+        PlotGpuResults()
+        TroubleShootingPlots()
 
-        # Z = Z.reshape(X.shape)
-
+        mesh_sizes_to_compare = [10, 25, 50, 100]
+        print("Comparing the computation time of each method")
+        for mesh in mesh_sizes_to_compare:
+            CompareRuntimes(mesh)
     except (
         ModuleNotFoundError,
         RuntimeError,
@@ -368,38 +378,29 @@ def FigureOfMerit3DPlot():
     ) as e:
         print(f"Error occurred with CuPy: {e}. Falling back to NumPy...")
         # Add fallback logic with NumPy here
-        twist_rate = np.deg2rad(np.linspace(-15, 15, 100))
-        taper = np.linspace(1, 6, 100)
+        X, Y, Z = RunCpuFunctions()
 
-    X, Y = np.meshgrid(twist_rate, taper)
-    with tqdm(total=X.shape[0] * X.shape[1], desc="Computing FM values") as pbar:
-        Z = np.zeros_like(X)  # Ensure Z has the same shape as X and Y
-        for i in range(X.shape[0]):
-            for j in range(X.shape[1]):
-                Z[i, j] = FigureOfMerit(1, X[i, j], 2, Y[i, j])
-                pbar.update(1)
+        # Create a figure and an axis for the 3D plot
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection="3d")
 
-    # Create a figure and an axis for the 3D plot
-    fig = plt.figure()
-    ax = fig.add_subplot(111, projection="3d")
+        # Plot the data as a scatter plot
+        surf = ax.plot_surface(np.degrees(X), Y, Z, cmap="viridis")
 
-    # Plot the data as a scatter plot
-    surf = ax.plot_surface(np.degrees(X), Y, Z, cmap="viridis")
+        # Set labels for the axes
+        ax.set_xlabel("Twist Rate")
+        ax.set_ylabel("Taper")
+        ax.set_zlabel("FM")
 
-    # Set labels for the axes
-    ax.set_xlabel("Twist Rate")
-    ax.set_ylabel("Taper")
-    ax.set_zlabel("FM")
+        # Rotate the plot to see a specific plane
+        # For example, rotate around the x-axis by 30 degrees and around the z-axis by 45 degrees
+        ax.view_init(elev=20, azim=-130)
 
-    # Rotate the plot to see a specific plane
-    # For example, rotate around the x-axis by 30 degrees and around the z-axis by 45 degrees
-    ax.view_init(elev=20, azim=-130)
+        # Add a color bar to show the mapping of colors to values
+        fig.colorbar(surf, shrink=0.5)
 
-    # Add a color bar to show the mapping of colors to values
-    fig.colorbar(surf, shrink=0.5)
-
-    # Display the plot
-    plt.show()
+        # Display the plot
+        plt.show()
 
 
 if __name__ == "__main__":
