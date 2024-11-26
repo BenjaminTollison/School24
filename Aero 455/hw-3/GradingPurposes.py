@@ -43,7 +43,7 @@ def CreateVenv(venv_dir="heli_env"):
     print(f"    {activation_command}\n")
     # Prompt the user to confirm activation
     print(
-        "After activating the virtual environment, rerun this script with the '--gpu-optimization' option to proceed OR '--proceed' to continue on CPU"
+        "After activating the virtual environment, rerun this script with the 'python3 GradingPurposes.py --gpu-optimization' option to proceed OR '--proceed' to continue on CPU"
     )
     sys.exit(0)  # Exit after providing instructions
 
@@ -129,7 +129,14 @@ def GenerateAllPlots():
     )
     from Problem3 import PlotProblem3
     from Problem4 import PlotProblem4
-    from Problem5 import PlotProblem5, FigureOfMerit3DPlot
+    from Problem5 import PlotProblem5
+
+    try:
+        import cupy as cp
+
+        GPU_FREEDOM = True
+    except ModuleNotFoundError:
+        GPU_FREEDOM = False
 
     SubPlotProblem1()
     PlotProblem2()
@@ -139,7 +146,15 @@ def GenerateAllPlots():
     PlotProblem3()
     PlotProblem4()
     PlotProblem5()
-    FigureOfMerit3DPlot()
+    if GPU_FREEDOM:
+        from Problem5 import FigureOfMerit3DPlot
+
+        FigureOfMerit3DPlot()
+    else:
+        from Problem5 import CPUFigureOfMerit3D
+
+        print("CPU Bound")
+        CPUFigureOfMerit3D()
 
 
 def DeleteTempVenv(venv_dir="heli_env"):

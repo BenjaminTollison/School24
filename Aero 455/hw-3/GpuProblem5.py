@@ -135,7 +135,7 @@ def InflowBEMTVectorized(
             tip_function_i,
             twist_i,
             number_of_blades,
-            taper,
+            taper_vector,
             xp,
         )
         if iteration_count == iteration_max:
@@ -280,6 +280,10 @@ def RunGPUFunctions(gpu_mesh_size=5000, func=FigureOfMeritVectorized):
         resultant = InflowBEMTVectorized(
             r_vector, twist_rate_vector, 2, taper_rate_vector, cp
         )[0]
+    elif func == CoefficientThrustVectorized:
+        resultant = cp.add(
+            func(r_vector, twist_rate_vector, 2, taper_rate_vector, cp), 0.72
+        )
     else:
         resultant = func(r_vector, twist_rate_vector, 2, taper_rate_vector, cp)
     end_time = time()
@@ -324,10 +328,10 @@ def PlotGpuResults(gpu_mesh_size=5000, func=FigureOfMeritVectorized):
 
 
 def TroubleShootingPlots():
-    PlotGpuResults(100, InflowBEMTVectorized)
-    PlotGpuResults(100, CoefficientDragVectorized)
-    PlotGpuResults(100, CoefficientThrustVectorized)
-    PlotGpuResults(100, CoefficientPowerIdealVectorized)
+    PlotGpuResults(500, InflowBEMTVectorized)
+    PlotGpuResults(500, CoefficientDragVectorized)
+    PlotGpuResults(500, CoefficientThrustVectorized)
+    PlotGpuResults(500, CoefficientPowerIdealVectorized)
 
 
 if __name__ == "__main__":
@@ -341,5 +345,5 @@ if __name__ == "__main__":
     print(f"Free Memory: {free_bytes / (1024 ** 3):.2f} GB")
     print(f"Used Memory: {used_bytes / (1024 ** 3):.2f} GB")
     # RunGPUFunctions()
-    PlotGpuResults(100)
-    TroubleShootingPlots()
+    PlotGpuResults(5000, CoefficientThrustVectorized)
+    # TroubleShootingPlots()

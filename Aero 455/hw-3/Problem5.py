@@ -7,8 +7,20 @@ from Problem2 import (
     TipLossFunction,
 )
 from Problem4 import CoefficientDrag
-from GpuProblem5 import PlotGpuResults, RunGPUFunctions, TroubleShootingPlots
 
+try:
+    import cupy as cp
+
+    GPU_FREEDOM = True
+except:
+    GPU_FREEDOM = False
+if GPU_FREEDOM:
+    from GpuProblem5 import (
+        PlotGpuResults,
+        RunGPUFunctions,
+        TroubleShootingPlots,
+        CoefficientThrustVectorized,
+    )
 number_of_mistakes_i_am_willing_to_get_that_grade_otherwise_i_will_q_drop_off_of_rudder_tower_jk_this_project_is_actually_kinda_fun_after_you_consume_enough_caffiene = (
     103
 )
@@ -339,7 +351,7 @@ def RunCpuFunctions(cpu_mesh_size=100):
             for j in range(X.shape[1]):
                 Z[i, j] = FigureOfMerit(1, X[i, j], 2, Y[i, j])
                 pbar.update(1)
-    return Z
+    return X, Y, Z
 
 
 def CompareRuntimes(mesh_size=100):
@@ -359,11 +371,37 @@ def CompareRuntimes(mesh_size=100):
     print("===========================================================")
 
 
+def CPUFigureOfMerit3D():
+    X, Y, Z = RunCpuFunctions()
+
+    # Create a figure and an axis for the 3D plot
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection="3d")
+
+    # Plot the data as a scatter plot
+    surf = ax.plot_surface(np.degrees(X), Y, Z, cmap="viridis")
+
+    # Set labels for the axes
+    ax.set_xlabel("Twist Rate")
+    ax.set_ylabel("Taper")
+    ax.set_zlabel("FM")
+
+    # Rotate the plot to see a specific plane
+    # For example, rotate around the x-axis by 30 degrees and around the z-axis by 45 degrees
+    ax.view_init(elev=20, azim=-130)
+
+    # Add a color bar to show the mapping of colors to values
+    fig.colorbar(surf, shrink=0.5)
+
+    # Display the plot
+    plt.show()
+
+
 def FigureOfMerit3DPlot():
     try:
 
-        PlotGpuResults()
-        TroubleShootingPlots()
+        PlotGpuResults(5000, CoefficientThrustVectorized)
+        # TroubleShootingPlots()
 
         mesh_sizes_to_compare = [10, 25, 50, 100]
         print("Comparing the computation time of each method")
@@ -378,29 +416,7 @@ def FigureOfMerit3DPlot():
     ) as e:
         print(f"Error occurred with CuPy: {e}. Falling back to NumPy...")
         # Add fallback logic with NumPy here
-        X, Y, Z = RunCpuFunctions()
-
-        # Create a figure and an axis for the 3D plot
-        fig = plt.figure()
-        ax = fig.add_subplot(111, projection="3d")
-
-        # Plot the data as a scatter plot
-        surf = ax.plot_surface(np.degrees(X), Y, Z, cmap="viridis")
-
-        # Set labels for the axes
-        ax.set_xlabel("Twist Rate")
-        ax.set_ylabel("Taper")
-        ax.set_zlabel("FM")
-
-        # Rotate the plot to see a specific plane
-        # For example, rotate around the x-axis by 30 degrees and around the z-axis by 45 degrees
-        ax.view_init(elev=20, azim=-130)
-
-        # Add a color bar to show the mapping of colors to values
-        fig.colorbar(surf, shrink=0.5)
-
-        # Display the plot
-        plt.show()
+        CPUFigureOfMerit3D()
 
 
 if __name__ == "__main__":
