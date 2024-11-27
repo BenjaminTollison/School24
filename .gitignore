@@ -1,4 +1,5 @@
 airfoilopt/
+venv/
 .venv/
 heli-env/
 heli_env/

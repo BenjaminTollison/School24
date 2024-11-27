@@ -209,12 +209,14 @@ def CoefficientThrustVectorized(
 def CoefficientPowerIdealVectorized(
     radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp=np
 ):
-    return xp.linalg.norm(
-        CoefficientThrustVectorized(
-            radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp, 2
+    return xp.divide(
+        abs(
+            CoefficientThrustVectorized(
+                radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
+            ),
         )
-        ** 1.5
-        / 2**0.5
+        ** 1.5,
+        2**0.5,
     )
 
 
@@ -242,8 +244,10 @@ def FigureOfMeritVectorized(
         CoefficientPowerIdealVectorized(
             radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
         ),
-        CoefficientPowerVectorized(
-            radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp=np
+        xp.linalg.norm(
+            CoefficientPowerVectorized(
+                radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp=np
+            )
         ),
     )
 
@@ -280,10 +284,10 @@ def RunGPUFunctions(gpu_mesh_size=5000, func=FigureOfMeritVectorized):
         resultant = InflowBEMTVectorized(
             r_vector, twist_rate_vector, 2, taper_rate_vector, cp
         )[0]
-    elif func == CoefficientThrustVectorized:
-        resultant = cp.add(
-            func(r_vector, twist_rate_vector, 2, taper_rate_vector, cp), 0.72
-        )
+    # elif func == CoefficientThrustVectorized:
+    # resultant = cp.add(
+    # func(r_vector, twist_rate_vector, 2, taper_rate_vector, cp), 0.72
+    # )
     else:
         resultant = func(r_vector, twist_rate_vector, 2, taper_rate_vector, cp)
     end_time = time()
@@ -332,6 +336,7 @@ def TroubleShootingPlots():
     PlotGpuResults(500, CoefficientDragVectorized)
     PlotGpuResults(500, CoefficientThrustVectorized)
     PlotGpuResults(500, CoefficientPowerIdealVectorized)
+    PlotGpuResults(500, FigureOfMeritVectorized)
 
 
 if __name__ == "__main__":
@@ -345,5 +350,5 @@ if __name__ == "__main__":
     print(f"Free Memory: {free_bytes / (1024 ** 3):.2f} GB")
     print(f"Used Memory: {used_bytes / (1024 ** 3):.2f} GB")
     # RunGPUFunctions()
-    PlotGpuResults(5000, CoefficientThrustVectorized)
-    # TroubleShootingPlots()
+    # PlotGpuResults(5000, FigureOfMeritVectorized)
+    TroubleShootingPlots()

@@ -1,24 +1,12 @@
-from time import time
-
 import numpy as np
 import matplotlib.pyplot as plt
-from Problem2 import TipLossFactor, TipLossFunction
-from Problem4 import CoefficientDrag
 from tqdm import tqdm
+from Problem2 import (
+    TipLossFactor,
+    TipLossFunction,
+)
+from Problem4 import CoefficientDrag
 
-try:
-    import cupy as cp
-
-    GPU_FREEDOM = True
-except:
-    GPU_FREEDOM = False
-if GPU_FREEDOM:
-    from GpuProblem5 import (
-        CoefficientThrustVectorized,
-        PlotGpuResults,
-        RunGPUFunctions,
-        TroubleShootingPlots,
-    )
 number_of_mistakes_i_am_willing_to_get_that_grade_otherwise_i_will_q_drop_off_of_rudder_tower_jk_this_project_is_actually_kinda_fun_after_you_consume_enough_caffiene = (
     103
 )
@@ -110,11 +98,11 @@ def LinearTwist(
 
 
 def InflowBEMT(
-    normalized_radius,
-    twist,
+    normalized_radius: float,
+    twist: float,
     number_of_blades: int,
-    taper,
-):
+    taper: float,
+) -> float:
     """
     ## Finds the inflow at given span of the blade as a function of the radius, number of blades, linear twist, and taper
 
@@ -162,12 +150,7 @@ def DeltaCoefficientThrust(
 ) -> float:
     twist = LinearTwist(normalized_radius, twist, number_of_blades, taper)
     inflow, F = InflowBEMT(normalized_radius, twist, number_of_blades, taper)
-    solidity = Solidity(normalized_radius, number_of_blades, taper)
-    coefficient_lift_alpha = 2 * np.pi
-    # return 4 * F * inflow**2 * normalized_radius * delta_radius
-    return (solidity * coefficient_lift_alpha / 2) * (
-        solidity * normalized_radius**2 - inflow * normalized_radius
-    )
+    return 4 * F * inflow**2 * normalized_radius * delta_radius
 
 
 def DeltaCoefficientPowerInduced(
@@ -215,23 +198,15 @@ def CoefficientPowerInduced(
 
 def CoefficientThrust(
     normalized_radius: float,
-    twist,
+    twist: float,
     number_of_blades: int,
-    taper,
-    xp=np,
+    taper: float,
 ) -> float:
-    twist = xp.asarray(twist)
-
-    # Expand dimensions if twist is scalar
-    if twist.ndim == 0:  # Scalar
-        twist = twist[None]  # Convert to 1D array
-    elif twist.ndim == 1:  # 1D array
-        twist = xp.broadcast_to(twist, (r.size, twist.size))
-    r = xp.linspace(starting_radius, normalized_radius, twist.shape[0])
-    if r.ndim == 1:  # Expand radii to match meshgrid dimensions if needed
-        r = xp.broadcast_to(r[:, None], (r.size, twist[0].size))
-    delta_CT_list = DeltaCoefficientThrust(r, twist, number_of_blades, taper)
-    return xp.sum(delta_CT_list)
+    delta_CT_list = [
+        DeltaCoefficientThrust(r, twist, number_of_blades, taper)
+        for r in np.arange(starting_radius, normalized_radius, delta_radius)
+    ]
+    return np.sum(delta_CT_list)
 
 
 def CoefficientPowerIdeal(
@@ -239,34 +214,20 @@ def CoefficientPowerIdeal(
     twist: float,
     number_of_blades: int,
     taper: float,
-    xp=np,
 ) -> float:
     return (
-        CoefficientThrust(normalized_radius, twist, number_of_blades, taper, xp) ** 1.5
+        CoefficientThrust(normalized_radius, twist, number_of_blades, taper) ** 1.5
         / 2**0.5
     )
-    # return 0.008**1.5 / 2**0.5
 
 
 def CoefficientPower(
     normalized_radius: float,
-    twist,
+    twist: float,
     number_of_blades: int,
-    taper,
-    xp=np,
+    taper: float,
 ) -> float:
-    # Ensure twist is an array
-    twist = xp.asarray(twist)
-
-    # Expand dimensions if twist is scalar
-    if twist.ndim == 0:  # Scalar
-        twist = twist[None]  # Convert to 1D array
-    elif twist.ndim == 1:  # 1D array
-        twist = xp.broadcast_to(twist, (r.size, twist.size))
-    r = xp.linspace(starting_radius, normalized_radius, twist.shape[0])
-    if r.ndim == 1:  # Expand radii to match meshgrid dimensions if needed
-        r = xp.broadcast_to(r[:, None], (r.size, twist[0].size))
-    delta_CP_list = (
+    delta_CP_list = [
         InflowBEMT(r, twist, number_of_blades, taper)[0]
         * DeltaCoefficientThrust(r, twist, number_of_blades, taper)
         + 0.5
@@ -274,24 +235,20 @@ def CoefficientPower(
         * CoefficientDrag(r, number_of_blades, twist)
         * r**3
         * delta_radius
-    )
-    return xp.sum(delta_CP_list)
+        for r in np.arange(starting_radius, normalized_radius, delta_radius)
+    ]
+    return np.sum(delta_CP_list)
 
 
 def FigureOfMerit(
     normalized_radius: float,
-    twist,
+    twist: float,
     number_of_blades: int,
-    taper,
-    xp=np,
+    taper: float,
 ) -> float:
-    CP_ideal = CoefficientPowerIdeal(
-        normalized_radius, twist, number_of_blades, taper, xp
-    )
-    CP = CoefficientPower(normalized_radius, twist, number_of_blades, taper, xp)
-    # print("Type of CP_ideal:", type(CP_ideal))
-    # print("Type of CP:", type(CP))
-    return xp.divide(CP_ideal, CP)  # Use xp-compatible divide
+    CP_ideal = CoefficientPowerIdeal(normalized_radius, twist, number_of_blades, taper)
+    CP = CoefficientPower(normalized_radius, twist, number_of_blades, taper)
+    return CP_ideal / CP
 
 
 def PlotProblem5():
@@ -368,9 +325,9 @@ def PlotProblem5():
     return None
 
 
-def RunCpuFunctions(cpu_mesh_size=100):
-    twist_rate = np.deg2rad(np.linspace(-15, 15, cpu_mesh_size))
-    taper = np.linspace(1, 6, cpu_mesh_size)
+def FigureOfMerit3DPlot():
+    twist_rate = np.deg2rad(np.linspace(-15, 15, 100))
+    taper = np.linspace(1, 6, 100)
 
     X, Y = np.meshgrid(twist_rate, taper)
     with tqdm(total=X.shape[0] * X.shape[1], desc="Computing FM values") as pbar:
@@ -379,28 +336,7 @@ def RunCpuFunctions(cpu_mesh_size=100):
             for j in range(X.shape[1]):
                 Z[i, j] = FigureOfMerit(1, X[i, j], 2, Y[i, j])
                 pbar.update(1)
-    return X, Y, Z
 
-
-def CompareRuntimes(mesh_size=100):
-    cpu_start = time()
-    RunCpuFunctions(mesh_size)
-    cpu_runtime = time() - cpu_start
-    gpu_start = time()
-    RunGPUFunctions(mesh_size)
-    gpu_runtime = time() - gpu_start
-    print(f"For a mesh size of {mesh_size}")
-    print(f"The CPU had a runtime of {cpu_runtime:.6} seconds")
-    print(f"The GPU had a runtime of {gpu_runtime:.6} seconds")
-    print("===========================================================")
-    print(
-        f"|           The GPU runs {cpu_runtime/gpu_runtime:.8} times faster           |"
-    )
-    print("===========================================================")
-
-
-def CPUFigureOfMerit3D():
-    X, Y, Z = RunCpuFunctions()
     # Create a figure and an axis for the 3D plot
     fig = plt.figure()
     ax = fig.add_subplot(111, projection="3d")
@@ -422,28 +358,6 @@ def CPUFigureOfMerit3D():
 
     # Display the plot
     plt.show()
-
-
-def FigureOfMerit3DPlot():
-    try:
-
-        PlotGpuResults(5000, abs(CoefficientThrustVectorized))
-        # TroubleShootingPlots()
-
-        mesh_sizes_to_compare = [10, 25, 50, 100]
-        print("Comparing the computation time of each method")
-        for mesh in mesh_sizes_to_compare:
-            CompareRuntimes(mesh)
-    except (
-        ModuleNotFoundError,
-        RuntimeError,
-        OSError,
-        Exception,
-        NotImplementedError,
-    ) as e:
-        print(f"Error occurred with CuPy: {e}. Falling back to NumPy...")
-        # Add fallback logic with NumPy here
-        CPUFigureOfMerit3D()
 
 
 if __name__ == "__main__":
