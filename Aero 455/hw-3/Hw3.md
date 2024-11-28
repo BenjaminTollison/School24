@@ -20,7 +20,7 @@
 
 # Outputting the plots
 ## Unit Test Jupyter Notebook
-All the plots are pre-outputed in the Unit Test jupyter notebook so that you dont have to run the code to see the plots outside of this report. I you just want to print out the plots with current python environment, then you can just run all the blocks in the Unit Test notebook
+All the plots are pre-outputed in the Unit Test jupyter notebook so that you dont have to run the code to see the plots outside of this report. I you just want to print out the plots with current python environment, then you can just run all the blocks in the Unit Test notebook. Note: If you run the Unit Test the final mesh is tuned down to 100 points instead of 500, so the computation time will not be as long.
 
 ## GradingPurposes python files
 I have created a python script that will feed you prompts on getting the plots by producing creating a temporary python environment and delete it after producing the plots, so that it will not interfere with any environment that you currently have on your system. Running this script will let you enable gpu acceleration option for seeing the difference in the computation times as the mesh size increases for graphing the surface plot, due to the computation time of the graphing is \(O(n^2)\). 
