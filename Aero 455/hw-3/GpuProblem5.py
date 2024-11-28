@@ -1,6 +1,6 @@
 import numpy as np
 import cupy as cp
-from tqdm import tqdm
+# from tqdm import tqdm
 
 
 def SolidityVectorized(
@@ -196,9 +196,9 @@ def CoefficientThrustVectorized(
         radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
     )
     coefficient_lift_alpha = 2 * xp.pi
-    linear_twist = LinearTwistVectorize(
-        radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
-    )
+    # linear_twist = LinearTwistVectorize(
+        # radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
+    # )
     inflow = InflowBEMTVectorized(
         radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
     )[0]

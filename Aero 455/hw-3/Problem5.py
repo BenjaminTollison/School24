@@ -435,8 +435,9 @@ def CPUFigureOfMerit3D():
 
 def FigureOfMerit3DPlot():
     try:
+        from GpuProblem5 import FigureOfMeritVectorized, CoefficientPowerVectorized
 
-        PlotGpuResults(5000, abs(CoefficientThrustVectorized))
+        PlotGpuResults(5000, CoefficientPowerVectorized)
         # TroubleShootingPlots()
 
         mesh_sizes_to_compare = [10, 25, 50, 100]
