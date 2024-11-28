@@ -42,7 +42,9 @@ def CreateVenv(venv_dir="heli_env"):
     )
     print(f"    {activation_command}\n")
     # Prompt the user to confirm activation
-    print("After activating the virtual environment, rerun this script with the 'python3 GradingPurposes.py --gpu-optimization' option to proceed OR '--proceed' to continue on CPU")
+    print(
+        "After activating the virtual environment, rerun this script with the 'python3 GradingPurposes.py --gpu-optimization' option to proceed OR '--proceed' to continue on CPU"
+    )
     sys.exit(0)  # Exit after providing instructions
 
 
@@ -149,10 +151,10 @@ def GenerateAllPlots():
 
         FigureOfMerit3DPlot()
     else:
-        from Problem5 import CPUFigureOfMerit3D
+        from Problem5backup import FigureOfMerit3DPlot
 
         print("CPU Bound")
-        CPUFigureOfMerit3D()
+        FigureOfMerit3DPlot()
 
 
 def DeleteTempVenv(venv_dir="heli_env"):

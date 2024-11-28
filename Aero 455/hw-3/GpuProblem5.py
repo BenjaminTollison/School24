@@ -104,8 +104,8 @@ def InflowBEMTVectorized(
     )
     tip_function_i = TipLossFunctionVectorized(tip_factor_i, xp)
     iteration_count = 0
-    iteration_max = 30
-    tolerance = 1e-6
+    iteration_max = 50
+    tolerance = 1e-4
     objfunc_i = ObjectiveInflowFunctionVectorized(
         radius_vector,
         inflow_i,
@@ -140,8 +140,15 @@ def InflowBEMTVectorized(
         )
         if iteration_count == iteration_max:
             print("Scheme didn't converge")
-            print([inflow_i, tip_function_i, tip_factor_i, abs(objfunc_i)])
-            return inflow_i
+            print(
+                [
+                    inflow_i.shape,
+                    tip_function_i.shape,
+                    tip_factor_i.shape,
+                    xp.linalg.norm(objfunc_i[0], 2),
+                ]
+            )
+            return inflow_i, tip_function_i
 
     return inflow_i, tip_function_i
 
@@ -162,7 +169,10 @@ def CoefficientDragVectorized(
 def DeltaCoefficientThrustVectorized(
     radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp=np
 ):
-    inflow, F = InflowBEMTVectorized(
+    (
+        inflow,
+        F,
+    ) = InflowBEMTVectorized(
         radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
     )
     return xp.multiply(
@@ -182,38 +192,27 @@ def DeltaCoefficientThrustVectorized(
 def CoefficientThrustVectorized(
     radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp=np
 ):
-    tip_solidity = SolidityVectorized(
-        radius_vector[-1], twist_rate_vector, number_of_blades, taper_vector, xp
+    solidity = SolidityVectorized(
+        radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
     )
     coefficient_lift_alpha = 2 * xp.pi
-    return xp.multiply(
-        xp.divide(xp.multiply(tip_solidity, coefficient_lift_alpha), 4),
-        xp.subtract(
-            LinearTwistVectorize(
-                radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
-            ),
-            xp.divide(
-                InflowBEMTVectorized(
-                    radius_vector,
-                    twist_rate_vector,
-                    number_of_blades,
-                    taper_vector,
-                    xp,
-                )[0],
-                radius_vector,
-            ),
-        ),
+    linear_twist = LinearTwistVectorize(
+        radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
     )
+    inflow = InflowBEMTVectorized(
+        radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
+    )[0]
+    return (solidity * coefficient_lift_alpha / 4) * (solidity - inflow)
 
 
 def CoefficientPowerIdealVectorized(
     radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp=np
 ):
     return xp.divide(
-        abs(
+        xp.abs(
             CoefficientThrustVectorized(
                 radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
-            ),
+            )
         )
         ** 1.5,
         2**0.5,
@@ -234,7 +233,7 @@ def CoefficientPowerVectorized(
     ) * radius_vector**3 * xp.subtract(
         radius_vector[1], radius_vector[0]
     )
-    return xp.sum(delta_CP_list, axis=0)
+    return delta_CP_list
 
 
 def FigureOfMeritVectorized(
@@ -244,15 +243,13 @@ def FigureOfMeritVectorized(
         CoefficientPowerIdealVectorized(
             radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
         ),
-        xp.linalg.norm(
-            CoefficientPowerVectorized(
-                radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp=np
-            )
+        CoefficientPowerVectorized(
+            radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp=np
         ),
     )
 
 
-def RunGPUFunctions(gpu_mesh_size=5000, func=FigureOfMeritVectorized):
+def RunGPUFunctions(gpu_mesh_size=1000, func=FigureOfMeritVectorized):
     import cupy as cp
     from time import time
 
@@ -272,7 +269,7 @@ def RunGPUFunctions(gpu_mesh_size=5000, func=FigureOfMeritVectorized):
         print(f"Device {i}: {device_props['name']}")
 
     starting_radius = 0.2
-    twist_rate = cp.deg2rad(cp.linspace(-20, 20, gpu_mesh_size))
+    twist_rate = cp.deg2rad(cp.linspace(-5, 10, gpu_mesh_size))
     taper = cp.linspace(1, 6, gpu_mesh_size)
     print("CuPy detected. Running on GPU...")
     # Compute the meshgrid on the GPU
@@ -284,10 +281,6 @@ def RunGPUFunctions(gpu_mesh_size=5000, func=FigureOfMeritVectorized):
         resultant = InflowBEMTVectorized(
             r_vector, twist_rate_vector, 2, taper_rate_vector, cp
         )[0]
-    # elif func == CoefficientThrustVectorized:
-    # resultant = cp.add(
-    # func(r_vector, twist_rate_vector, 2, taper_rate_vector, cp), 0.72
-    # )
     else:
         resultant = func(r_vector, twist_rate_vector, 2, taper_rate_vector, cp)
     end_time = time()
@@ -336,6 +329,8 @@ def TroubleShootingPlots():
     PlotGpuResults(500, CoefficientDragVectorized)
     PlotGpuResults(500, CoefficientThrustVectorized)
     PlotGpuResults(500, CoefficientPowerIdealVectorized)
+    PlotGpuResults(500, CoefficientPowerVectorized)
+    # print(RunGPUFunctions(10, FigureOfMeritVectorized)[2])
     PlotGpuResults(500, FigureOfMeritVectorized)
 
 

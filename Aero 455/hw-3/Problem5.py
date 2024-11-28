@@ -160,14 +160,8 @@ def DeltaCoefficientThrust(
     number_of_blades: int,
     taper: float,
 ) -> float:
-    twist = LinearTwist(normalized_radius, twist, number_of_blades, taper)
     inflow, F = InflowBEMT(normalized_radius, twist, number_of_blades, taper)
-    solidity = Solidity(normalized_radius, number_of_blades, taper)
-    coefficient_lift_alpha = 2 * np.pi
-    # return 4 * F * inflow**2 * normalized_radius * delta_radius
-    return (solidity * coefficient_lift_alpha / 2) * (
-        solidity * normalized_radius**2 - inflow * normalized_radius
-    )
+    return 4 * F * inflow**2 * normalized_radius * delta_radius
 
 
 def DeltaCoefficientPowerInduced(
@@ -220,18 +214,23 @@ def CoefficientThrust(
     taper,
     xp=np,
 ) -> float:
-    twist = xp.asarray(twist)
+    # twist = xp.asarray(twist)
 
-    # Expand dimensions if twist is scalar
-    if twist.ndim == 0:  # Scalar
-        twist = twist[None]  # Convert to 1D array
-    elif twist.ndim == 1:  # 1D array
-        twist = xp.broadcast_to(twist, (r.size, twist.size))
-    r = xp.linspace(starting_radius, normalized_radius, twist.shape[0])
-    if r.ndim == 1:  # Expand radii to match meshgrid dimensions if needed
-        r = xp.broadcast_to(r[:, None], (r.size, twist[0].size))
-    delta_CT_list = DeltaCoefficientThrust(r, twist, number_of_blades, taper)
-    return xp.sum(delta_CT_list)
+    # # Expand dimensions if twist is scalar
+    # if twist.ndim == 0:  # Scalar
+    # twist = twist[None]  # Convert to 1D array
+    # elif twist.ndim == 1:  # 1D array
+    # twist = xp.broadcast_to(twist, (r.size, twist.size))
+    # r = xp.linspace(starting_radius, normalized_radius, twist.shape[0])
+    # if r.ndim == 1:  # Expand radii to match meshgrid dimensions if needed
+    # r = xp.broadcast_to(r[:, None], (r.size, twist[0].size))
+    # delta_CT_list = DeltaCoefficientThrust(r, twist, number_of_blades, taper)
+    # return xp.sum(delta_CT_list)
+    delta_CT_list = [
+        DeltaCoefficientThrust(r, twist, number_of_blades, taper)
+        for r in np.arange(starting_radius, normalized_radius, delta_radius)
+    ]
+    return np.sum(delta_CT_list)
 
 
 def CoefficientPowerIdeal(
@@ -255,18 +254,27 @@ def CoefficientPower(
     taper,
     xp=np,
 ) -> float:
-    # Ensure twist is an array
-    twist = xp.asarray(twist)
+    # # Ensure twist is an array
+    # twist = xp.asarray(twist)
 
-    # Expand dimensions if twist is scalar
-    if twist.ndim == 0:  # Scalar
-        twist = twist[None]  # Convert to 1D array
-    elif twist.ndim == 1:  # 1D array
-        twist = xp.broadcast_to(twist, (r.size, twist.size))
-    r = xp.linspace(starting_radius, normalized_radius, twist.shape[0])
-    if r.ndim == 1:  # Expand radii to match meshgrid dimensions if needed
-        r = xp.broadcast_to(r[:, None], (r.size, twist[0].size))
-    delta_CP_list = (
+    # # Expand dimensions if twist is scalar
+    # if twist.ndim == 0:  # Scalar
+    # twist = twist[None]  # Convert to 1D array
+    # elif twist.ndim == 1:  # 1D array
+    # twist = xp.broadcast_to(twist, (r.size, twist.size))
+    # r = xp.linspace(starting_radius, normalized_radius, twist.shape[0])
+    # if r.ndim == 1:  # Expand radii to match meshgrid dimensions if needed
+    # r = xp.broadcast_to(r[:, None], (r.size, twist[0].size))
+    # delta_CP_list = (
+    # InflowBEMT(r, twist, number_of_blades, taper)[0]
+    # * DeltaCoefficientThrust(r, twist, number_of_blades, taper)
+    # + 0.5
+    # * Solidity(r, number_of_blades, taper)
+    # * CoefficientDrag(r, number_of_blades, twist)
+    # * r**3
+    # * delta_radius
+    # )
+    delta_CP_list = [
         InflowBEMT(r, twist, number_of_blades, taper)[0]
         * DeltaCoefficientThrust(r, twist, number_of_blades, taper)
         + 0.5
@@ -274,7 +282,8 @@ def CoefficientPower(
         * CoefficientDrag(r, number_of_blades, twist)
         * r**3
         * delta_radius
-    )
+        for r in np.arange(starting_radius, normalized_radius, delta_radius)
+    ]
     return xp.sum(delta_CP_list)
 
 
