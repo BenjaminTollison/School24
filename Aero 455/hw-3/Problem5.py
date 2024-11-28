@@ -378,7 +378,7 @@ def PlotProblem5():
 
 
 def RunCpuFunctions(cpu_mesh_size=100):
-    twist_rate = np.deg2rad(np.linspace(-15, 15, cpu_mesh_size))
+    twist_rate = np.deg2rad(np.linspace(-80, 10, cpu_mesh_size))
     taper = np.linspace(1, 6, cpu_mesh_size)
 
     X, Y = np.meshgrid(twist_rate, taper)
@@ -424,7 +424,7 @@ def CPUFigureOfMerit3D():
 
     # Rotate the plot to see a specific plane
     # For example, rotate around the x-axis by 30 degrees and around the z-axis by 45 degrees
-    ax.view_init(elev=20, azim=-130)
+    ax.view_init(elev=20, azim=-50)
 
     # Add a color bar to show the mapping of colors to values
     fig.colorbar(surf, shrink=0.5)

@@ -1,5 +1,6 @@
 import numpy as np
 import cupy as cp
+
 # from tqdm import tqdm
 
 
@@ -197,7 +198,7 @@ def CoefficientThrustVectorized(
     )
     coefficient_lift_alpha = 2 * xp.pi
     # linear_twist = LinearTwistVectorize(
-        # radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
+    # radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
     # )
     inflow = InflowBEMTVectorized(
         radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
@@ -239,7 +240,7 @@ def CoefficientPowerVectorized(
 def FigureOfMeritVectorized(
     radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp=np
 ):
-    return xp.divide(
+    FM = xp.divide(
         CoefficientPowerIdealVectorized(
             radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp
         ),
@@ -247,6 +248,10 @@ def FigureOfMeritVectorized(
             radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp=np
         ),
     )
+    if FM < 1.0:
+        return FM
+    else:
+        return xp.nan
 
 
 def RunGPUFunctions(gpu_mesh_size=1000, func=FigureOfMeritVectorized):
