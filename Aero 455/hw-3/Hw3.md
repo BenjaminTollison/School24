@@ -66,7 +66,7 @@ $$
 $$
 I will loop through these functions until $||\tau_{(\lambda_{i+1},\theta_{i+1})}|| \leq \epsilon$. After solving these functions for the inflow ratio, we can plug into the exact equations but with this new approximated inflow and compare it to the exact inflow with the following graphs.
 
-![Problem 1 Graphs][graph 1]
+![Problem 1 Graphs](\appendix\problem-1-graph.png)
 
 Note that the Coefficient of Power Induced and Coefficient of Torque are graphed as functions of radius from zero to one because the numerics fail after passing my max found $C_T = 0.08$ 
 
@@ -105,7 +105,7 @@ $$
 \rightarrow\kappa = \frac{C_{Pi}\sqrt{2}}{C_T^\frac{3}{2}}
 $$
 These equations produce the following graphs
-![Problem 2 graph][graph 2]
+![Problem 2 Graphs](\appendix\problem-2-graph.png)
 # Problem 3
 We build upon problem 2 in problem 3 by adding back twist. In this case we will be using linear twist
 $$
@@ -126,7 +126,7 @@ $$
 \frac{\Delta C_{P_0}}{\Delta r} = \frac{1}{2} = \sigma C_d r_n^3
 $$
 These changes produce the following graphs
-![Problem 3 graph][graph 3]
+![Problem 3 Graphs](\appendix\problem-3-graph.png)
 # Problem 4
 Following the same parameters as the previous problem except this time we are changing the approximation for coefficient of drag to 
 $$
@@ -144,7 +144,7 @@ $$
 FM = \frac{C_{P,ideal}}{C_P}
 $$
 From this we can produce the following graphs
-![Problem 4 graph][graph 4]
+![Problem 4 Graphs](\appendix\problem-4-graph.png)
 # Problem 5
 Finally the last feature to add to our BEMT method is allow for changing the geometry of the blade as we move down it. In this case we will use linear taper function to find the solidity of the blade as a function of normalized radius. Below is my derivation of finding the solidity from linear taper. First this is how I defined taper:
 $$
@@ -187,15 +187,8 @@ $$
 
 Now we will find the inflow, change in thrust, change in induced power, lift, with fixed twist and looking at the effects of taper ratio.
 
-![Problem 5 graph][graph 5]
+![Problem 5 Graphs](\appendix\problem-5-graph.png)
 
 This figure of merit graph is where we allow the twist and taper change at the same time. I have set $\theta_{tw} \in [-80^\circ,10^\circ]$ and $\pi_{taper} \in [1,6]$ and I created a grid of 500 points. The graph describes the way to maximize the figure of merit is to have the difference between root and tip to be between ~40-50 degrees and maximize the taper. It makes sense that you want the root to have a high angle of attack and level out at the tip because the speed at the hub is very slow compared to the tip. Since the root is calcuated as a function of the tip twist,the graph is negative instead of giving the tip angle of attack. Obivously, we cannot have infinite taper to negate the tip loss and have a lot of root cord due to material limits in real life. The material of the blades will determind the amount of taper that we can achieve, but from the range I calculated $FM \propto \pi_{taper}$
 
-![FM surface plot][graph 6]
-
-[graph 1]: \appendix\problem-1-graph.png
-[graph 2]: \appendix\problem-2-graph.png
-[graph 3]: \appendix\problem-3-graph.png
-[graph 4]: \appendix\problem-4-graph.png
-[graph 5]: \appendix\problem-5-graph.png
-[graph 6]: \appendix\hi-res-FM-plot.png
+![Problem 5 Graphs](\appendix\hi-res-FM-plot.png)
