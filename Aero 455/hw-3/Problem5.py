@@ -457,5 +457,7 @@ def FigureOfMerit3DPlot():
 
 
 if __name__ == "__main__":
-    PlotProblem5()
-    FigureOfMerit3DPlot()
+    mesh_sizes_to_compare = [10, 25, 50, 100, 200]
+    print("Comparing the computation time of each method")
+    for mesh in mesh_sizes_to_compare:
+        CompareRuntimes(mesh)

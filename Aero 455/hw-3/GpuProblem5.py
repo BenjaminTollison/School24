@@ -248,10 +248,11 @@ def FigureOfMeritVectorized(
             radius_vector, twist_rate_vector, number_of_blades, taper_vector, xp=np
         ),
     )
-    if FM < 1.0:
-        return FM
-    else:
-        return xp.nan
+    # if FM.any() < 1.0:
+    # return FM
+    # else:
+    # return xp.nan
+    return FM
 
 
 def RunGPUFunctions(gpu_mesh_size=1000, func=FigureOfMeritVectorized):
@@ -350,5 +351,5 @@ if __name__ == "__main__":
     print(f"Free Memory: {free_bytes / (1024 ** 3):.2f} GB")
     print(f"Used Memory: {used_bytes / (1024 ** 3):.2f} GB")
     # RunGPUFunctions()
-    # PlotGpuResults(5000, FigureOfMeritVectorized)
-    TroubleShootingPlots()
+    PlotGpuResults(7000, CoefficientThrustVectorized)
+    # TroubleShootingPlots()

@@ -147,7 +147,7 @@ def GenerateAllPlots():
     PlotProblem4()
     PlotProblem5()
     if GPU_FREEDOM:
-        from Problem5 import FigureOfMerit3DPlot
+        from GpuProblem5 import FigureOfMeritVectorized
 
         FigureOfMerit3DPlot()
     else:
