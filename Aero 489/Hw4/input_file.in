@@ -2,14 +2,13 @@ LOAD modified_NACA0012.dat
 modified_NACA0012
 PANE
 OPER
-Visc 6000000.0
-Mach 0.2
+Visc 27400000.0
 Type 1
 PACC
 polar_file.txt
 
-ITER 300
-ASeq 0.0 9.0 0.125
+ITER 250
+ASeq 0 10 0.25
 
 
 quit
